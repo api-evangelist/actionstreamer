@@ -1,0 +1,79 @@
+generated: '2026-09-06'
+method: searched
+source: https://developer.actionstreamer.com/docs/Guides/errors
+docs: https://developer.actionstreamer.com/docs/Guides/errors
+note: >-
+  Error catalog assembled from ActionStreamer's published "Errors and Response Handling" guide and
+  cross-checked against the OpenAPI. The specification itself is nearly silent on failure: of 247
+  operations, 246 declare only a 200 response and exactly one declares a 400. The catalog below is
+  therefore the docs' list, not a spec derivation, and it is short because the provider's own list
+  is short.
+format: non-standard
+rfc9457: false
+envelope:
+  standardized: false
+  content_types:
+  - application/json
+  - text/plain
+  quote: >-
+    "Error responses are not fully standardized across the current Web API, so clients should be
+    prepared to handle both structured JSON and plain-text error responses."
+  fields: []
+problem_type_count: 5
+problem_types:
+- status: 200
+  title: Success
+  type: null
+  meaning: The request succeeded.
+  remediation: null
+- status: 400
+  title: Bad Request
+  type: null
+  meaning: Invalid request body or invalid input.
+  remediation: >-
+    Validate the request body against the schema in the OpenAPI before sending. This is the only
+    non-2xx status declared anywhere in the published specification.
+  declared_in_spec: true
+- status: 401
+  title: Unauthorized
+  type: null
+  meaning: Authentication failed or was not supplied.
+  remediation: >-
+    Re-check the HMAC-SHA256 canonical string. The docs advise storing the string-to-sign and the
+    headers used for failed requests while validating auth. Confirm Content-Type was excluded before
+    signing, that headers and parameters were sorted, and that the path was normalized.
+  see: authentication/actionstreamer-authentication.yml
+- status: 419
+  title: Session expired
+  type: null
+  meaning: The portal/browser session token is no longer valid.
+  remediation: Create a new session (POST /v1/session) and retry. Applies to session-token auth, not to HMAC-signed requests.
+  note: 419 is a non-standard status code (not registered in the IANA HTTP Status Code Registry). Generic HTTP clients will not treat it specially.
+- status: 500
+  title: Internal server error
+  type: null
+  meaning: An unhandled server-side failure.
+  remediation: Retry with backoff; log path, method, status and body and contact developer@actionstreamer.com.
+client_guidance:
+- Treat non-2xx responses as failures even if the body is a plain string.
+- Log the request path, HTTP method, status code, and response body for supportability.
+- Store the string-to-sign and headers used for failed requests while you are validating auth.
+- Wrap long-poll, upload, and media workflows with retries and timeout handling.
+spec_coverage:
+  operations_total: 247
+  operations_declaring_4xx_or_5xx: 1
+  operations_declaring_only_200: 246
+  error_examples_in_spec: 0
+gaps:
+- >-
+  No machine-readable error code registry: failures are distinguished only by HTTP status, so a
+  client cannot programmatically tell an expired API key from a malformed signature — both are 401.
+- >-
+  No 404, 403, 409 or 429 documented anywhere, though a REST surface of this size must return them.
+- >-
+  The retry guidance in the errors guide is not safe to follow, because the API publishes no
+  idempotency mechanism. See conventions/actionstreamer-conventions.yml.
+recommendations:
+- Adopt RFC 9457 application/problem+json with a stable `type` URI per failure class.
+- Declare 400/401/403/404/409/429/500 responses in the OpenAPI so generated clients can handle them.
+- Replace the non-standard 419 with 401 plus a distinguishing problem type.

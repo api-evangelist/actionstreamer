@@ -1,0 +1,37 @@
+generated: '2026-09-06'
+method: searched
+source: https://developer.actionstreamer.com/docs/Guides/errors
+note: >-
+  Searched the three published developer guides, the Web API overview and the full OpenAPI for
+  published rate limits and runtime throttling signals. ActionStreamer publishes none. This is an
+  honest zero, recorded rather than omitted.
+limit_count: 0
+limits: []
+headers: []
+status_on_exhaustion: null
+retry_after: false
+documented: false
+evidence:
+- url: https://developer.actionstreamer.com/docs/Guides/errors
+  status: 200
+  finding: >-
+    The errors and response-handling guide lists 200, 400, 401, 419 and 500 only. No 429, no
+    throttling section.
+- url: https://api.actionstreamer.com/swagger/v1/swagger.json
+  status: 200
+  finding: >-
+    Zero occurrences of "ratelimit", "rate limit", "X-RateLimit" or "429" across 247 operations and
+    107 schemas.
+- url: https://developer.actionstreamer.com/docs/API_Reference/WebAPI/overview
+  status: 200
+  finding: No rate-limit or quota section.
+operational_note: >-
+  The absence matters more than usual here. POST /v1/event/list/pending/longpoll is a long-poll
+  endpoint that clients are expected to call continuously per device, and the errors guide instructs
+  integrators to wrap long-poll and upload workflows in retries. A fleet operator building against
+  this API has no published guidance on how many concurrent long-polls or uploads a key may sustain,
+  and no runtime signal telling them when they are near a ceiling.
+recommendations:
+- Publish per-key and per-account limits, especially for the long-poll and media-upload endpoints.
+- Return RateLimit-Limit / RateLimit-Remaining / RateLimit-Reset (RFC 9331 style) and Retry-After on 429.
+- Declare a 429 response in the OpenAPI.

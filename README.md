@@ -64,5 +64,35 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-ActionStreamer is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://www.nasdaqprivatemarket.com/
+ActionStreamer is a Cincinnati, Ohio IoT video platform company, founded in 2016, that builds wearable
+and connected-device live streaming technology for industrial, public-safety, defense, aerospace/MRO and
+sports operations. Its ActionSync platform manages fleets of smart cameras and body-worn devices, moving
+live and store-and-forward video over Wi-Fi, private 5G, cellular and Starlink links, and its IRIS product
+layers AI object detection and alerting on top.
+
+ActionStreamer publishes a public developer platform: a 247-operation HTTP Web API covering devices,
+device health, events, event presets, streams, video and audio clips, images, files, users and API keys,
+authenticated with HMAC-SHA256 request signing, plus a first-party Python library on PyPI.
+
+## Public surfaces profiled here
+
+- Website: https://actionstreamer.com/
+- Developer portal: https://developer.actionstreamer.com/
+- API base URL: https://api.actionstreamer.com/v1
+- OpenAPI 3.0.1: https://api.actionstreamer.com/swagger/v1/swagger.json (186 paths, 247 operations, 107 schemas)
+- Python library: https://pypi.org/project/actionstreamer/
+- Portal: https://portal.actionstreamer.com/
+- GitHub: https://github.com/ActionStreamer
+
+## Notable findings
+
+- The published OpenAPI declares no `servers`, no `components.securitySchemes` and no `operationId`
+  on any of its 247 operations, and declares a non-2xx response on exactly one. The authentication,
+  base URL and error semantics are documented only in prose. `overlays/` captures these as an
+  OpenAPI Overlay rather than mutating the provider's specification.
+- The contract declares its media standards in its own `Stream` example: SRT for publish
+  (`srt://media.actionstreamer.com:8890`) and WebRTC for playback.
+- No idempotency mechanism is published on a 161-operation write surface that actuates cameras
+  worn by people in the field.
+- No pricing, no status page, no `/.well-known/` documents on any of six hosts, and no published
+  rate limits.

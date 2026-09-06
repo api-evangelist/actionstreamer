@@ -1,0 +1,126 @@
+overlay: 1.0.0
+info:
+  title: ActionStreamer Web API — API Evangelist enhancement overlay
+  version: 1.0.0
+x-generated: '2026-09-06'
+x-method: generated
+x-source: openapi/_original/actionstreamer-openapi-original.json
+x-target: openapi/_original/actionstreamer-openapi-original.json
+x-note: >-
+  An OpenAPI Overlay 1.0.0 document capturing API Evangelist's enhancements to the ActionStreamer
+  Web API contract. It is applied to, and never mutates, the provider's original specification. Every
+  value added here is sourced from ActionStreamer's own published documentation — the base URL and
+  the HMAC-SHA256 scheme come from the authentication guide and the HTTP API quickstart, and the
+  error responses come from the errors and response handling guide. Nothing is invented. The
+  securityScheme is modelled as an apiKey-in-header pair because OpenAPI 3.0.1 has no native
+  signature scheme type; the description carries the actual signing rules.
+extends: openapi/_original/actionstreamer-openapi-original.json
+actions:
+- target: $
+  description: >-
+    Add the servers block. The published contract declares no servers at all; the developer portal's
+    own overview page states "servers declared: False". The host below is documented in the
+    authentication guide and the HTTP API quickstart.
+  update:
+    servers:
+    - url: https://api.actionstreamer.com/v1
+      description: 'ActionStreamer production Web API (versioned base, as documented in the HTTP API quickstart)'
+    - url: https://api.actionstreamer.com
+      description: 'ActionStreamer production Web API (root base; the quickstart documents both forms)'
+- target: $.components
+  description: >-
+    Add the securitySchemes the contract omits. ActionStreamer authenticates every endpoint with
+    HMAC-SHA256 request signing, documented at
+    https://developer.actionstreamer.com/docs/Guides/authentication, but declares no scheme, so
+    generated clients emit unauthenticated calls.
+  update:
+    securitySchemes:
+      ActionStreamerAccessKey:
+        type: apiKey
+        in: header
+        name: X-AccessKey
+        description: >-
+          The access key issued in the ActionStreamer portal under Settings > API Keys. Sent
+          alongside X-Signature, X-Timestamp and X-Nonce. Also echoed in the Authorization header as
+          `HMAC-SHA256 {access_key}`.
+      ActionStreamerSignature:
+        type: apiKey
+        in: header
+        name: X-Signature
+        description: >-
+          Hex-encoded HMAC-SHA256 digest of the canonical string, keyed with the account secret. The
+          canonical string is METHOD, PATH, HEADER_STRING, PARAMETER_STRING, BODY joined by newlines
+          and trimmed. Content-Type is removed from the header set before signing; header keys and
+          query/form parameters are sorted and rendered as `key: value` lines; the path is normalized
+          to start with `/` with no trailing slash. Must accompany X-AccessKey, X-Timestamp (Unix
+          epoch seconds) and X-Nonce (a UUIDv4, unique per request, for replay protection).
+- target: $
+  description: Apply the HMAC scheme globally, since every documented endpoint requires a signed request.
+  update:
+    security:
+    - ActionStreamerAccessKey: []
+      ActionStreamerSignature: []
+- target: $
+  description: >-
+    Record the platform's media transport standards at the document root. Both are already evidenced
+    inside the contract, in the Stream schema's own example (publishURL srt://, readURL /webrtc/),
+    but are not declared anywhere a machine can read them as capabilities.
+  update:
+    x-media-transport:
+      publish:
+        protocol: SRT
+        scheme: 'srt://'
+        host: media.actionstreamer.com
+        evidence: '#/components/schemas/Stream/example/publishURL'
+      playback:
+        protocol: WebRTC
+        host: media.actionstreamer.com
+        evidence: '#/components/schemas/Stream/example/readURL'
+      note: 'Media itself is carried out of band; the Web API manages Stream records and hands back the URLs.'
+- target: $
+  description: >-
+    Record the cross-cutting runtime semantics an integrator needs and the contract does not state.
+    Values are taken from ActionStreamer's published guides; absences are recorded as absences.
+  update:
+    x-conventions:
+      versioning: 'path prefix, v1; no version negotiation header and no published version policy'
+      list_convention: 'reads are frequently POST /<resource>/list with a JSON filter body rather than GET with query parameters'
+      pagination: 'not documented — no page/limit/offset or cursor convention, and no total or next field on list responses'
+      idempotency: 'not supported — no Idempotency-Key on a 161-operation write surface; X-Nonce is auth replay protection only'
+      rate_limits: 'not published — no RateLimit-* headers and no 429 declared'
+      request_id: 'not returned — the errors guide asks clients to log path, method, status and body instead'
+      error_envelope: 'not standardized — the errors guide states clients must handle both structured JSON and plain-text error bodies'
+      event_delivery: 'long-poll (POST /v1/event/list/pending/longpoll) and dequeue (POST /v1/event/dequeue); no webhooks or callbacks anywhere in the contract'
+      detail: conventions/actionstreamer-conventions.yml
+- target: $.paths.*.*.responses
+  description: >-
+    Add the error responses ActionStreamer documents in its errors guide but declares on only one of
+    247 operations. Status codes, titles and meanings are verbatim from
+    https://developer.actionstreamer.com/docs/Guides/errors — no response schema is asserted, because
+    the provider states the error envelope is not standardized.
+  update:
+    '400':
+      description: 'Invalid request body or invalid input.'
+    '401':
+      description: 'Unauthorized — authentication failed or was not supplied. Re-check the HMAC canonical string.'
+    '419':
+      description: 'Session expired (non-standard status code). Applies to portal session-token auth; create a new session and retry.'
+    '500':
+      description: 'Internal server error. Retry with backoff and log path, method, status and body.'
+- target: $.info
+  description: Attribute the enhancement so a consumer can tell provider content from API Evangelist content.
+  update:
+    x-enhanced-by:
+      by: API Evangelist
+      date: '2026-09-06'
+      profile: https://apis.io/provider/actionstreamer
+      original_spec: https://api.actionstreamer.com/swagger/v1/swagger.json
+      original_publish_date: '2026-07-07'
+      changes:
+      - added servers (absent from the original)
+      - added securitySchemes and a root security requirement (absent from the original)
+      - added documented 400/401/419/500 responses (the original declares one 4xx across 247 operations)
+      - added x-media-transport and x-conventions extensions
+      not_changed:
+      - 'operationIds: the original declares none, and inventing them would create identifiers that do not match the provider''s own reference pages'
+      - 'schemas, parameters and request bodies: left exactly as published'

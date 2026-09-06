@@ -1,18 +1,72 @@
 aid: actionstreamer
 name: ActionStreamer
-description: 'ActionStreamer is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'ActionStreamer is a Cincinnati, Ohio IoT video platform company, founded
+  in 2016, that builds wearable and connected-device live streaming technology for
+  industrial, public-safety, defense, aerospace/MRO and sports operations. Its ActionSync
+  platform manages fleets of smart cameras and body-worn devices, moving live and
+  store-and-forward video over Wi-Fi, private 5G, cellular and Starlink links, and
+  its IRIS product layers AI object detection and alerting on top. ActionStreamer
+  publishes a public developer platform at developer.actionstreamer.com: a 247-operation
+  HTTP Web API at api.actionstreamer.com covering devices, device health, events,
+  event presets, streams, video and audio clips, images, files, users and API keys,
+  authenticated with HMAC-SHA256 request signing, plus a first-party Python library
+  distributed on PyPI as "actionstreamer".'
 url: https://raw.githubusercontent.com/api-evangelist/actionstreamer/refs/heads/main/apis.yml
+image: https://framerusercontent.com/assets/nR8rjxhDfFwVzDiGHu10CgzYmZs.png
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-09-06'
 modified: '2026-09-06'
 tags:
 - Company
-apis: []
+- Video
+- Live Streaming
+- Wearables
+- Internet of Things
+- Device Management
+- Public Safety
+- Industrial
+- Computer Vision
+- Media
+apis:
+- name: ActionStreamer Web API
+  description: 'The ActionStreamer HTTP Web API — 186 paths and 247 operations across
+    43 resource areas — for managing devices, device health telemetry, device groups,
+    Wi-Fi connections, events and event presets, live streams, video clips, audio
+    clips, images, files, projects, users, user groups, sessions, notifications, tags
+    and API keys on the ActionStreamer platform. Authenticated with HMAC-SHA256 request
+    signing using an access key and secret created in the ActionStreamer portal.'
+  humanURL: https://developer.actionstreamer.com/docs/API_Reference/WebAPI/overview
+  baseURL: https://api.actionstreamer.com/v1
+  image: https://portal.actionstreamer.com/BlueLogo_Filled_tp.png
+  tags:
+  - Video
+  - Live Streaming
+  - Device Management
+  - Internet of Things
+  - Wearables
+  properties:
+  - type: OpenAPI
+    url: openapi/_original/actionstreamer-openapi-original.json
+  - type: Overlay
+    url: overlays/actionstreamer-web-api-overlay.yaml
+  - type: Authentication
+    url: authentication/actionstreamer-authentication.yml
+  - type: ErrorCatalog
+    url: errors/actionstreamer-problem-types.yml
+  - type: Conventions
+    url: conventions/actionstreamer-conventions.yml
+  - type: DataModel
+    url: data-model/actionstreamer-data-model.yml
+  - type: Examples
+    url: examples/actionstreamer-examples.yml
+  - type: RateLimits
+    url: rate-limits/actionstreamer-rate-limits.yml
+  - type: Documentation
+    url: https://developer.actionstreamer.com/docs/intro
+  - type: APIReference
+    url: https://developer.actionstreamer.com/docs/category/api-reference
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -20,4 +74,53 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: https://www.nasdaqprivatemarket.com/
+  url: https://actionstreamer.com/
+- type: DeveloperPortal
+  url: https://developer.actionstreamer.com/
+- type: Documentation
+  url: https://developer.actionstreamer.com/docs/intro
+- type: APIReference
+  url: https://developer.actionstreamer.com/docs/category/api-reference
+- type: GettingStarted
+  url: https://developer.actionstreamer.com/docs/Guides/http-api-quickstart
+- type: Authentication
+  url: authentication/actionstreamer-authentication.yml
+- type: SignUp
+  url: https://portal.actionstreamer.com/
+- type: Support
+  url: https://actionstreamer.com/contact
+- type: Blog
+  url: https://actionstreamer.com/blog
+- type: GitHubOrganization
+  url: https://github.com/ActionStreamer
+- type: TermsOfService
+  url: https://actionstreamer.com/terms-of-use
+- type: PrivacyPolicy
+  url: https://actionstreamer.com/privacy-policy
+- type: Packages
+  url: packages/actionstreamer-packages.yml
+- type: SDKs
+  url: packages/actionstreamer-packages.yml
+- type: LLMsTxt
+  url: llms/actionstreamer-llms.txt
+- type: X-MCPServerCandidate
+  url: mcp/actionstreamer-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Vocabulary
+  url: vocabulary/actionstreamer-vocabulary.yml
+- type: Conformance
+  url: conformance/actionstreamer-conformance.yml
+- type: Lifecycle
+  url: lifecycle/actionstreamer-lifecycle.yml
+- type: DomainSecurity
+  url: security/actionstreamer-domain-security.yml
+- type: Plans
+  url: plans/actionstreamer-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/actionstreamer-rate-limits.yml
+x-enrichment:
+  date: '2026-09-06'
+  status: enriched
+  artifacts_added: 21
+  pass: local-v3

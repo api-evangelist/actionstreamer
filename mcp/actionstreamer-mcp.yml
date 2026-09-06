@@ -1,0 +1,119 @@
+generated: '2026-09-06'
+method: derived
+source: openapi/_original/actionstreamer-openapi-original.json
+status: candidate
+note: >-
+  ActionStreamer publishes NO MCP server. This is a candidate tool list derived by API Evangelist
+  from the published OpenAPI to show what an MCP surface over this API would look like; it is not
+  operated by ActionStreamer and there is no endpoint to call. Searched for a hosted server before
+  deriving: mcp.actionstreamer.com does not resolve, and POST tools/list returned 404 at
+  api.actionstreamer.com/mcp, api.actionstreamer.com/sse and actionstreamer.com/mcp. The developer
+  portal, corporate sitemap (231 URLs) and GitHub org (1 public repo, `moq`) contain no MCP
+  reference. Pointed at from apis.yml as type X-MCPServerCandidate, never MCPServer.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: probed
+search_evidence:
+- url: https://api.actionstreamer.com/mcp
+  method: 'POST tools/list'
+  status: 404
+- url: https://api.actionstreamer.com/sse
+  method: 'POST tools/list'
+  status: 404
+- url: https://actionstreamer.com/mcp
+  method: 'POST tools/list'
+  status: 404
+- url: https://mcp.actionstreamer.com/mcp
+  method: 'POST tools/list'
+  status: 'DNS NXDOMAIN'
+- url: https://github.com/ActionStreamer
+  status: 200
+  finding: 'one public repository (moq); no MCP server package'
+- url: https://pypi.org/pypi/actionstreamer/json
+  status: 200
+  finding: 'the only first-party package is the API client library; it exposes no MCP entry point'
+candidate_auth:
+  note: >-
+    Any MCP server over this API would have to implement HMAC-SHA256 request signing per
+    authentication/actionstreamer-authentication.yml — access key and secret from the ActionStreamer
+    portal. There is no OAuth authorization server, so an MCP server could not use the MCP OAuth
+    flow without ActionStreamer adding one.
+tool_count: 14
+tools:
+- name: list_devices
+  description: List the devices available to the authenticated account.
+  rest: 'GET /v1/device/list/all'
+  consequence: read
+- name: get_device
+  description: Get a single device by its numeric device ID.
+  rest: 'GET /v1/device/{deviceID}'
+  consequence: read
+- name: find_device_by_name
+  description: Look up a device by name or serial number.
+  rest: 'POST /v1/device/name'
+  consequence: read
+- name: get_device_health
+  description: Get the latest health record for a device — battery, CPU temperature, link quality, disk and memory.
+  rest: 'GET /v1/devicehealth/getlatest/{deviceID}'
+  consequence: read
+- name: list_device_health
+  description: Get health rows for all devices available to the authenticated user.
+  rest: 'GET /v1/device/list/health'
+  consequence: read
+- name: chart_device_health
+  description: Get line-chart series for one device health variable over time.
+  rest: 'POST /v1/device/{deviceID}/health/linechart'
+  consequence: read
+- name: list_video_clips
+  description: List video clips, filtered by device and time range.
+  rest: 'POST /v1/videoclip/list'
+  consequence: read
+- name: get_video_clip
+  description: Get a single video clip record by ID.
+  rest: 'GET /v1/videoclip/{videoClipID}'
+  consequence: read
+- name: search_clips_by_tag
+  description: Get clips, clip tags and the unique tag list for a device set over a start/end epoch.
+  rest: 'POST /v1/videoclip/devices/tag/list'
+  consequence: read
+- name: list_streams
+  description: List streams for a device, or fetch the most recent one with its publish and read URLs.
+  rest: 'GET /v1/device/{deviceID}/stream/list'
+  consequence: read
+- name: list_event_presets
+  description: List the event presets configured for a device.
+  rest: 'GET /v1/eventpreset/list/device/{deviceID}'
+  consequence: read
+- name: run_event_preset
+  description: Run an event preset on a device — actuates the physical camera in the field.
+  rest: 'POST /v1/eventpreset/run/{eventPresetID}'
+  consequence: write
+  risk: >-
+    HIGH. This queues a real command to a device worn by a person. It is not reversible once the
+    agent dequeues it, and the API publishes no idempotency mechanism, so a retried call fires twice.
+    Any MCP server exposing this should require explicit confirmation.
+- name: get_event_status
+  description: Get an event by ID to check the status of a queued or running command.
+  rest: 'GET /v1/event/{eventID}'
+  consequence: read
+- name: end_event_process
+  description: Queue an event to end the process associated with a running event.
+  rest: 'POST /v1/event/endprocess/{eventID}'
+  consequence: write
+  risk: MEDIUM. Stops an in-flight capture or stream.
+derivation_note: >-
+  Tools are a curated read-first subset of the 247 published operations, chosen for the flows the
+  provider's own quickstart and sample code highlight (get_device, run_event_preset). Every `rest`
+  value is a verbatim method+path from the published contract. The contract declares no
+  operationIds, so operations are referenced by method and path.
+recommendations:
+- >-
+  If ActionStreamer ships an MCP server, gate every write tool behind confirmation and add an
+  Idempotency-Key to the underlying API first — the write surface actuates physical hardware.
+- >-
+  Declare securitySchemes in the OpenAPI before generating any tool surface from it; today a
+  generated MCP server would emit unauthenticated calls.

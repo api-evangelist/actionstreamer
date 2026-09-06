@@ -1,0 +1,583 @@
+generated: '2026-09-06'
+method: searched
+source: https://actionstreamer.com/glossary
+note: ActionStreamer publishes a 142-term glossary covering live video transport, codecs, network connectivity,
+  wearable hardware and field-operations concepts. Terms and URLs below are the provider's own, enumerated
+  from https://actionstreamer.com/sitemap.xml; the `group` field is an API Evangelist grouping applied
+  for navigation and is not published by ActionStreamer. No definitions are reproduced here — each entry
+  links to the provider's page.
+term_count: 142
+index_url: https://actionstreamer.com/glossary
+grouping_note: groups are an API Evangelist overlay, not provider taxonomy
+gap: The glossary is human-readable HTML only. It is not published as SKOS, JSON-LD, or any machine-readable
+  vocabulary format, and none of its terms are referenced from the OpenAPI contract, so the platform's
+  own domain language is not connected to its API schema names.
+terms:
+- term: WebRTC
+  slug: webrtc
+  group: Transport & protocols
+  url: https://actionstreamer.com/glossary/webrtc
+- term: RTMP
+  slug: rtmp
+  group: Transport & protocols
+  url: https://actionstreamer.com/glossary/rtmp
+- term: SRT
+  slug: srt
+  group: Transport & protocols
+  url: https://actionstreamer.com/glossary/srt
+- term: HLS
+  slug: hls
+  group: Transport & protocols
+  url: https://actionstreamer.com/glossary/hls
+- term: DASH
+  slug: dash
+  group: Transport & protocols
+  url: https://actionstreamer.com/glossary/dash
+- term: RTSP
+  slug: rtsp
+  group: Transport & protocols
+  url: https://actionstreamer.com/glossary/rtsp
+- term: RTP
+  slug: rtp
+  group: Transport & protocols
+  url: https://actionstreamer.com/glossary/rtp
+- term: TCP
+  slug: tcp
+  group: Transport & protocols
+  url: https://actionstreamer.com/glossary/tcp
+- term: UDP
+  slug: udp
+  group: Transport & protocols
+  url: https://actionstreamer.com/glossary/udp
+- term: NDI
+  slug: ndi
+  group: Transport & protocols
+  url: https://actionstreamer.com/glossary/ndi
+- term: Multicast
+  slug: multicast
+  group: Transport & protocols
+  url: https://actionstreamer.com/glossary/multicast
+- term: Unicast
+  slug: unicast
+  group: Transport & protocols
+  url: https://actionstreamer.com/glossary/unicast
+- term: Streaming Protocol
+  slug: streaming-protocol
+  group: Transport & protocols
+  url: https://actionstreamer.com/glossary/streaming-protocol
+- term: Push Stream
+  slug: push-stream
+  group: Transport & protocols
+  url: https://actionstreamer.com/glossary/push-stream
+- term: Ingest
+  slug: ingest
+  group: Transport & protocols
+  url: https://actionstreamer.com/glossary/ingest
+- term: Ingest Url
+  slug: ingest-url
+  group: Transport & protocols
+  url: https://actionstreamer.com/glossary/ingest-url
+- term: Stream Key
+  slug: stream-key
+  group: Transport & protocols
+  url: https://actionstreamer.com/glossary/stream-key
+- term: Media Uplink
+  slug: media-uplink
+  group: Transport & protocols
+  url: https://actionstreamer.com/glossary/media-uplink
+- term: Lossless Transmission
+  slug: lossless-transmission
+  group: Transport & protocols
+  url: https://actionstreamer.com/glossary/lossless-transmission
+- term: Codec
+  slug: codec
+  group: Codecs & encoding
+  url: https://actionstreamer.com/glossary/codec
+- term: H.264
+  slug: h.264
+  group: Codecs & encoding
+  url: https://actionstreamer.com/glossary/h.264
+- term: H.265
+  slug: h.265
+  group: Codecs & encoding
+  url: https://actionstreamer.com/glossary/h.265
+- term: H.266
+  slug: h.266
+  group: Codecs & encoding
+  url: https://actionstreamer.com/glossary/h.266
+- term: AV1
+  slug: av1
+  group: Codecs & encoding
+  url: https://actionstreamer.com/glossary/av1
+- term: HEVC
+  slug: hevc
+  group: Codecs & encoding
+  url: https://actionstreamer.com/glossary/hevc
+- term: Transcoding
+  slug: transcoding
+  group: Codecs & encoding
+  url: https://actionstreamer.com/glossary/transcoding
+- term: Encoder
+  slug: encoder
+  group: Codecs & encoding
+  url: https://actionstreamer.com/glossary/encoder
+- term: Decoder
+  slug: decoder
+  group: Codecs & encoding
+  url: https://actionstreamer.com/glossary/decoder
+- term: Compression
+  slug: compression
+  group: Codecs & encoding
+  url: https://actionstreamer.com/glossary/compression
+- term: Bitrate
+  slug: bitrate
+  group: Codecs & encoding
+  url: https://actionstreamer.com/glossary/bitrate
+- term: Multi Bitrate Encoding
+  slug: multi-bitrate-encoding
+  group: Codecs & encoding
+  url: https://actionstreamer.com/glossary/multi-bitrate-encoding
+- term: Adaptive Bitrate Streaming
+  slug: adaptive-bitrate-streaming
+  group: Codecs & encoding
+  url: https://actionstreamer.com/glossary/adaptive-bitrate-streaming
+- term: ABR
+  slug: abr
+  group: Codecs & encoding
+  url: https://actionstreamer.com/glossary/abr
+- term: Keyframe
+  slug: keyframe
+  group: Codecs & encoding
+  url: https://actionstreamer.com/glossary/keyframe
+- term: Keyframe Interval
+  slug: keyframe-interval
+  group: Codecs & encoding
+  url: https://actionstreamer.com/glossary/keyframe-interval
+- term: GOP
+  slug: gop
+  group: Codecs & encoding
+  url: https://actionstreamer.com/glossary/gop
+- term: Chroma Subsampling
+  slug: chroma-subsampling
+  group: Codecs & encoding
+  url: https://actionstreamer.com/glossary/chroma-subsampling
+- term: Color Depth
+  slug: color-depth
+  group: Codecs & encoding
+  url: https://actionstreamer.com/glossary/color-depth
+- term: Audio Codec
+  slug: audio-codec
+  group: Codecs & encoding
+  url: https://actionstreamer.com/glossary/audio-codec
+- term: MP4
+  slug: mp4
+  group: Codecs & encoding
+  url: https://actionstreamer.com/glossary/mp4
+- term: FLV
+  slug: flv
+  group: Codecs & encoding
+  url: https://actionstreamer.com/glossary/flv
+- term: MPEG-TS
+  slug: mpeg-ts
+  group: Codecs & encoding
+  url: https://actionstreamer.com/glossary/mpeg-ts
+- term: Simulcast
+  slug: simulcast
+  group: Codecs & encoding
+  url: https://actionstreamer.com/glossary/simulcast
+- term: Latency
+  slug: latency
+  group: Latency & network quality
+  url: https://actionstreamer.com/glossary/latency
+- term: Video Latency
+  slug: video-latency
+  group: Latency & network quality
+  url: https://actionstreamer.com/glossary/video-latency
+- term: Delay
+  slug: delay
+  group: Latency & network quality
+  url: https://actionstreamer.com/glossary/delay
+- term: End To End Latency
+  slug: end-to-end-latency
+  group: Latency & network quality
+  url: https://actionstreamer.com/glossary/end-to-end-latency
+- term: Glass To Glass Latency
+  slug: glass-to-glass-latency
+  group: Latency & network quality
+  url: https://actionstreamer.com/glossary/glass-to-glass-latency
+- term: Low Latency Streaming
+  slug: low-latency-streaming
+  group: Latency & network quality
+  url: https://actionstreamer.com/glossary/low-latency-streaming
+- term: Sub Second Latency
+  slug: sub-second-latency
+  group: Latency & network quality
+  url: https://actionstreamer.com/glossary/sub-second-latency
+- term: Jitter
+  slug: jitter
+  group: Latency & network quality
+  url: https://actionstreamer.com/glossary/jitter
+- term: Packet Loss
+  slug: packet-loss
+  group: Latency & network quality
+  url: https://actionstreamer.com/glossary/packet-loss
+- term: Buffering
+  slug: buffering
+  group: Latency & network quality
+  url: https://actionstreamer.com/glossary/buffering
+- term: Bandwidth
+  slug: bandwidth
+  group: Latency & network quality
+  url: https://actionstreamer.com/glossary/bandwidth
+- term: Throughput
+  slug: throughput
+  group: Latency & network quality
+  url: https://actionstreamer.com/glossary/throughput
+- term: Upload Speed
+  slug: upload-speed
+  group: Latency & network quality
+  url: https://actionstreamer.com/glossary/upload-speed
+- term: Downlink
+  slug: downlink
+  group: Latency & network quality
+  url: https://actionstreamer.com/glossary/downlink
+- term: FEC
+  slug: fec
+  group: Latency & network quality
+  url: https://actionstreamer.com/glossary/fec
+- term: QoS
+  slug: qos
+  group: Latency & network quality
+  url: https://actionstreamer.com/glossary/qos
+- term: Failover
+  slug: failover
+  group: Latency & network quality
+  url: https://actionstreamer.com/glossary/failover
+- term: Redundancy
+  slug: redundancy
+  group: Latency & network quality
+  url: https://actionstreamer.com/glossary/redundancy
+- term: 5G
+  slug: 5g
+  group: Connectivity
+  url: https://actionstreamer.com/glossary/5g
+- term: 4G
+  slug: 4g
+  group: Connectivity
+  url: https://actionstreamer.com/glossary/4g
+- term: 6G
+  slug: 6g
+  group: Connectivity
+  url: https://actionstreamer.com/glossary/6g
+- term: 5G RAN
+  slug: 5g-ran
+  group: Connectivity
+  url: https://actionstreamer.com/glossary/5g-ran
+- term: Private 5g
+  slug: private-5g
+  group: Connectivity
+  url: https://actionstreamer.com/glossary/private-5g
+- term: Network Slicing
+  slug: network-slicing
+  group: Connectivity
+  url: https://actionstreamer.com/glossary/network-slicing
+- term: Dynamic Spectrum Sharing
+  slug: dynamic-spectrum-sharing
+  group: Connectivity
+  url: https://actionstreamer.com/glossary/dynamic-spectrum-sharing
+- term: CBRS
+  slug: cbrs
+  group: Connectivity
+  url: https://actionstreamer.com/glossary/cbrs
+- term: Cellular Bonding
+  slug: cellular-bonding
+  group: Connectivity
+  url: https://actionstreamer.com/glossary/cellular-bonding
+- term: Wi-Fi
+  slug: wifi
+  group: Connectivity
+  url: https://actionstreamer.com/glossary/wifi
+- term: '802.11'
+  slug: 802-11
+  group: Connectivity
+  url: https://actionstreamer.com/glossary/802-11
+- term: Starlink
+  slug: starlink
+  group: Connectivity
+  url: https://actionstreamer.com/glossary/starlink
+- term: Hotspot
+  slug: hotspot
+  group: Connectivity
+  url: https://actionstreamer.com/glossary/hotspot
+- term: Broadband
+  slug: broadband
+  group: Connectivity
+  url: https://actionstreamer.com/glossary/broadband
+- term: Baseband
+  slug: baseband
+  group: Connectivity
+  url: https://actionstreamer.com/glossary/baseband
+- term: Broadcast
+  slug: broadcast
+  group: Connectivity
+  url: https://actionstreamer.com/glossary/broadcast
+- term: Wearable Camera
+  slug: wearable-camera
+  group: Devices & wearables
+  url: https://actionstreamer.com/glossary/wearable-camera
+- term: Body Worn Camera
+  slug: body-worn-camera
+  group: Devices & wearables
+  url: https://actionstreamer.com/glossary/body-worn-camera
+- term: Wearable Sensor
+  slug: wearable-sensor
+  group: Devices & wearables
+  url: https://actionstreamer.com/glossary/wearable-sensor
+- term: Smart Ppe
+  slug: smart-ppe
+  group: Devices & wearables
+  url: https://actionstreamer.com/glossary/smart-ppe
+- term: Ballistic Helmet
+  slug: ballistic-helmet
+  group: Devices & wearables
+  url: https://actionstreamer.com/glossary/ballistic-helmet
+- term: Intrinsically Safe
+  slug: intrinsically-safe
+  group: Devices & wearables
+  url: https://actionstreamer.com/glossary/intrinsically-safe
+- term: Intrinsically Safe Equipment
+  slug: intrinsically-safe-equipment
+  group: Devices & wearables
+  url: https://actionstreamer.com/glossary/intrinsically-safe-equipment
+- term: Explosion Proof
+  slug: explosion-proof
+  group: Devices & wearables
+  url: https://actionstreamer.com/glossary/explosion-proof
+- term: IP Camera
+  slug: ip-camera
+  group: Devices & wearables
+  url: https://actionstreamer.com/glossary/ip-camera
+- term: PTZ Camera
+  slug: ptz-camera
+  group: Devices & wearables
+  url: https://actionstreamer.com/glossary/ptz-camera
+- term: SCBA
+  slug: scba
+  group: Devices & wearables
+  url: https://actionstreamer.com/glossary/scba
+- term: RPE
+  slug: rpe
+  group: Devices & wearables
+  url: https://actionstreamer.com/glossary/rpe
+- term: PAPR
+  slug: papr
+  group: Devices & wearables
+  url: https://actionstreamer.com/glossary/papr
+- term: Field Of View
+  slug: field-of-view
+  group: Devices & wearables
+  url: https://actionstreamer.com/glossary/field-of-view
+- term: Fish Eye Lens
+  slug: fish-eye-lens
+  group: Devices & wearables
+  url: https://actionstreamer.com/glossary/fish-eye-lens
+- term: Wide Angle Lens
+  slug: wide-angle-lens
+  group: Devices & wearables
+  url: https://actionstreamer.com/glossary/wide-angle-lens
+- term: Image Stabilization
+  slug: image-stabilization
+  group: Devices & wearables
+  url: https://actionstreamer.com/glossary/image-stabilization
+- term: Optical Image Stabilization
+  slug: optical-image-stabilization
+  group: Devices & wearables
+  url: https://actionstreamer.com/glossary/optical-image-stabilization
+- term: Electronic Image Stabilization
+  slug: electronic-image-stabilization
+  group: Devices & wearables
+  url: https://actionstreamer.com/glossary/electronic-image-stabilization
+- term: Infrared
+  slug: infrared
+  group: Devices & wearables
+  url: https://actionstreamer.com/glossary/infrared
+- term: Thermal Imaging
+  slug: thermal-imaging
+  group: Devices & wearables
+  url: https://actionstreamer.com/glossary/thermal-imaging
+- term: Night Vision
+  slug: night-vision
+  group: Devices & wearables
+  url: https://actionstreamer.com/glossary/night-vision
+- term: HDR
+  slug: hdr
+  group: Devices & wearables
+  url: https://actionstreamer.com/glossary/hdr
+- term: Dynamic Range
+  slug: dynamic-range
+  group: Devices & wearables
+  url: https://actionstreamer.com/glossary/dynamic-range
+- term: Resolution
+  slug: resolution
+  group: Devices & wearables
+  url: https://actionstreamer.com/glossary/resolution
+- term: Frame Rate
+  slug: frame-rate
+  group: Devices & wearables
+  url: https://actionstreamer.com/glossary/frame-rate
+- term: Pixel
+  slug: pixel
+  group: Devices & wearables
+  url: https://actionstreamer.com/glossary/pixel
+- term: Aspect Ratio
+  slug: aspect-ratio
+  group: Devices & wearables
+  url: https://actionstreamer.com/glossary/aspect-ratio
+- term: 360 Video
+  slug: 360-video
+  group: Devices & wearables
+  url: https://actionstreamer.com/glossary/360-video
+- term: Confined Space
+  slug: confined-space
+  group: Operations & safety
+  url: https://actionstreamer.com/glossary/confined-space
+- term: Confined Space Safety
+  slug: confined-space-safety
+  group: Operations & safety
+  url: https://actionstreamer.com/glossary/confined-space-safety
+- term: Situational Awareness
+  slug: situational-awareness
+  group: Operations & safety
+  url: https://actionstreamer.com/glossary/situational-awareness
+- term: Command Center
+  slug: command-center
+  group: Operations & safety
+  url: https://actionstreamer.com/glossary/command-center
+- term: Remote Expert
+  slug: remote-expert
+  group: Operations & safety
+  url: https://actionstreamer.com/glossary/remote-expert
+- term: Remote Monitoring
+  slug: remote-monitoring
+  group: Operations & safety
+  url: https://actionstreamer.com/glossary/remote-monitoring
+- term: Chain Of Custody
+  slug: chain-of-custody
+  group: Operations & safety
+  url: https://actionstreamer.com/glossary/chain-of-custody
+- term: Pre Event Recording
+  slug: pre-event-recording
+  group: Operations & safety
+  url: https://actionstreamer.com/glossary/pre-event-recording
+- term: Two Way Audio
+  slug: two-way-audio
+  group: Operations & safety
+  url: https://actionstreamer.com/glossary/two-way-audio
+- term: NIOSH
+  slug: niosh
+  group: Operations & safety
+  url: https://actionstreamer.com/glossary/niosh
+- term: OSHA
+  slug: osha
+  group: Operations & safety
+  url: https://actionstreamer.com/glossary/osha
+- term: Smart City
+  slug: smart-city
+  group: Operations & safety
+  url: https://actionstreamer.com/glossary/smart-city
+- term: Geo Tagging
+  slug: geo-tagging
+  group: Operations & safety
+  url: https://actionstreamer.com/glossary/geo-tagging
+- term: GPS
+  slug: gps
+  group: Operations & safety
+  url: https://actionstreamer.com/glossary/gps
+- term: Metadata
+  slug: metadata
+  group: Operations & safety
+  url: https://actionstreamer.com/glossary/metadata
+- term: Overlay
+  slug: overlay
+  group: Operations & safety
+  url: https://actionstreamer.com/glossary/overlay
+- term: HUD
+  slug: hud
+  group: Operations & safety
+  url: https://actionstreamer.com/glossary/hud
+- term: Ai Video Analytics
+  slug: ai-video-analytics
+  group: AI & analytics
+  url: https://actionstreamer.com/glossary/ai-video-analytics
+- term: Video Analytics
+  slug: video-analytics
+  group: AI & analytics
+  url: https://actionstreamer.com/glossary/video-analytics
+- term: Augmented Reality
+  slug: augmented-reality
+  group: AI & analytics
+  url: https://actionstreamer.com/glossary/augmented-reality
+- term: Mixed Reality
+  slug: mixed-reality
+  group: AI & analytics
+  url: https://actionstreamer.com/glossary/mixed-reality
+- term: Extended Reality
+  slug: extended-reality
+  group: AI & analytics
+  url: https://actionstreamer.com/glossary/extended-reality
+- term: First Person Video
+  slug: first-person-video
+  group: AI & analytics
+  url: https://actionstreamer.com/glossary/first-person-video
+- term: Cloud Streaming
+  slug: cloud-streaming
+  group: Platform & infrastructure
+  url: https://actionstreamer.com/glossary/cloud-streaming
+- term: On Premises Streaming
+  slug: on-premises-streaming
+  group: Platform & infrastructure
+  url: https://actionstreamer.com/glossary/on-premises-streaming
+- term: Edge Server
+  slug: edge-server
+  group: Platform & infrastructure
+  url: https://actionstreamer.com/glossary/edge-server
+- term: Origin Server
+  slug: origin-server
+  group: Platform & infrastructure
+  url: https://actionstreamer.com/glossary/origin-server
+- term: Media Server
+  slug: media-server
+  group: Platform & infrastructure
+  url: https://actionstreamer.com/glossary/media-server
+- term: CDN
+  slug: cdn
+  group: Platform & infrastructure
+  url: https://actionstreamer.com/glossary/cdn
+- term: Streaming Platform
+  slug: streaming-platform
+  group: Platform & infrastructure
+  url: https://actionstreamer.com/glossary/streaming-platform
+- term: Live Streaming
+  slug: live-streaming
+  group: Platform & infrastructure
+  url: https://actionstreamer.com/glossary/live-streaming
+- term: Multi Camera Streaming
+  slug: multi-camera-streaming
+  group: Platform & infrastructure
+  url: https://actionstreamer.com/glossary/multi-camera-streaming
+- term: CPaaS
+  slug: cpaas
+  group: Platform & infrastructure
+  url: https://actionstreamer.com/glossary/cpaas
+- term: IoT
+  slug: iot
+  group: Platform & infrastructure
+  url: https://actionstreamer.com/glossary/iot
+- term: IIoT
+  slug: iiot
+  group: Platform & infrastructure
+  url: https://actionstreamer.com/glossary/iiot
+- term: ActionSync
+  slug: actionsync
+  group: Platform & infrastructure
+  url: https://actionstreamer.com/glossary/actionsync

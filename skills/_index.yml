@@ -1,0 +1,31 @@
+generated: '2026-09-06'
+method: generated
+source: openapi/_original/actionstreamer-openapi-original.json
+note: >-
+  Agent Skills packaged by API Evangelist over the ActionStreamer Web API. ActionStreamer publishes
+  no skills, no AGENTS.md and no MCP server; searched before generating (no /AGENTS.md, no skills
+  directory on the developer portal, one public GitHub repo which is a Media-over-QUIC project). Each
+  skill is grounded in operations verified to exist in the published OpenAPI. The contract declares
+  no operationIds, so operations are referenced by method and path exactly as published.
+skill_count: 3
+skills:
+- name: actionstreamer-fleet-health-check
+  file: actionstreamer-fleet-health-check.md
+  description: Check device fleet health — battery, temperature, connectivity, last activity.
+  consequence: read-only
+  operation_count: 6
+- name: actionstreamer-retrieve-video-clips
+  file: actionstreamer-retrieve-video-clips.md
+  description: Find and retrieve recorded clips by device, time range or tag; optionally concatenate a range.
+  consequence: mostly read; concatenate enqueues work
+  operation_count: 7
+- name: actionstreamer-run-event-preset
+  file: actionstreamer-run-event-preset.md
+  description: Trigger a camera action on a device via a configured event preset, then track or stop it.
+  consequence: write — actuates physical hardware
+  operation_count: 8
+safety_note: >-
+  The ActionStreamer write surface actuates cameras worn by people in industrial, first-responder and
+  defense settings, and the API publishes no idempotency mechanism on any of its 161 mutating
+  operations. Every write skill above states the ambiguity explicitly and instructs verification
+  rather than retry.

@@ -1,0 +1,96 @@
+generated: '2026-09-06'
+method: searched
+source: https://pypi.org/pypi/actionstreamer/json
+note: >-
+  Registry sweep of npm, PyPI, Maven Central, NuGet, RubyGems, crates.io and pkg.go.dev for
+  first-party ActionStreamer client libraries. Exactly one first-party package exists — the Python
+  library the developer portal tells you to install. All other registries were queried and returned
+  no ActionStreamer-published package; those negatives are recorded below rather than omitted.
+package_count: 1
+official_count: 1
+packages:
+- name: actionstreamer
+  registry: pypi
+  official: true
+  language: Python
+  version: 1.4.8
+  published: '2026-09-01'
+  url: https://pypi.org/project/actionstreamer/
+  install: pip install actionstreamer
+  publisher_email: joe@actionstreamer.com
+  release_count: 251
+  license: null
+  repository: null
+  summary: A library for the ActionStreamer API.
+  python_requires:
+  - '3.10'
+  - '3.11'
+  - '3.12'
+  dependencies:
+  - requests>=2.33.0,<3.0.0
+  - pytz>=2024.1,<2025.0
+  - psutil>=6.0.0
+  - pycryptodome>=3.23.0
+  - keyring>=25.7.0
+  - wmi>=1.5.1,<2.0.0 (win32 only)
+  surface:
+    webservice_modules:
+    - Agent
+    - Device
+    - DeviceGroup
+    - Event
+    - EventPreset
+    - File
+    - Health
+    - LogMessage
+    - Notification
+    - Package
+    - Patch
+    - Setting
+    - Tag
+    - VideoClip
+    helper_modules:
+    - CommonFunctions (File, System, Utility, Video, Wifi)
+    - Config
+    - DeviceFunctions
+    - DeviceHealthFunctions
+    docs: https://developer.actionstreamer.com/docs/category/python-library
+  currency_note: >-
+    Actively maintained. Version 1.4.8 was published 2026-09-01, five days before this pass, against
+    an API whose OpenAPI carries a publish date of 2026-07-07 — the SDK is ahead of the contract,
+    not behind it. 251 releases indicates a high-cadence release train.
+  notes: >-
+    First-party: published from an @actionstreamer.com address and named as the official library on
+    the provider's own getting-started page. The library wraps the same HMAC-SHA256 signing scheme
+    documented for raw HTTP, and additionally ships on-device helpers (battery, CPU temperature,
+    Wi-Fi link quality, camera activity) that have no HTTP equivalent — it is an edge-agent runtime
+    as well as an API client.
+registries_checked:
+- registry: pypi
+  query: actionstreamer
+  result: 1 first-party package
+- registry: npm
+  query: actionstreamer
+  result: 404 / 0 search results
+- registry: rubygems
+  query: actionstreamer
+  result: 404
+- registry: crates.io
+  query: actionstreamer
+  result: 404
+- registry: nuget
+  query: actionstreamer
+  result: 0 hits
+- registry: maven-central
+  query: actionstreamer
+  result: no first-party artifact
+- registry: pkg.go.dev
+  query: actionstreamer
+  result: no first-party module
+gaps:
+- >-
+  No JavaScript/TypeScript client, despite the platform's portal and WebRTC/ActionSync surfaces being
+  browser-based. Browser and Node integrators must implement HMAC-SHA256 signing themselves.
+- >-
+  The Python package declares no repository URL, no license and no changelog on PyPI, so consumers
+  cannot audit the source or the release history from the registry entry.

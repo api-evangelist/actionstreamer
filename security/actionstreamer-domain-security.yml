@@ -1,0 +1,27 @@
+generated: '2026-09-06'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: actionstreamer.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov  1 15:06:24 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: developer.actionstreamer.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov  1 08:31:44 2026 GMT
+  hsts: false
+- host: api.actionstreamer.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov 28 00:17:31 2026 GMT
+  hsts: null
+domains:
+- domain: actionstreamer.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: none

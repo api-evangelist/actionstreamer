@@ -1,0 +1,74 @@
+generated: '2026-09-06'
+method: searched
+source: https://developer.actionstreamer.com/docs/API_Reference/WebAPI/overview
+note: >-
+  Lifecycle posture searched across the developer portal, the corporate site sitemap (231 URLs) and
+  the OpenAPI. ActionStreamer publishes a versioned API and an actively released SDK, but no
+  versioning policy, no deprecation policy, no status page and no SLA. Absences below were probed,
+  not assumed.
+versioning:
+  scheme: path prefix
+  current_version: v1
+  spec_version: v1
+  spec_publish_date: '2026-07-07T16:13:41Z'
+  spec_publish_date_source: 'info.description of the published OpenAPI'
+  policy_published: false
+  note: >-
+    The OpenAPI stamps its own publish date into info.description, which is an unusually honest
+    freshness signal — a consumer can tell how old the contract is. There is no semantic version, no
+    version history and no second version in service.
+deprecation:
+  policy_published: false
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  deprecated_operations: []
+  note: >-
+    No operation in the 247-operation surface carries `deprecated: true`, and no deprecation or
+    sunset policy is published. Nothing here is evidence of stability — it is evidence that the
+    question has not been addressed publicly.
+status_page:
+  published: false
+  url: null
+  evidence:
+  - url: https://status.actionstreamer.com/
+    status: 'DNS NXDOMAIN'
+  note: >-
+    No status page on the conventional subdomain, none linked from the developer portal, and none in
+    the corporate sitemap. For a platform whose customers depend on live video from field devices
+    during incidents, this is a material operational gap.
+sla:
+  published: false
+  url: null
+uptime_history:
+  published: false
+support:
+  developer_contact: developer@actionstreamer.com
+  contact_page: https://actionstreamer.com/contact
+  portal: https://portal.actionstreamer.com
+changelog:
+  api_changelog_published: false
+  note: >-
+    No dated API changelog or release-notes page exists on the developer portal or the corporate
+    site. The only dated release history ActionStreamer publishes is the PyPI release train for the
+    `actionstreamer` Python library (251 releases, latest 1.4.8 on 2026-09-01), which tracks the SDK,
+    not the API contract. Because that is an SDK history rather than an API changelog, no ChangeLog
+    pointer is emitted; the release data is recorded in packages/actionstreamer-packages.yml.
+release_signals:
+- signal: OpenAPI info.description publish date
+  value: '2026-07-07'
+  url: https://api.actionstreamer.com/swagger/v1/swagger.json
+- signal: PyPI latest release
+  value: '1.4.8 on 2026-09-01'
+  url: https://pypi.org/project/actionstreamer/
+maturity:
+  assessment: production
+  reasoning: >-
+    A 247-operation v1 surface, a portal issuing production API keys, a 251-release first-party SDK
+    shipping weekly, and named enterprise/defense deployments in the company's own blog. The
+    contract is real and in service; what is missing is the operational scaffolding around it.
+recommendations:
+- Publish a status page and link it from the developer portal.
+- Publish a versioning and deprecation policy, and adopt the Deprecation and Sunset headers (RFC 8594).
+- Publish a dated API changelog distinct from the SDK release history.

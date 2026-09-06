@@ -1,0 +1,97 @@
+generated: '2026-09-06'
+method: searched
+source: https://developer.actionstreamer.com/docs/Guides/authentication
+docs: https://developer.actionstreamer.com/docs/Guides/authentication
+note: >-
+  Authored from the provider's own authentication guide, NOT derived from the OpenAPI. The published
+  specification declares no components.securitySchemes at all — the developer portal's own overview
+  page states "securitySchemes declared: False" — so derive-authentication.py produced nothing for
+  this provider. Everything below is read from the human-readable guide. This is the single largest
+  contract-quality gap in the ActionStreamer surface: the API is authenticated, the auth is
+  documented in prose, and a machine reading only the spec cannot tell.
+scheme_count: 2
+primary_scheme: hmac-signature
+schemes:
+- id: hmac-sha256
+  type: signature
+  http_scheme: HMAC-SHA256
+  in: header
+  description: >-
+    HMAC-SHA256 key/secret request signing, used for headless devices and direct service
+    integrations. The caller derives a hex digest over a canonical string built from the method,
+    path, sorted headers, sorted parameters and body, keyed with the account secret.
+  credentials:
+    access_key: created in the ActionStreamer portal under Settings > API Keys
+    secret_key: issued alongside the access key; never transmitted
+    provisioning_url: https://portal.actionstreamer.com
+    provisioning_api: POST /v1/apikey (the API can mint its own keys once authenticated)
+  headers_required:
+  - name: Authorization
+    value: 'HMAC-SHA256 {access_key}'
+  - name: X-AccessKey
+    value: the access key
+  - name: X-Signature
+    value: hex-encoded HMAC-SHA256 digest of the canonical string
+  - name: X-Timestamp
+    value: Unix epoch seconds
+  - name: X-Nonce
+    value: a UUIDv4, unique per request
+  - name: Content-Type
+    value: application/json
+  canonical_string:
+    order:
+    - METHOD
+    - PATH
+    - HEADER_STRING
+    - PARAMETER_STRING
+    - BODY
+    joined_with: newline
+    rules:
+    - Content-Type is removed from the header set before signing.
+    - Header keys are sorted and rendered as 'key: value' lines.
+    - Query or form parameters are sorted and rendered the same way.
+    - The path is normalized to start with '/' with no trailing slash, except for root.
+    - The assembled string is trimmed before signing.
+  algorithm: HMAC-SHA256, hex digest
+  replay_protection:
+    mechanism: X-Nonce (UUIDv4 per request) plus X-Timestamp
+    note: >-
+      This is anti-replay for the auth envelope. It is NOT request idempotency — a client that
+      retries a write with a fresh nonce will execute the write twice. See
+      conventions/actionstreamer-conventions.yml.
+  reference_implementation: >-
+    The guide publishes a Python get_hmac_signature(secret_key, method, path, headers, parameters,
+    body) reference function; the first-party PyPI package `actionstreamer` implements it.
+- id: session-token
+  type: token
+  in: header
+  description: >-
+    Session-token authentication used by the ActionStreamer web portal and browser clients, as an
+    alternative to HMAC signing for interactive sessions.
+  related_operations:
+  - POST /v1/session
+  - GET /v1/session
+  - POST /v1/token/mediarouter/publish
+  - POST /v1/multifactorauth
+  expiry_signal: HTTP 419 Session expired
+  mfa: >-
+    A MultifactorAuth resource area with nine operations is published, so the platform supports MFA
+    on interactive sessions.
+oauth2: false
+openid_connect: false
+mutual_tls: false
+api_key_header: false
+spec_gap:
+  securitySchemes_declared: false
+  security_applied_to_operations: false
+  operations_total: 247
+  operations_with_security: 0
+  impact: >-
+    Every generated client, agent tool wrapper and API-explorer built from this OpenAPI will emit
+    unauthenticated requests. Declaring an apiKey-in-header scheme for X-AccessKey/X-Signature (or a
+    documented custom scheme) and applying it at the root `security` level would close this without
+    changing a single operation.
+recommendations:
+- Declare components.securitySchemes in the published OpenAPI and apply a root-level security requirement.
+- Publish the key rotation and revocation policy; DELETE /v1/apikey/{apiKeyID} exists but no lifecycle guidance accompanies it.
+- Document the accepted clock skew for X-Timestamp so clients know how far out of sync they may drift.

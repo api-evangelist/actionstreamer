@@ -1,0 +1,38 @@
+generated: '2026-09-06'
+method: searched
+source: https://actionstreamer.com/sitemap.xml
+note: >-
+  Searched for a published pricing or plans page across the corporate sitemap (231 URLs), the
+  developer portal and the product pages. ActionStreamer publishes no pricing of any kind: no tiers,
+  no free tier, no per-device or per-stream rates, no metered API pricing. Sales is contact-gated.
+  Recorded as an explicit zero.
+plan_count: 0
+plans: []
+pricing_model: contact-sales
+free_tier: false
+public_pricing: false
+self_serve_signup: false
+evidence:
+- url: https://actionstreamer.com/pricing
+  status: 404
+- url: https://actionstreamer.com/sitemap.xml
+  status: 200
+  finding: >-
+    231 URLs, none of them a pricing, plans or cost page. The sitemap covers products (actionsync,
+    iris, wearables, sdk, ai), 15 application/vertical pages, 106 blog posts and a 142-term glossary.
+- url: https://actionstreamer.com/contact
+  status: 200
+  finding: The commercial path is a contact form.
+- url: https://portal.actionstreamer.com/
+  status: 200
+  finding: >-
+    The portal is a sign-in surface for existing customers; API keys are created inside it under
+    Settings > API Keys. There is no public self-service signup that would expose a price.
+buyer_note: >-
+  Consistent with the company's go-to-market: hardware-plus-platform deployments into industrial,
+  first-responder, aerospace/MRO and defense accounts, sold as OEM and enterprise engagements rather
+  than as a metered developer API. A developer cannot price an integration without talking to sales,
+  and cannot obtain API credentials without an existing account.
+recommendations:
+- Publish at least an indicative pricing model (per device, per stream-hour, or platform tier) so integrators can scope a project.
+- Offer a developer sandbox or trial that issues API keys without a sales conversation.

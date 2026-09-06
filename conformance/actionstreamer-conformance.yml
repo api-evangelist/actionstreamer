@@ -1,0 +1,127 @@
+generated: '2026-09-06'
+method: derived
+source: openapi/_original/actionstreamer-openapi-original.json
+docs:
+- https://developer.actionstreamer.com/docs/Guides/authentication
+- https://developer.actionstreamer.com/docs/Guides/errors
+note: >-
+  Cross-cutting and domain-standard conformance for the ActionStreamer Web API. Every entry is
+  asserted from the published contract or a published guide, with the evidence location named.
+  Entries that do not conform are recorded as conforms:false rather than omitted, so the shape of
+  the gap is legible.
+conformance:
+- id: openapi
+  name: OpenAPI Specification 3.0.1
+  conforms: true
+  evidence: 'openapi/_original/actionstreamer-openapi-original.json#/openapi = "3.0.1"; 186 paths, 247 operations, 107 component schemas; served at https://api.actionstreamer.com/swagger/v1/swagger.json'
+- id: rest
+  name: Resource-oriented HTTP/REST
+  conforms: true
+  evidence: 'Resource-per-tag path design across 43 resource areas with GET/POST/PUT/PATCH/DELETE verbs; 27 PATCH operations use a dedicated patch surface.'
+- id: json
+  name: JSON request/response bodies
+  conforms: true
+  evidence: 'application/json on 166 responses; Content-Type application/json required on signed requests per the authentication guide.'
+- id: oauth2
+  name: OAuth 2.0
+  conforms: false
+  evidence: 'No oauth2 securityScheme in the contract, no /.well-known/oauth-authorization-server (404 on all six hosts), no authorization-code or client-credentials flow in any guide. Authentication is HMAC-SHA256 request signing plus portal session tokens.'
+- id: oidc
+  name: OpenID Connect
+  conforms: false
+  evidence: '/.well-known/openid-configuration returned 404 on actionstreamer.com, www, api, media; SPA shell (not a document) on developer and portal.'
+- id: rfc9457
+  name: 'RFC 9457 Problem Details for HTTP APIs'
+  conforms: false
+  evidence: 'No application/problem+json anywhere in the contract. The errors guide states error responses "are not fully standardized" and that clients must handle both JSON and plain-text bodies.'
+- id: rfc9116
+  name: 'RFC 9116 security.txt'
+  conforms: false
+  evidence: '/.well-known/security.txt returned 404 on every host probed (see well-known/actionstreamer-well-known.yml).'
+- id: rfc8594
+  name: 'RFC 8594 Sunset header / deprecation signalling'
+  conforms: false
+  evidence: 'No Sunset or Deprecation header documented; no operation carries deprecated:true; no deprecation policy published.'
+- id: rfc9727
+  name: 'RFC 9727 api-catalog well-known URI'
+  conforms: false
+  evidence: '/.well-known/api-catalog returned 404 on actionstreamer.com, www, api and media.'
+- id: idempotency
+  name: Idempotent write semantics
+  conforms: false
+  evidence: 'Zero occurrences of "idempoten" in the contract; no Idempotency-Key header in any guide. 161 of 247 operations mutate state. See conventions/actionstreamer-conventions.yml.'
+- id: pagination
+  name: Documented pagination
+  conforms: false
+  evidence: 'List operations exist across nearly every resource but no page/limit/offset/cursor convention and no total or next field are documented or present in the contract.'
+- id: rate-limit-headers
+  name: 'RateLimit header fields for HTTP'
+  conforms: false
+  evidence: 'No RateLimit-* or Retry-After headers documented; no 429 declared. See rate-limits/actionstreamer-rate-limits.yml.'
+- id: tls
+  name: TLS 1.3 on all public hosts
+  conforms: true
+  evidence: 'security/actionstreamer-domain-security.yml — TLSv1.3 negotiated on actionstreamer.com, developer.actionstreamer.com and api.actionstreamer.com.'
+- id: hsts
+  name: HTTP Strict Transport Security
+  conforms: partial
+  evidence: 'HSTS present with max-age 31536000 on actionstreamer.com; absent on developer.actionstreamer.com and not returned by api.actionstreamer.com.'
+- id: dnssec
+  name: DNSSEC
+  conforms: false
+  evidence: 'security/actionstreamer-domain-security.yml — dnssec: false on actionstreamer.com.'
+- id: dmarc
+  name: DMARC
+  conforms: partial
+  evidence: 'DMARC record present but policy is p=none (monitor only); SPF present; no CAA records published.'
+domain_standard_conformance:
+  market: live video transport and connected-device streaming
+  note: >-
+    Read from the contract, not from marketing prose. The published Stream schema carries a
+    first-class example whose publishURL and readURL name the transport protocols directly, so the
+    API declares its media standards in its own contract surface rather than only in documentation.
+  standards:
+  - id: srt
+    name: 'SRT — Secure Reliable Transport'
+    conforms: true
+    role: media ingest / publish
+    evidence: >-
+      openapi/_original/actionstreamer-openapi-original.json#/components/schemas/Stream/example/publishURL
+      = "srt://media.actionstreamer.com:8890?streamid=publish:sendsrt-wearabledevice". The srt:// scheme
+      and the streamid=publish: access-control convention are both SRT-specification behaviour. The
+      Stream schema and its 8 operations are the contract's SRT control plane.
+    corroboration: 'https://actionstreamer.com/glossary/srt and the published comparison post https://actionstreamer.com/blog/srt-vs-rtmp'
+  - id: webrtc
+    name: 'WebRTC (W3C / IETF RTCWEB)'
+    conforms: true
+    role: media playback / low-latency read path
+    evidence: >-
+      openapi/_original/actionstreamer-openapi-original.json#/components/schemas/Stream/example/readURL
+      = "https://media.actionstreamer.com/webrtc/sendsrt-wearabledevice" — the read path is a WebRTC
+      endpoint on the media host, returned as a contract field.
+    corroboration: 'https://actionstreamer.com/glossary/webrtc; product page https://actionstreamer.com/product/actionsync (ActionSync Connect is described as WebRTC video conferencing)'
+  - id: moq
+    name: 'Media over QUIC (IETF moq WG)'
+    conforms: false
+    role: 'engaged, not contracted'
+    evidence: >-
+      ActionStreamer maintains a public GitHub repository at https://github.com/ActionStreamer/moq
+      ("Media over QUIC: Real-time latency at massive scale", last pushed 2026-06-19) and publishes
+      an explainer at https://actionstreamer.com/blog/media-over-quic-(moq)-what-it-is-and-why-it-matters.
+      Recorded as conforms:false because nothing in the Web API contract references MoQ — this is
+      engineering and advocacy engagement with the standard, not a declared contract conformance.
+  not_applicable:
+  - id: onvif
+    reason: 'No ONVIF profile surface in the contract; the platform manages its own wearable/edge devices rather than third-party IP cameras.'
+  - id: rtmp
+    reason: 'Discussed in the company glossary and blog but not present in the contract; SRT is the declared ingest path.'
+regulatory_context:
+  note: >-
+    ActionStreamer sells into public safety, defense and aerospace/MRO, and its blog names US
+    Air Force (Travis AFB) and MetroStar engagements. No FedRAMP, CMMC, SOC 2, ISO 27001, NIST 800-171
+    or ITAR posture is published anywhere on the public surface, and probe-security-programs.py found
+    no trust center and no vulnerability-disclosure program. Recorded as an absence of published
+    evidence, not as a claim about the company's actual compliance status.
+  published_certifications: []
+  trust_center: false
+  vulnerability_disclosure_program: false

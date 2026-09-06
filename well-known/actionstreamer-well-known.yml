@@ -1,0 +1,233 @@
+generated: '2026-09-06'
+method: probed
+source: direct GET of nine named /.well-known/ paths on six ActionStreamer hosts, 2026-09-06
+note: ActionStreamer serves no /.well-known/ discovery documents. The registrable domain, www and the
+  API host return a hard 404 on every path. developer.actionstreamer.com (Docusaurus) and portal.actionstreamer.com
+  (a single-page app) return HTTP 200 for every path, but the body is the same HTML shell in each case
+  — 12,537 bytes and 633 bytes respectively, identical across all nine paths — so these are catch-all
+  routes, not served documents. No WellKnown, SecurityTxt or AgentCard pointer is emitted from this probe,
+  because none of these paths returned a real document.
+documents_found: 0
+hosts_probed: 6
+paths_probed_per_host: 9
+hosts:
+- host: actionstreamer.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+  - path: /.well-known/aauth-resource.json
+    status: 404
+    file: null
+- host: www.actionstreamer.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+  - path: /.well-known/aauth-resource.json
+    status: 404
+    file: null
+- host: api.actionstreamer.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+  - path: /.well-known/aauth-resource.json
+    status: 404
+    file: null
+- host: developer.actionstreamer.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: null
+    note: HTTP 200 but the body is the site's SPA/HTML shell, byte-identical for every /.well-known/*
+      path. Not a document — counted as a miss.
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: null
+    note: HTTP 200 but the body is the site's SPA/HTML shell, byte-identical for every /.well-known/*
+      path. Not a document — counted as a miss.
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: null
+    note: HTTP 200 but the body is the site's SPA/HTML shell, byte-identical for every /.well-known/*
+      path. Not a document — counted as a miss.
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: null
+    note: HTTP 200 but the body is the site's SPA/HTML shell, byte-identical for every /.well-known/*
+      path. Not a document — counted as a miss.
+  - path: /.well-known/api-catalog
+    status: 200
+    file: null
+    note: HTTP 200 but the body is the site's SPA/HTML shell, byte-identical for every /.well-known/*
+      path. Not a document — counted as a miss.
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    file: null
+    note: HTTP 200 but the body is the site's SPA/HTML shell, byte-identical for every /.well-known/*
+      path. Not a document — counted as a miss.
+  - path: /.well-known/agent-card.json
+    status: 200
+    file: null
+    note: HTTP 200 but the body is the site's SPA/HTML shell, byte-identical for every /.well-known/*
+      path. Not a document — counted as a miss.
+  - path: /.well-known/agent.json
+    status: 200
+    file: null
+    note: HTTP 200 but the body is the site's SPA/HTML shell, byte-identical for every /.well-known/*
+      path. Not a document — counted as a miss.
+  - path: /.well-known/aauth-resource.json
+    status: 200
+    file: null
+    note: HTTP 200 but the body is the site's SPA/HTML shell, byte-identical for every /.well-known/*
+      path. Not a document — counted as a miss.
+- host: portal.actionstreamer.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: null
+    note: HTTP 200 but the body is the site's SPA/HTML shell, byte-identical for every /.well-known/*
+      path. Not a document — counted as a miss.
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: null
+    note: HTTP 200 but the body is the site's SPA/HTML shell, byte-identical for every /.well-known/*
+      path. Not a document — counted as a miss.
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: null
+    note: HTTP 200 but the body is the site's SPA/HTML shell, byte-identical for every /.well-known/*
+      path. Not a document — counted as a miss.
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: null
+    note: HTTP 200 but the body is the site's SPA/HTML shell, byte-identical for every /.well-known/*
+      path. Not a document — counted as a miss.
+  - path: /.well-known/api-catalog
+    status: 200
+    file: null
+    note: HTTP 200 but the body is the site's SPA/HTML shell, byte-identical for every /.well-known/*
+      path. Not a document — counted as a miss.
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    file: null
+    note: HTTP 200 but the body is the site's SPA/HTML shell, byte-identical for every /.well-known/*
+      path. Not a document — counted as a miss.
+  - path: /.well-known/agent-card.json
+    status: 200
+    file: null
+    note: HTTP 200 but the body is the site's SPA/HTML shell, byte-identical for every /.well-known/*
+      path. Not a document — counted as a miss.
+  - path: /.well-known/agent.json
+    status: 200
+    file: null
+    note: HTTP 200 but the body is the site's SPA/HTML shell, byte-identical for every /.well-known/*
+      path. Not a document — counted as a miss.
+  - path: /.well-known/aauth-resource.json
+    status: 200
+    file: null
+    note: HTTP 200 but the body is the site's SPA/HTML shell, byte-identical for every /.well-known/*
+      path. Not a document — counted as a miss.
+- host: media.actionstreamer.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+  - path: /.well-known/aauth-resource.json
+    status: 404
+    file: null
+  note: Media transport host, discovered from the srt:// and https://media.actionstreamer.com/webrtc/
+    URLs in the published Stream schema example. Root returns 200; every /.well-known/ path returns a
+    hard 404.
+recommendations:
+- Serve /.well-known/security.txt (RFC 9116) on actionstreamer.com naming a security contact and policy
+  — the company currently publishes no machine-readable vulnerability-reporting address.
+- Serve /.well-known/api-catalog (RFC 9727) pointing at the ActionStreamer apis.json / OpenAPI so agents
+  and crawlers can discover the Web API from the root domain.
+- Return 404 rather than the SPA shell for unmatched /.well-known/* paths on developer. and portal., so
+  that discovery clients can distinguish absent from present.

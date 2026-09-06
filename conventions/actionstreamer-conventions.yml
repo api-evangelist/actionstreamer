@@ -1,0 +1,190 @@
+generated: '2026-09-06'
+method: searched
+source: https://developer.actionstreamer.com/docs/Guides/errors
+docs:
+- https://developer.actionstreamer.com/docs/Guides/authentication
+- https://developer.actionstreamer.com/docs/Guides/errors
+- https://developer.actionstreamer.com/docs/Guides/http-api-quickstart
+- https://developer.actionstreamer.com/docs/API_Reference/WebAPI/overview
+note: >-
+  Cross-cutting runtime semantics for the ActionStreamer Web API, read from the three published
+  guides and cross-checked against the OpenAPI. Where the provider documents nothing, this file
+  records the absence rather than inventing a convention.
+auth:
+  style: HMAC-SHA256 request signing (headless) or session token (portal)
+  detail: authentication/actionstreamer-authentication.yml
+versioning:
+  style: path prefix
+  current: v1
+  evidence: 'every one of the 186 published paths begins /v1/'
+  policy_published: false
+  note: >-
+    The base URL is documented both as https://api.actionstreamer.com/ and
+    https://api.actionstreamer.com/v1/. No version-negotiation header, no version-deprecation policy
+    and no second version are published.
+idempotency:
+  coverage: none
+  supported: false
+  header: null
+  scope: null
+  retention: null
+  evidence: >-
+    Zero occurrences of "idempoten" anywhere in the published OpenAPI (247 operations), and no
+    idempotency guidance in any of the three guides. The X-Nonce header is anti-replay for the
+    signing envelope, not write idempotency: the docs describe it as "a UUIDv4 value per request",
+    and a client that retries with a fresh nonce will re-execute the write.
+  note: >-
+    The API has a substantial mutating surface — 161 of 247 operations are POST/PUT/PATCH/DELETE,
+    including POST /v1/videoclip/upload, POST /v1/event and POST /v1/eventpreset/run/{eventPresetID},
+    which physically actuate cameras in the field. There is no replay protection on any of them. The
+    errors guide explicitly tells clients to "wrap long-poll, upload, and media workflows with
+    retries and timeout handling" while providing no mechanism to make those retries safe.
+pagination:
+  style: undocumented
+  params: []
+  response_fields: []
+  note: >-
+    List endpoints exist across nearly every resource (GET /v1/device/list, POST /v1/videoclip/list,
+    POST /v1/event/list and 40 more) and several take a filter request body, but no page/limit/offset
+    or cursor convention is documented in any guide, and no envelope with a total or next-page field
+    is described. Clients cannot tell whether a list response is complete.
+filtering:
+  style: POST with a filter request body
+  note: >-
+    A recurring pattern: the read is issued as POST /<resource>/list with a JSON filter object rather
+    than as a GET with query parameters. This is consistent across Agent, Device, DeviceHealth,
+    Event, VideoClip and others.
+field_expansion:
+  supported: false
+sparse_fieldsets:
+  supported: false
+metadata:
+  supported: false
+  note: No generic metadata/custom-attribute bag is documented. Tag and DeviceComment resources provide the annotation surface instead.
+request_id_tracing:
+  supported: false
+  header: null
+  note: >-
+    No correlation/request-id header is documented or returned. The errors guide instead asks
+    integrators to "log the request path, HTTP method, status code, and response body for
+    supportability" — the tracing burden is on the client.
+error_envelope:
+  standardized: false
+  format: mixed
+  quote: >-
+    "Error responses are not fully standardized across the current Web API, so clients should be
+    prepared to handle both structured JSON and plain-text error responses."
+  guidance: 'Treat non-2xx responses as failures even if the body is a plain string.'
+  detail: errors/actionstreamer-problem-types.yml
+rate_limit_signaling:
+  documented: false
+  headers: []
+  status_on_exhaustion: null
+  detail: rate-limits/actionstreamer-rate-limits.yml
+content_types:
+  request: application/json
+  response:
+  - application/json
+  - text/json
+  - text/plain
+async_patterns:
+  long_polling:
+    supported: true
+    operations:
+    - POST /v1/event/list/pending/longpoll
+    note: >-
+      Pending device commands are delivered by long-poll rather than by webhook. POST
+      /v1/event/dequeue pops the next pending event for a device agent. This is the platform's
+      event-delivery mechanism for edge agents.
+  webhooks:
+    supported: false
+    evidence: 'zero occurrences of "webhook" or "callback" in the OpenAPI; no webhooks or callbacks object'
+  streaming:
+    note: >-
+      Media transport itself is out of band (SRT/RTMP/WebRTC/MoQ per the product documentation and
+      glossary); the Web API manages Stream records and returns stream paths rather than carrying the media.
+dry_run_mode:
+  supported: false
+  documented: false
+reversibility:
+  grade: documented
+  note: >-
+    Graded `documented`, not `verified`: reversal paths exist as first-class operations across the
+    mutating surface, but ActionStreamer publishes no window, retention period or point-of-no-return
+    for any of them. No window is asserted here that the docs do not state.
+  write_surfaces:
+  - surface: Video clip
+    create: POST /v1/videoclip
+    reversal: DELETE /v1/videoclip/{videoClipID}
+    reversal_kind: delete
+    window: null
+    window_documented: false
+    note: >-
+      Deletion is available but no retention or restore path is published — there is no undelete
+      operation anywhere in the specification, so a deleted clip should be treated as unrecoverable.
+  - surface: Device
+    create: POST /v1/device
+    reversal: DELETE /v1/device/{deviceID}
+    reversal_kind: delete
+    window: null
+    window_documented: false
+  - surface: Device transfer
+    create: POST /v1/device/{deviceID}/transfer
+    reversal: null
+    reversal_kind: none
+    window: null
+    window_documented: false
+    note: >-
+      Transferring a device to another user has no documented reversal. The receiving user would have
+      to transfer it back, which the original owner cannot initiate. This is the sharpest
+      irreversibility in the surface.
+  - surface: Device share
+    create: POST /v1/device/share
+    reversal: DELETE /v1/shareditem/{sharedItemID}
+    reversal_kind: revoke
+    window: null
+    window_documented: false
+  - surface: Pending events (queued device commands)
+    create: POST /v1/event
+    reversal: DELETE /v1/event/list/pending/{deviceID}
+    reversal_kind: cancel
+    window: 'until the device agent dequeues the event'
+    window_documented: false
+    note: >-
+      A queued event can be cleared only while it is still pending. The boundary is real and
+      operationally obvious (POST /v1/event/dequeue removes it from the queue) but it is nowhere
+      stated in the documentation, so this is inferred from the operation set, not published.
+  - surface: Running event / process
+    create: POST /v1/eventpreset/run/{eventPresetID}
+    reversal: POST /v1/event/endprocess/{eventID}
+    reversal_kind: stop
+    window: null
+    window_documented: false
+    note: An in-flight process started by a preset can be ended by queueing an end-process event.
+  - surface: Event preset
+    create: POST /v1/eventpreset
+    reversal: DELETE /v1/eventpreset/{eventPresetID}
+    reversal_kind: delete
+    window: null
+    window_documented: false
+  - surface: API key
+    create: POST /v1/apikey
+    reversal: DELETE /v1/apikey/{apiKeyID}
+    reversal_kind: revoke
+    window: null
+    window_documented: false
+  - surface: Startup event preset binding
+    create: POST /v1/eventpreset/startupevent/{deviceState}/{eventPresetID}
+    reversal: DELETE /v1/eventpreset/startupevent/{deviceState}/device/{deviceID}
+    reversal_kind: unset
+    window: null
+    window_documented: false
+  irreversible:
+  - POST /v1/device/{deviceID}/transfer
+  - POST /v1/videoclip/upload
+recommendations:
+- Adopt an Idempotency-Key header across the mutating surface; the media-upload and event-queue operations are the ones that most need it.
+- Standardize the error envelope on RFC 9457 application/problem+json and declare 4xx/5xx responses in the OpenAPI.
+- Publish a pagination convention and a total/next field on every list response.
+- Return a correlation id header on every response so integrators can cite one value to support.
+- State the retention or restore window for deleted clips, devices and events; the reversal operations exist but the windows are unpublished, which is what holds reversibility at `documented`.

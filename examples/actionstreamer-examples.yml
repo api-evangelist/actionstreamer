@@ -1,0 +1,1024 @@
+generated: '2026-09-06'
+method: derived
+source: openapi/_original/actionstreamer-openapi-original.json
+note: Inventory of response examples that ActionStreamer ships inside its own OpenAPI. These are the provider's
+  examples, catalogued here — not authored by API Evangelist. Request bodies carry no examples; only responses
+  do.
+example_count: 161
+operations_total: 247
+coverage_pct: 65.2
+location: in-spec (responses[].content[].example)
+by_tag:
+  AudioClip: 11
+  VideoClip: 11
+  DeviceGroup: 10
+  Image: 10
+  Device: 9
+  Event: 9
+  DeviceHealth: 8
+  EventPreset: 7
+  DeviceWifiConnection: 5
+  Stream: 5
+  Agent: 4
+  Package: 4
+  Project: 4
+  Setting: 4
+  SharedItem: 4
+  User: 4
+  UserBrowser: 4
+  UserGroup: 4
+  WifiConnection: 4
+  APIKey: 3
+  CollectionItem: 3
+  DeviceComment: 3
+  File: 3
+  LogMessage: 3
+  MultifactorAuth: 3
+  Session: 3
+  SessionVariable: 3
+  Notification: 2
+  SignInHistory: 2
+  Tag: 2
+  TimeZone: 2
+  Token: 2
+  AgentType: 1
+  EventStatus: 1
+  EventType: 1
+  PermissionType: 1
+  Test: 1
+  Version: 1
+gaps:
+- No request-body examples anywhere in the specification.
+- 'No error-response examples: only one operation declares a 4xx response at all.'
+examples:
+- path: /v1/agent/{agentID}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: Agent
+  summary: Retrieves an individual agent based on the provided agentID.
+- path: /v1/agent/{agentID}
+  method: PATCH
+  status: '200'
+  content_type: application/json
+  tag: Agent
+  summary: Applies a patch to an agent.
+- path: /v1/agent/list
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: Agent
+  summary: Retrieves a list of agents with additional name details based on the provided filter criteria.
+- path: /v1/agent
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: Agent
+  summary: Creates a new agent or updates an existing agent.
+- path: /v1/agenttype/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: AgentType
+  summary: Gets the agent type list.
+- path: /v1/apikey/{apiKeyID}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: APIKey
+  summary: Gets an API key by ID.
+- path: /v1/apikey/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: APIKey
+  summary: Gets the API key list.
+- path: /v1/apikey
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: APIKey
+  summary: Creates an API key.
+- path: /v1/audioclip/{audioClipID}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: AudioClip
+  summary: Gets an audio clip by ID.
+- path: /v1/audioclip/{audioClipID}
+  method: PATCH
+  status: '200'
+  content_type: application/json
+  tag: AudioClip
+  summary: Applies a patch to an audio clip.
+- path: /v1/audioclip
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: AudioClip
+  summary: Creates an audio clip.
+- path: /v1/audioclip/{deviceSerial}
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: AudioClip
+  summary: Creates an audio clip for a device identified by serial number.
+- path: /v1/audioclip/createlist/{deviceSerial}
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: AudioClip
+  summary: Creates one or more audio clip records.
+- path: /v1/audioclip/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: AudioClip
+  summary: Gets the audio clip list.
+- path: /v1/audioclip/list
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: AudioClip
+  summary: Gets the filtered audio clip list.
+- path: /v1/audioclip/concatenate
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: AudioClip
+  summary: Enqueue a concatenate clips event based on a start time and end time.
+- path: /v1/audioclip/extract/list
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: AudioClip
+  summary: Gets the extracted audio clip list.
+- path: /v1/audioclip/devices/list
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: AudioClip
+  summary: Gets the audio clip list for multiple devices.
+- path: /v1/audioclip/devices/tag/list
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: AudioClip
+  summary: Get a list of AudioClips, AudioClipTags, and a unique list of Tags based on a start and end
+    epoch.
+- path: /v1/collectionitem/{collectionItemID}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: CollectionItem
+  summary: Gets a collection item by ID.
+- path: /v1/collectionitem/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: CollectionItem
+  summary: Gets the collection item list.
+- path: /v1/collectionitem/{collectionID}
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: CollectionItem
+  summary: Creates a collection item.
+- path: /v1/device/{deviceID}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: Device
+  summary: Gets a device by ID.
+- path: /v1/device/name
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: Device
+  summary: Gets a device by name or serial number.
+- path: /v1/device/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: Device
+  summary: Gets the device list.
+- path: /v1/device/sharedwithme/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: Device
+  summary: Get a list of devices shared with the logged in user.
+- path: /v1/device/sharedbyme/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: Device
+  summary: Get a list of devices shared by the logged in user.
+- path: /v1/device
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: Device
+  summary: Creates a device.
+- path: /v1/device/ready
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: Device
+  summary: Marks a device as ready and returns the current device record.
+- path: /v1/device/{deviceID}/runanalytics/{runAnalytics}
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: Device
+  summary: Sets the device analytics state and queues any required event.
+- path: /v1/device/list/all
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: Device
+  summary: Gets the full device list available to the authenticated user.
+- path: /v1/device/{deviceID}/comment/{commentID}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: DeviceComment
+  summary: Gets a device comment by ID.
+- path: /v1/device/{deviceID}/comment/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: DeviceComment
+  summary: Gets the device comment list.
+- path: /v1/device/{deviceID}/comment
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: DeviceComment
+  summary: Creates a device comment.
+- path: /v1/devicegroup/{deviceGroupID}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: DeviceGroup
+  summary: Gets a device group by ID.
+- path: /v1/devicegroup
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: DeviceGroup
+  summary: Gets a device group by name.
+- path: /v1/devicegroup
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: DeviceGroup
+  summary: Creates a device group.
+- path: /v1/devicegroup/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: DeviceGroup
+  summary: Gets the device group list.
+- path: /v1/devicegroup/{deviceGroupID}/device/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: DeviceGroup
+  summary: Get a list of devices in a device group.
+- path: /v1/shareddevicegroup/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: DeviceGroup
+  summary: Get a flat list of root device groups the user has been added to.
+- path: /v1/devicegroup/treenode/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: DeviceGroup
+  summary: Get a list of device groups the user has created and all devices and device groups under them,
+    recursively.
+- path: /v1/devicegroup/tree
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: DeviceGroup
+  summary: Gets the device group tree.
+- path: /v1/shareddevicegroup/tree
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: DeviceGroup
+  summary: Get a list of device groups the user has been added to by other users and all devices and device
+    groups under them, recursively.
+- path: /v1/shareddevicegroup/treenode/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: DeviceGroup
+  summary: Get a list of device groups the user has been added to by other users and all devices and device
+    groups under them, recursively.
+- path: /v1/devicehealth/{deviceHealthID}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: DeviceHealth
+  summary: Gets a device health record by ID.
+- path: /v1/devicehealth/{deviceHealthID}
+  method: PUT
+  status: '200'
+  content_type: application/json
+  tag: DeviceHealth
+  summary: Updates a device health record.
+- path: /v1/devicehealth/getlatest/{deviceID}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: DeviceHealth
+  summary: Gets the latest device health record for a device.
+- path: /v1/devicehealth/list
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: DeviceHealth
+  summary: Gets the device health list.
+- path: /v1/device/list/health
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: DeviceHealth
+  summary: Gets device health rows for the authenticated user's devices.
+- path: /v1/device/{deviceID}/health/linechart
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: DeviceHealth
+  summary: Gets line chart data for a device health variable.
+- path: /v1/devicehealth
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: DeviceHealth
+  summary: Creates a device health record.
+- path: /v1/devicehealth/updatelatest
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: DeviceHealth
+  summary: Updates the latest device health record for a device.
+- path: /v1/devicewificonnection/{deviceWifiConnectionID}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: DeviceWifiConnection
+  summary: Gets a device Wi-Fi connection by ID.
+- path: /v1/devicewificonnection/{deviceWifiConnectionID}
+  method: PATCH
+  status: '200'
+  content_type: application/json
+  tag: DeviceWifiConnection
+  summary: Applies a patch to a device Wi-Fi connection.
+- path: /v1/devicewificonnection/list/{deviceID}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: DeviceWifiConnection
+  summary: Gets the device Wi-Fi connection list.
+- path: /v1/devicewificonnection/list/{deviceID}/config
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: DeviceWifiConnection
+  summary: Gets the device Wi-Fi configuration list.
+- path: /v1/devicewificonnection
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: DeviceWifiConnection
+  summary: Creates a device Wi-Fi connection.
+- path: /v1/event/dequeue
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: Event
+  summary: Dequeues the next pending event for a device agent.
+- path: /v1/event
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: Event
+  summary: Creates an event.
+- path: /v1/event/{eventID}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: Event
+  summary: Gets an event by ID.
+- path: /v1/event/list
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: Event
+  summary: Gets the event list.
+- path: /v1/event/lastevent/agenttype/{agentTypeID}
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: Event
+  summary: Gets the last event for a device based on agent type.
+- path: /v1/event/list/pending
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: Event
+  summary: Get a list of pending events.
+- path: /v1/event/list/pending/longpoll
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: Event
+  summary: Long-polls for pending events for a device.
+- path: /v1/event/list/pending/{deviceID}
+  method: DELETE
+  status: '200'
+  content_type: application/json
+  tag: Event
+  summary: Clears pending events for a device.
+- path: /v1/event/endprocess/{eventID}
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: Event
+  summary: Queues an event to end the process associated with an event.
+- path: /v1/eventpreset/{eventPresetID}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: EventPreset
+  summary: Gets an event preset by ID.
+- path: /v1/eventpreset/list/device/{deviceID}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: EventPreset
+  summary: Gets the event preset list.
+- path: /v1/eventpreset/run/{eventPresetID}
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: EventPreset
+  summary: This endpoint runs a preset.
+- path: /v1/eventpreset/startupevent/{deviceState}/{eventPresetID}
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: EventPreset
+  summary: Sets the device startup event preset.
+- path: /v1/eventpreset/startupevent/{deviceState}/device/{deviceID}
+  method: DELETE
+  status: '200'
+  content_type: application/json
+  tag: EventPreset
+  summary: Deletes the device startup event preset.
+- path: /v1/eventpreset
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: EventPreset
+  summary: Creates an event preset.
+- path: /v1/eventpreset/{eventPresetID}/copy/{newDeviceID}
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: EventPreset
+  summary: Copies an event preset to another device.
+- path: /v1/eventstatus/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: EventStatus
+  summary: Gets the event status list.
+- path: /v1/eventtype/list
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: EventType
+  summary: Gets the event type list.
+- path: /v1/file
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: File
+  summary: Creates a file record.
+- path: /v1/file/temp
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: File
+  summary: Creates a temporary file record and signed upload URL.
+- path: /v1/file/{fileID}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: File
+  summary: Gets a file by ID.
+- path: /v1/image/{imageID}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: Image
+  summary: Gets an image by ID.
+- path: /v1/image/{imageID}
+  method: PATCH
+  status: '200'
+  content_type: application/json
+  tag: Image
+  summary: Applies a patch to an image.
+- path: /v1/image
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: Image
+  summary: Creates an image.
+- path: /v1/image/{deviceSerial}
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: Image
+  summary: Creates an image for a device identified by serial number.
+- path: /v1/image/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: Image
+  summary: Gets the image list.
+- path: /v1/image/list
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: Image
+  summary: Gets the filtered image list.
+- path: /v1/image/extract/list
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: Image
+  summary: Gets the extracted image list.
+- path: /v1/image/devices/list
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: Image
+  summary: Gets the image list for multiple devices.
+- path: /v1/image/devices/tag/list
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: Image
+  summary: Get a list of Images, ImageTags, and a unique list of Tags based on a start and end epoch.
+- path: /v1/image/createlist/{deviceSerial}
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: Image
+  summary: Creates one or more image records.
+- path: /v1/logmessage/{logMessageID}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: LogMessage
+  summary: Gets a log message by ID.
+- path: /v1/logmessage/list
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: LogMessage
+  summary: Gets the log message list.
+- path: /v1/logmessage
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: LogMessage
+  summary: Creates a log message.
+- path: /v1/multifactorauth/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: MultifactorAuth
+  summary: Gets the multifactor authentication list.
+- path: /v1/multifactorauth/{multifactorAuthID}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: MultifactorAuth
+  summary: Gets a multifactor authentication record by ID.
+- path: /v1/multifactorauth/resend
+  method: PUT
+  status: '200'
+  content_type: application/json
+  tag: MultifactorAuth
+  summary: Resends the multifactor authentication code for sign-in.
+- path: /v1/notification/{notificationID}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: Notification
+  summary: Gets a notification by ID.
+- path: /v1/notification/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: Notification
+  summary: Gets the notification list.
+- path: /v1/package/{packageID}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: Package
+  summary: Gets a package by ID.
+- path: /v1/package/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: Package
+  summary: Gets the package list.
+- path: /v1/package/list/uploaded
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: Package
+  summary: Get a list of package items that have been uploaded to S3.
+- path: /v1/package
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: Package
+  summary: Creates a package.
+- path: /v1/permissiontype/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: PermissionType
+  summary: Gets the permission type list.
+- path: /v1/project/{projectID}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: Project
+  summary: Gets a project by ID.
+- path: /v1/project/name
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: Project
+  summary: Gets a project by name.
+- path: /v1/project/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: Project
+  summary: Gets the project list.
+- path: /v1/project
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: Project
+  summary: Creates a project.
+- path: /v1/session
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: Session
+  summary: Gets the current session information.
+- path: /v1/session
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: Session
+  summary: Creates a session.
+- path: /v1/session/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: Session
+  summary: Gets the session list.
+- path: /v1/sessionvariable/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: SessionVariable
+  summary: Gets the session variable list for the authenticated user.
+- path: /v1/sessionvariable/{variableName}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: SessionVariable
+  summary: Gets a session variable for the authenticated user.
+- path: /v1/sessionvariable
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: SessionVariable
+  summary: Creates or updates a session variable for the authenticated user.
+- path: /v1/usersetting/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: Setting
+  summary: Gets the user setting list.
+- path: /v1/devicesetting/device/{deviceID}/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: Setting
+  summary: Gets the device setting list.
+- path: /v1/setting/app/{applicationID}/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: Setting
+  summary: Gets the application setting list.
+- path: /v1/setting/app/{applicationID}/{settingName}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: Setting
+  summary: Gets an application setting.
+- path: /v1/shareditem/{sharedItemID}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: SharedItem
+  summary: Gets a shared item by ID.
+- path: /v1/shareditem/{sharedItemID}
+  method: PATCH
+  status: '200'
+  content_type: application/json
+  tag: SharedItem
+  summary: Applies a patch to a shared item.
+- path: /v1/shareditem/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: SharedItem
+  summary: Gets the shared item list.
+- path: /v1/shareditem
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: SharedItem
+  summary: Creates a shared item.
+- path: /v1/signinhistory/{signInHistoryID}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: SignInHistory
+  summary: Gets a sign-in history record by ID.
+- path: /v1/signinhistory/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: SignInHistory
+  summary: Gets the sign-in history list.
+- path: /v1/stream/{streamID}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: Stream
+  summary: Gets a stream by ID.
+- path: /v1/device/{deviceID}/stream/mostrecent
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: Stream
+  summary: Gets the most recent stream for a device.
+- path: /v1/device/{deviceID}/stream/path
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: Stream
+  summary: Gets a stream by stream path.
+- path: /v1/device/{deviceID}/stream/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: Stream
+  summary: Gets the stream list.
+- path: /v1/stream
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: Stream
+  summary: Creates a stream.
+- path: /v1/tag/image/{deviceSerial}
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: Tag
+  summary: Generates image tags for an image.
+- path: /v1/device/{deviceID}/tag/list
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: Tag
+  summary: Get a list of tags for a device based on an epoch range.
+- path: /v1/test
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: Test
+  summary: Tests an anonymous API call.
+- path: /v1/timezone/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: TimeZone
+  summary: Gets the supported time zone list.
+- path: /v1/timezone/offset
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: TimeZone
+  summary: Gets the authenticated user time zone offset in hours.
+- path: /v1/token/mediarouter/read
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: Token
+  summary: Creates a media router read token.
+- path: /v1/token/mediarouter/publish
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: Token
+  summary: Creates a media router publish token.
+- path: /v1/user/lastdataupdate
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: User
+  summary: Gets the last user data refresh timestamp.
+- path: /v1/user/detail/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: User
+  summary: Gets the detailed user list.
+- path: /v1/user/timezone
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: User
+  summary: Gets the authenticated user time zone.
+- path: /v1/user/features
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: User
+  summary: Gets the feature list available to the authenticated user.
+- path: /v1/userbrowser/{userBrowserID}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: UserBrowser
+  summary: Gets a trusted browser record by ID.
+- path: /v1/userbrowser/{userBrowserID}
+  method: PATCH
+  status: '200'
+  content_type: application/json
+  tag: UserBrowser
+  summary: Applies a patch to a trusted browser record.
+- path: /v1/userbrowser/{browserGUID}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: UserBrowser
+  summary: Gets a trusted browser record by browser GUID.
+- path: /v1/userbrowser/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: UserBrowser
+  summary: Gets the trusted browser list.
+- path: /v1/usergroup/{userGroupID}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: UserGroup
+  summary: Gets a user group by ID.
+- path: /v1/usergroup/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: UserGroup
+  summary: Gets the user group list.
+- path: /v1/usergroup/{userGroupID}/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: UserGroup
+  summary: Gets the user list for a user group.
+- path: /v1/usergroup
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: UserGroup
+  summary: Creates a user group.
+- path: /v1/version
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: Version
+  summary: Checks the version endpoint without authentication.
+- path: /v1/videoclip/{videoClipID}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: VideoClip
+  summary: Gets a video clip by ID.
+- path: /v1/videoclip/{videoClipID}
+  method: PATCH
+  status: '200'
+  content_type: application/json
+  tag: VideoClip
+  summary: Applies a patch to a video clip.
+- path: /v1/videoclip
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: VideoClip
+  summary: Creates a video clip.
+- path: /v1/videoclip/{deviceSerial}
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: VideoClip
+  summary: Creates a video clip for a device identified by serial number.
+- path: /v1/videoclip/createlist/{deviceSerial}
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: VideoClip
+  summary: Creates one or more video clip records.
+- path: /v1/videoclip/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: VideoClip
+  summary: Gets the video clip list.
+- path: /v1/videoclip/list
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: VideoClip
+  summary: Gets the filtered video clip list.
+- path: /v1/videoclip/concatenate
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: VideoClip
+  summary: Enqueue a concatenate clips event based on a start time and end time.
+- path: /v1/videoclip/extract/list
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: VideoClip
+  summary: Gets the extracted video clip list.
+- path: /v1/videoclip/devices/list
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: VideoClip
+  summary: Gets the video clip list for multiple devices.
+- path: /v1/videoclip/devices/tag/list
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: VideoClip
+  summary: Get a list of VideoClips, VideoClipTags, and a unique list of Tags based on a start and end
+    epoch.
+- path: /v1/wificonnection/{wifiConnectionID}
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: WifiConnection
+  summary: Gets a Wi-Fi connection by ID.
+- path: /v1/wificonnection/{wifiConnectionID}
+  method: PATCH
+  status: '200'
+  content_type: application/json
+  tag: WifiConnection
+  summary: Applies a patch to a Wi-Fi connection.
+- path: /v1/wificonnection/list
+  method: GET
+  status: '200'
+  content_type: application/json
+  tag: WifiConnection
+  summary: Gets the Wi-Fi connection list.
+- path: /v1/wificonnection
+  method: POST
+  status: '200'
+  content_type: application/json
+  tag: WifiConnection
+  summary: Creates a Wi-Fi connection.
