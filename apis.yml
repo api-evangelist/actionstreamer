@@ -93,32 +93,6 @@ apis:
     url: https://developer.actionstreamer.com/docs/intro
   - type: APIReference
     url: https://developer.actionstreamer.com/docs/category/api-reference
-- aid: actionstreamer:actionstreamer-apikey-api
-  name: ActionStreamer API Key API
-  description: The APIKey API from ActionStreamer — 3 operation(s) for apikey.
-  humanURL: https://developer.actionstreamer.com/docs/API_Reference/WebAPI/overview
-  baseURL: https://api.actionstreamer.com/v1
-  tags:
-  - APIKey
-  properties:
-  - type: OpenAPI
-    url: openapi/actionstreamer-apikey-api-openapi.yml
-  - type: Authentication
-    url: authentication/actionstreamer-authentication.yml
-  - type: ErrorCatalog
-    url: errors/actionstreamer-problem-types.yml
-  - type: Conventions
-    url: conventions/actionstreamer-conventions.yml
-  - type: DataModel
-    url: data-model/actionstreamer-data-model.yml
-  - type: Examples
-    url: examples/actionstreamer-examples.yml
-  - type: RateLimits
-    url: rate-limits/actionstreamer-rate-limits.yml
-  - type: Documentation
-    url: https://developer.actionstreamer.com/docs/intro
-  - type: APIReference
-    url: https://developer.actionstreamer.com/docs/category/api-reference
 - aid: actionstreamer:actionstreamer-audioclip-api
   name: ActionStreamer Audio Clip API
   description: The AudioClip API from ActionStreamer — 11 operation(s) for audioclip.
@@ -249,58 +223,6 @@ apis:
     url: https://developer.actionstreamer.com/docs/intro
   - type: APIReference
     url: https://developer.actionstreamer.com/docs/category/api-reference
-- aid: actionstreamer:actionstreamer-devicegroup-api
-  name: ActionStreamer Device Group API
-  description: The DeviceGroup API from ActionStreamer — 11 operation(s) for devicegroup.
-  humanURL: https://developer.actionstreamer.com/docs/API_Reference/WebAPI/overview
-  baseURL: https://api.actionstreamer.com/v1
-  tags:
-  - DeviceGroup
-  properties:
-  - type: OpenAPI
-    url: openapi/actionstreamer-devicegroup-api-openapi.yml
-  - type: Authentication
-    url: authentication/actionstreamer-authentication.yml
-  - type: ErrorCatalog
-    url: errors/actionstreamer-problem-types.yml
-  - type: Conventions
-    url: conventions/actionstreamer-conventions.yml
-  - type: DataModel
-    url: data-model/actionstreamer-data-model.yml
-  - type: Examples
-    url: examples/actionstreamer-examples.yml
-  - type: RateLimits
-    url: rate-limits/actionstreamer-rate-limits.yml
-  - type: Documentation
-    url: https://developer.actionstreamer.com/docs/intro
-  - type: APIReference
-    url: https://developer.actionstreamer.com/docs/category/api-reference
-- aid: actionstreamer:actionstreamer-devicehealth-api
-  name: ActionStreamer Device Health API
-  description: The DeviceHealth API from ActionStreamer — 7 operation(s) for devicehealth.
-  humanURL: https://developer.actionstreamer.com/docs/API_Reference/WebAPI/overview
-  baseURL: https://api.actionstreamer.com/v1
-  tags:
-  - DeviceHealth
-  properties:
-  - type: OpenAPI
-    url: openapi/actionstreamer-devicehealth-api-openapi.yml
-  - type: Authentication
-    url: authentication/actionstreamer-authentication.yml
-  - type: ErrorCatalog
-    url: errors/actionstreamer-problem-types.yml
-  - type: Conventions
-    url: conventions/actionstreamer-conventions.yml
-  - type: DataModel
-    url: data-model/actionstreamer-data-model.yml
-  - type: Examples
-    url: examples/actionstreamer-examples.yml
-  - type: RateLimits
-    url: rate-limits/actionstreamer-rate-limits.yml
-  - type: Documentation
-    url: https://developer.actionstreamer.com/docs/intro
-  - type: APIReference
-    url: https://developer.actionstreamer.com/docs/category/api-reference
 - aid: actionstreamer:actionstreamer-devicewificonnection-api
   name: ActionStreamer Device Wifi Connection API
   description: >-
@@ -364,58 +286,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/actionstreamer-eventpreset-api-openapi.yml
-  - type: Authentication
-    url: authentication/actionstreamer-authentication.yml
-  - type: ErrorCatalog
-    url: errors/actionstreamer-problem-types.yml
-  - type: Conventions
-    url: conventions/actionstreamer-conventions.yml
-  - type: DataModel
-    url: data-model/actionstreamer-data-model.yml
-  - type: Examples
-    url: examples/actionstreamer-examples.yml
-  - type: RateLimits
-    url: rate-limits/actionstreamer-rate-limits.yml
-  - type: Documentation
-    url: https://developer.actionstreamer.com/docs/intro
-  - type: APIReference
-    url: https://developer.actionstreamer.com/docs/category/api-reference
-- aid: actionstreamer:actionstreamer-eventstatus-api
-  name: ActionStreamer Event Status API
-  description: The EventStatus API from ActionStreamer — 1 operation(s) for eventstatus.
-  humanURL: https://developer.actionstreamer.com/docs/API_Reference/WebAPI/overview
-  baseURL: https://api.actionstreamer.com/v1
-  tags:
-  - EventStatus
-  properties:
-  - type: OpenAPI
-    url: openapi/actionstreamer-eventstatus-api-openapi.yml
-  - type: Authentication
-    url: authentication/actionstreamer-authentication.yml
-  - type: ErrorCatalog
-    url: errors/actionstreamer-problem-types.yml
-  - type: Conventions
-    url: conventions/actionstreamer-conventions.yml
-  - type: DataModel
-    url: data-model/actionstreamer-data-model.yml
-  - type: Examples
-    url: examples/actionstreamer-examples.yml
-  - type: RateLimits
-    url: rate-limits/actionstreamer-rate-limits.yml
-  - type: Documentation
-    url: https://developer.actionstreamer.com/docs/intro
-  - type: APIReference
-    url: https://developer.actionstreamer.com/docs/category/api-reference
-- aid: actionstreamer:actionstreamer-eventtype-api
-  name: ActionStreamer Event Type API
-  description: The EventType API from ActionStreamer — 1 operation(s) for eventtype.
-  humanURL: https://developer.actionstreamer.com/docs/API_Reference/WebAPI/overview
-  baseURL: https://api.actionstreamer.com/v1
-  tags:
-  - EventType
-  properties:
-  - type: OpenAPI
-    url: openapi/actionstreamer-eventtype-api-openapi.yml
   - type: Authentication
     url: authentication/actionstreamer-authentication.yml
   - type: ErrorCatalog
@@ -520,32 +390,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/actionstreamer-mediarouterauth-api-openapi.yml
-  - type: Authentication
-    url: authentication/actionstreamer-authentication.yml
-  - type: ErrorCatalog
-    url: errors/actionstreamer-problem-types.yml
-  - type: Conventions
-    url: conventions/actionstreamer-conventions.yml
-  - type: DataModel
-    url: data-model/actionstreamer-data-model.yml
-  - type: Examples
-    url: examples/actionstreamer-examples.yml
-  - type: RateLimits
-    url: rate-limits/actionstreamer-rate-limits.yml
-  - type: Documentation
-    url: https://developer.actionstreamer.com/docs/intro
-  - type: APIReference
-    url: https://developer.actionstreamer.com/docs/category/api-reference
-- aid: actionstreamer:actionstreamer-multifactorauth-api
-  name: ActionStreamer Multifactor Auth API
-  description: The MultifactorAuth API from ActionStreamer — 7 operation(s) for multifactorauth.
-  humanURL: https://developer.actionstreamer.com/docs/API_Reference/WebAPI/overview
-  baseURL: https://api.actionstreamer.com/v1
-  tags:
-  - MultifactorAuth
-  properties:
-  - type: OpenAPI
-    url: openapi/actionstreamer-multifactorauth-api-openapi.yml
   - type: Authentication
     url: authentication/actionstreamer-authentication.yml
   - type: ErrorCatalog
@@ -1030,32 +874,6 @@ apis:
     url: https://developer.actionstreamer.com/docs/intro
   - type: APIReference
     url: https://developer.actionstreamer.com/docs/category/api-reference
-- aid: actionstreamer:actionstreamer-usergroup-api
-  name: ActionStreamer User Group API
-  description: The UserGroup API from ActionStreamer — 4 operation(s) for usergroup.
-  humanURL: https://developer.actionstreamer.com/docs/API_Reference/WebAPI/overview
-  baseURL: https://api.actionstreamer.com/v1
-  tags:
-  - UserGroup
-  properties:
-  - type: OpenAPI
-    url: openapi/actionstreamer-usergroup-api-openapi.yml
-  - type: Authentication
-    url: authentication/actionstreamer-authentication.yml
-  - type: ErrorCatalog
-    url: errors/actionstreamer-problem-types.yml
-  - type: Conventions
-    url: conventions/actionstreamer-conventions.yml
-  - type: DataModel
-    url: data-model/actionstreamer-data-model.yml
-  - type: Examples
-    url: examples/actionstreamer-examples.yml
-  - type: RateLimits
-    url: rate-limits/actionstreamer-rate-limits.yml
-  - type: Documentation
-    url: https://developer.actionstreamer.com/docs/intro
-  - type: APIReference
-    url: https://developer.actionstreamer.com/docs/category/api-reference
 - aid: actionstreamer:actionstreamer-verify-api
   name: ActionStreamer Verify API
   description: The Verify API from ActionStreamer — 2 operation(s) for verify.
@@ -1144,6 +962,188 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/actionstreamer-wificonnection-api-openapi.yml
+  - type: Authentication
+    url: authentication/actionstreamer-authentication.yml
+  - type: ErrorCatalog
+    url: errors/actionstreamer-problem-types.yml
+  - type: Conventions
+    url: conventions/actionstreamer-conventions.yml
+  - type: DataModel
+    url: data-model/actionstreamer-data-model.yml
+  - type: Examples
+    url: examples/actionstreamer-examples.yml
+  - type: RateLimits
+    url: rate-limits/actionstreamer-rate-limits.yml
+  - type: Documentation
+    url: https://developer.actionstreamer.com/docs/intro
+  - type: APIReference
+    url: https://developer.actionstreamer.com/docs/category/api-reference
+- aid: actionstreamer:actionstreamer-api-key-api
+  name: ActionStreamer API Key API
+  description: The API Key API from ActionStreamer — 3 operation(s) for api key.
+  humanURL: https://developer.actionstreamer.com/docs/API_Reference/WebAPI/overview
+  baseURL: https://api.actionstreamer.com/v1
+  tags:
+  - API Key
+  properties:
+  - type: OpenAPI
+    url: openapi/actionstreamer-api-key-api-openapi.yml
+  - type: Authentication
+    url: authentication/actionstreamer-authentication.yml
+  - type: ErrorCatalog
+    url: errors/actionstreamer-problem-types.yml
+  - type: Conventions
+    url: conventions/actionstreamer-conventions.yml
+  - type: DataModel
+    url: data-model/actionstreamer-data-model.yml
+  - type: Examples
+    url: examples/actionstreamer-examples.yml
+  - type: RateLimits
+    url: rate-limits/actionstreamer-rate-limits.yml
+  - type: Documentation
+    url: https://developer.actionstreamer.com/docs/intro
+  - type: APIReference
+    url: https://developer.actionstreamer.com/docs/category/api-reference
+- aid: actionstreamer:actionstreamer-device-group-api
+  name: ActionStreamer Device Group API
+  description: The Device Group API from ActionStreamer — 11 operation(s) for device group.
+  humanURL: https://developer.actionstreamer.com/docs/API_Reference/WebAPI/overview
+  baseURL: https://api.actionstreamer.com/v1
+  tags:
+  - Device Group
+  properties:
+  - type: OpenAPI
+    url: openapi/actionstreamer-device-group-api-openapi.yml
+  - type: Authentication
+    url: authentication/actionstreamer-authentication.yml
+  - type: ErrorCatalog
+    url: errors/actionstreamer-problem-types.yml
+  - type: Conventions
+    url: conventions/actionstreamer-conventions.yml
+  - type: DataModel
+    url: data-model/actionstreamer-data-model.yml
+  - type: Examples
+    url: examples/actionstreamer-examples.yml
+  - type: RateLimits
+    url: rate-limits/actionstreamer-rate-limits.yml
+  - type: Documentation
+    url: https://developer.actionstreamer.com/docs/intro
+  - type: APIReference
+    url: https://developer.actionstreamer.com/docs/category/api-reference
+- aid: actionstreamer:actionstreamer-device-health-api
+  name: ActionStreamer Device Health API
+  description: The Device Health API from ActionStreamer — 7 operation(s) for device health.
+  humanURL: https://developer.actionstreamer.com/docs/API_Reference/WebAPI/overview
+  baseURL: https://api.actionstreamer.com/v1
+  tags:
+  - Device Health
+  properties:
+  - type: OpenAPI
+    url: openapi/actionstreamer-device-health-api-openapi.yml
+  - type: Authentication
+    url: authentication/actionstreamer-authentication.yml
+  - type: ErrorCatalog
+    url: errors/actionstreamer-problem-types.yml
+  - type: Conventions
+    url: conventions/actionstreamer-conventions.yml
+  - type: DataModel
+    url: data-model/actionstreamer-data-model.yml
+  - type: Examples
+    url: examples/actionstreamer-examples.yml
+  - type: RateLimits
+    url: rate-limits/actionstreamer-rate-limits.yml
+  - type: Documentation
+    url: https://developer.actionstreamer.com/docs/intro
+  - type: APIReference
+    url: https://developer.actionstreamer.com/docs/category/api-reference
+- aid: actionstreamer:actionstreamer-event-status-api
+  name: ActionStreamer Event Status API
+  description: The Event Status API from ActionStreamer — 1 operation(s) for event status.
+  humanURL: https://developer.actionstreamer.com/docs/API_Reference/WebAPI/overview
+  baseURL: https://api.actionstreamer.com/v1
+  tags:
+  - Event Status
+  properties:
+  - type: OpenAPI
+    url: openapi/actionstreamer-event-status-api-openapi.yml
+  - type: Authentication
+    url: authentication/actionstreamer-authentication.yml
+  - type: ErrorCatalog
+    url: errors/actionstreamer-problem-types.yml
+  - type: Conventions
+    url: conventions/actionstreamer-conventions.yml
+  - type: DataModel
+    url: data-model/actionstreamer-data-model.yml
+  - type: Examples
+    url: examples/actionstreamer-examples.yml
+  - type: RateLimits
+    url: rate-limits/actionstreamer-rate-limits.yml
+  - type: Documentation
+    url: https://developer.actionstreamer.com/docs/intro
+  - type: APIReference
+    url: https://developer.actionstreamer.com/docs/category/api-reference
+- aid: actionstreamer:actionstreamer-event-type-api
+  name: ActionStreamer Event Type API
+  description: The Event Type API from ActionStreamer — 1 operation(s) for event type.
+  humanURL: https://developer.actionstreamer.com/docs/API_Reference/WebAPI/overview
+  baseURL: https://api.actionstreamer.com/v1
+  tags:
+  - Event Type
+  properties:
+  - type: OpenAPI
+    url: openapi/actionstreamer-event-type-api-openapi.yml
+  - type: Authentication
+    url: authentication/actionstreamer-authentication.yml
+  - type: ErrorCatalog
+    url: errors/actionstreamer-problem-types.yml
+  - type: Conventions
+    url: conventions/actionstreamer-conventions.yml
+  - type: DataModel
+    url: data-model/actionstreamer-data-model.yml
+  - type: Examples
+    url: examples/actionstreamer-examples.yml
+  - type: RateLimits
+    url: rate-limits/actionstreamer-rate-limits.yml
+  - type: Documentation
+    url: https://developer.actionstreamer.com/docs/intro
+  - type: APIReference
+    url: https://developer.actionstreamer.com/docs/category/api-reference
+- aid: actionstreamer:actionstreamer-multi-factor-auth-api
+  name: ActionStreamer multi factor auth API
+  description: The multi factor auth API from ActionStreamer — 7 operation(s) for multi factor auth.
+  humanURL: https://developer.actionstreamer.com/docs/API_Reference/WebAPI/overview
+  baseURL: https://api.actionstreamer.com/v1
+  tags:
+  - multi factor auth
+  properties:
+  - type: OpenAPI
+    url: openapi/actionstreamer-multi-factor-auth-api-openapi.yml
+  - type: Authentication
+    url: authentication/actionstreamer-authentication.yml
+  - type: ErrorCatalog
+    url: errors/actionstreamer-problem-types.yml
+  - type: Conventions
+    url: conventions/actionstreamer-conventions.yml
+  - type: DataModel
+    url: data-model/actionstreamer-data-model.yml
+  - type: Examples
+    url: examples/actionstreamer-examples.yml
+  - type: RateLimits
+    url: rate-limits/actionstreamer-rate-limits.yml
+  - type: Documentation
+    url: https://developer.actionstreamer.com/docs/intro
+  - type: APIReference
+    url: https://developer.actionstreamer.com/docs/category/api-reference
+- aid: actionstreamer:actionstreamer-user-group-api
+  name: ActionStreamer User Group API
+  description: The User Group API from ActionStreamer — 4 operation(s) for user group.
+  humanURL: https://developer.actionstreamer.com/docs/API_Reference/WebAPI/overview
+  baseURL: https://api.actionstreamer.com/v1
+  tags:
+  - User Group
+  properties:
+  - type: OpenAPI
+    url: openapi/actionstreamer-user-group-api-openapi.yml
   - type: Authentication
     url: authentication/actionstreamer-authentication.yml
   - type: ErrorCatalog
