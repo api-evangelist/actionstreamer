@@ -18,12 +18,15 @@ x-source: harvest:secondary-market
 specificationVersion: '0.20'
 created: '2026-09-06'
 modified: '2026-09-06'
+x-docs-platform: docusaurus
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-09-17
 tags:
 - Company
 - Video
 - Live Streaming
 - Wearables
-- Internet of Things
+- IoT
 - Device Management
 - Public Safety
 - Industrial
@@ -47,6 +50,8 @@ apis:
   humanURL: https://developer.actionstreamer.com/docs/API_Reference/WebAPI/overview
   baseURL: https://api.actionstreamer.com/v1
   tags:
+  - Agents
+  tags_raw:
   - Agent
   properties:
   - type: OpenAPI
@@ -568,6 +573,8 @@ apis:
   humanURL: https://developer.actionstreamer.com/docs/API_Reference/WebAPI/overview
   baseURL: https://api.actionstreamer.com/v1
   tags:
+  - Sessions
+  tags_raw:
   - Session
   properties:
   - type: OpenAPI
@@ -749,7 +756,8 @@ apis:
   description: The Test API from ActionStreamer — 3 operation(s) for test.
   humanURL: https://developer.actionstreamer.com/docs/API_Reference/WebAPI/overview
   baseURL: https://api.actionstreamer.com/v1
-  tags:
+  tags: []
+  tags_raw:
   - Test
   properties:
   - type: OpenAPI
@@ -776,6 +784,8 @@ apis:
   humanURL: https://developer.actionstreamer.com/docs/API_Reference/WebAPI/overview
   baseURL: https://api.actionstreamer.com/v1
   tags:
+  - Timezone
+  tags_raw:
   - TimeZone
   properties:
   - type: OpenAPI
@@ -802,6 +812,8 @@ apis:
   humanURL: https://developer.actionstreamer.com/docs/API_Reference/WebAPI/overview
   baseURL: https://api.actionstreamer.com/v1
   tags:
+  - Tokens
+  tags_raw:
   - Token
   properties:
   - type: OpenAPI
@@ -984,6 +996,8 @@ apis:
   humanURL: https://developer.actionstreamer.com/docs/API_Reference/WebAPI/overview
   baseURL: https://api.actionstreamer.com/v1
   tags:
+  - APIKeys
+  tags_raw:
   - API Key
   properties:
   - type: OpenAPI
@@ -1114,6 +1128,8 @@ apis:
   humanURL: https://developer.actionstreamer.com/docs/API_Reference/WebAPI/overview
   baseURL: https://api.actionstreamer.com/v1
   tags:
+  - multi-factor-auth
+  tags_raw:
   - multi factor auth
   properties:
   - type: OpenAPI
@@ -1140,6 +1156,8 @@ apis:
   humanURL: https://developer.actionstreamer.com/docs/API_Reference/WebAPI/overview
   baseURL: https://api.actionstreamer.com/v1
   tags:
+  - UserGroup
+  tags_raw:
   - User Group
   properties:
   - type: OpenAPI
