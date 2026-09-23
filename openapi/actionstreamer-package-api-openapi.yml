@@ -1,0 +1,343 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Package API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: Package
+paths:
+  /v1/package/{packageID}:
+    get:
+      tags:
+      - Package
+      summary: Gets a package by ID
+      parameters:
+      - name: packageID
+        in: path
+        description: The ID of the package to retrieve.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Package'
+              example:
+                key: 601
+                packageTypeID: 1
+                fileID: 1
+                encrypted: 1
+                packageName: DefaultAdminPackage
+                description: Example description
+                uRL: https://api.actionstreamer.com/example
+                version: 1.0.0
+                packageDate: '2026-03-30T12:00:00.0000000Z'
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1PackageByPackageID
+      x-operation-id-source: derived
+    put:
+      tags:
+      - Package
+      summary: Updates a package
+      description: 'Request body: JSON object. This endpoint is currently restricted to admin users.'
+      parameters:
+      - name: packageID
+        in: path
+        description: The ID of the package to update.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Package'
+            example:
+              key: 601
+              packageTypeID: 1
+              fileID: 1
+              encrypted: 1
+              packageName: DefaultAdminPackage
+              description: Example description
+              uRL: https://api.actionstreamer.com/example
+              version: 1.0.0
+              packageDate: '2026-03-30T12:00:00.0000000Z'
+              creationDate: '2026-03-30T12:00:00.0000000Z'
+        required: true
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: putV1PackageByPackageID
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - Package
+      summary: Deletes a package
+      description: This endpoint is currently restricted to admin users.
+      parameters:
+      - name: packageID
+        in: path
+        description: The ID of the package to delete.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: deleteV1PackageByPackageID
+      x-operation-id-source: derived
+  /v1/package/list:
+    get:
+      tags:
+      - Package
+      summary: Gets the package list
+      description: Returns agent packages.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Package'
+                example:
+                - key: 601
+                  packageTypeID: 1
+                  fileID: 1
+                  encrypted: 1
+                  packageName: DefaultAdminPackage
+                  description: Example description
+                  uRL: https://api.actionstreamer.com/example
+                  version: 1.0.0
+                  packageDate: '2026-03-30T12:00:00.0000000Z'
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 601
+                packageTypeID: 1
+                fileID: 1
+                encrypted: 1
+                packageName: DefaultAdminPackage
+                description: Example description
+                uRL: https://api.actionstreamer.com/example
+                version: 1.0.0
+                packageDate: '2026-03-30T12:00:00.0000000Z'
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1PackageList
+      x-operation-id-source: derived
+  /v1/package/list/uploaded:
+    get:
+      tags:
+      - Package
+      summary: Get a list of package items that have been uploaded to S3
+      description: Returns uploaded agent packages.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Package'
+                example:
+                - key: 601
+                  packageTypeID: 1
+                  fileID: 1
+                  encrypted: 1
+                  packageName: DefaultAdminPackage
+                  description: Example description
+                  uRL: https://api.actionstreamer.com/example
+                  version: 1.0.0
+                  packageDate: '2026-03-30T12:00:00.0000000Z'
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 601
+                packageTypeID: 1
+                fileID: 1
+                encrypted: 1
+                packageName: DefaultAdminPackage
+                description: Example description
+                uRL: https://api.actionstreamer.com/example
+                version: 1.0.0
+                packageDate: '2026-03-30T12:00:00.0000000Z'
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1PackageListUploaded
+      x-operation-id-source: derived
+  /v1/package:
+    post:
+      tags:
+      - Package
+      summary: Creates a package
+      description: 'Request body: JSON object. This endpoint is currently restricted to admin users.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Package'
+            example:
+              key: 601
+              packageTypeID: 1
+              fileID: 1
+              encrypted: 1
+              packageName: DefaultAdminPackage
+              description: Example description
+              uRL: https://api.actionstreamer.com/example
+              version: 1.0.0
+              packageDate: '2026-03-30T12:00:00.0000000Z'
+              creationDate: '2026-03-30T12:00:00.0000000Z'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Package'
+              example:
+                key: 601
+                packageTypeID: 1
+                fileID: 1
+                encrypted: 1
+                packageName: DefaultAdminPackage
+                description: Example description
+                uRL: https://api.actionstreamer.com/example
+                version: 1.0.0
+                packageDate: '2026-03-30T12:00:00.0000000Z'
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1Package
+      x-operation-id-source: derived
+  /v1/package/{packageID}/updatedevices:
+    post:
+      tags:
+      - Package
+      summary: Queues a package update for the specified devices
+      description: 'Request body: JSON object containing device IDs in `data`.'
+      parameters:
+      - name: packageID
+        in: path
+        description: The ID of the package to queue for installation.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IntegerArray'
+            example:
+              data:
+              - 1
+        required: true
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: postV1PackageByPackageIDUpdatedevices
+      x-operation-id-source: derived
+components:
+  schemas:
+    IntegerArray:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int64
+            example: 1
+          example:
+          - 1
+      additionalProperties: false
+      example:
+        data:
+        - 1
+    Package:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        packageTypeID:
+          type: integer
+          format: int64
+          example: 1
+        fileID:
+          type: integer
+          format: int64
+          example: 1
+        encrypted:
+          type: integer
+          format: int64
+          example: 1
+        packageName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        description:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        uRL:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        version:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        packageDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 601
+        packageTypeID: 1
+        fileID: 1
+        encrypted: 1
+        packageName: DefaultAdminPackage
+        description: Example description
+        uRL: https://api.actionstreamer.com/example
+        version: 1.0.0
+        packageDate: '2026-03-30T12:00:00.0000000Z'
+        creationDate: '2026-03-30T12:00:00.0000000Z'

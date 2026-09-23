@@ -1,0 +1,586 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Event Preset API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: EventPreset
+paths:
+  /v1/eventpreset/{eventPresetID}:
+    get:
+      tags:
+      - EventPreset
+      summary: Gets an event preset by ID
+      parameters:
+      - name: eventPresetID
+        in: path
+        description: The ID of the event preset to retrieve.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventPreset'
+              example:
+                key: 1
+                eventPresetName: Example value
+                deviceID: 201
+                deviceGroupID: 1
+                agentTypeID: 1
+                agentID: 1
+                eventTypeID: 1
+                eventStatus: 1
+                eventParameters: '{"presetName":"Run Event Preset"}'
+                processID: 4321
+                result: Example value
+                percentComplete: 42.5
+                priority: 1
+                expirationEpoch: 1711800000
+                attemptNumber: 1
+                maxAttempts: 3
+                tagString: Example value
+                tagNumber: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1EventpresetByEventPresetID
+      x-operation-id-source: derived
+    put:
+      tags:
+      - EventPreset
+      summary: Updates an event preset
+      description: 'Request body: JSON object.'
+      parameters:
+      - name: eventPresetID
+        in: path
+        description: The ID of the event preset to update.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventPreset'
+            example:
+              key: 1
+              eventPresetName: Example value
+              deviceID: 201
+              deviceGroupID: 1
+              agentTypeID: 1
+              agentID: 1
+              eventTypeID: 1
+              eventStatus: 1
+              eventParameters: '{"presetName":"Run Event Preset"}'
+              processID: 4321
+              result: Example value
+              percentComplete: 42.5
+              priority: 1
+              expirationEpoch: 1711800000
+              attemptNumber: 1
+              maxAttempts: 3
+              tagString: Example value
+              tagNumber: 1
+              creationDate: '2026-03-30T12:00:00.0000000Z'
+        required: true
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: putV1EventpresetByEventPresetID
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - EventPreset
+      summary: Deletes an event preset
+      description: Deletes the event preset.
+      parameters:
+      - name: eventPresetID
+        in: path
+        description: The ID of the event preset to delete.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: deleteV1EventpresetByEventPresetID
+      x-operation-id-source: derived
+  /v1/eventpreset/list/device/{deviceID}:
+    get:
+      tags:
+      - EventPreset
+      summary: Gets the event preset list
+      description: Returns presets directly associated with the device and may also include presets inherited from shared device groups.
+      parameters:
+      - name: deviceID
+        in: path
+        description: The ID of the device whose available event presets should be returned.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventPreset'
+                example:
+                - key: 1
+                  eventPresetName: Example value
+                  userID: 101
+                  deviceID: 201
+                  deviceGroupID: 1
+                  agentTypeID: 1
+                  agentID: 1
+                  eventTypeID: 1
+                  eventStatus: 1
+                  eventParameters: '{"presetName":"Run Event Preset"}'
+                  processID: 4321
+                  result: Example value
+                  percentComplete: 42.5
+                  priority: 1
+                  expirationEpoch: 1711800000
+                  attemptNumber: 1
+                  maxAttempts: 3
+                  checkoutToken: example-token
+                  tagString: Example value
+                  tagNumber: 1
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 1
+                eventPresetName: Example value
+                deviceID: 201
+                deviceGroupID: 1
+                agentTypeID: 1
+                agentID: 1
+                eventTypeID: 1
+                eventStatus: 1
+                eventParameters: '{"presetName":"Run Event Preset"}'
+                processID: 4321
+                result: Example value
+                percentComplete: 42.5
+                priority: 1
+                expirationEpoch: 1711800000
+                attemptNumber: 1
+                maxAttempts: 3
+                tagString: Example value
+                tagNumber: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1EventpresetListDeviceByDeviceID
+      x-operation-id-source: derived
+  /v1/eventpreset/run/{eventPresetID}:
+    post:
+      tags:
+      - EventPreset
+      summary: This endpoint runs a preset
+      description: 'Request body: JSON object when you want to override the target devices with a
+
+        `data` array of device IDs.'
+      parameters:
+      - name: eventPresetID
+        in: path
+        description: The ID of the event preset to run.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IntegerArray'
+            example:
+              data:
+              - 1
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                EventID: 101
+      operationId: postV1EventpresetRunByEventPresetID
+      x-operation-id-source: derived
+  /v1/eventpreset/startupevent/{deviceState}/{eventPresetID}:
+    post:
+      tags:
+      - EventPreset
+      summary: Sets the device startup event preset
+      description: Startup presets must target a single device.
+      parameters:
+      - name: eventPresetID
+        in: path
+        description: The event preset ID to apply as the startup preset.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      - name: deviceState
+        in: path
+        description: The device startup mode. Accepted values are "online" and "standalone".
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: Example value
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                EventID: 101
+      operationId: postV1EventpresetStartupeventByDeviceStateByEventPresetID
+      x-operation-id-source: derived
+  /v1/eventpreset/startupevent/{deviceState}/device/{deviceID}:
+    delete:
+      tags:
+      - EventPreset
+      summary: Deletes the device startup event preset
+      description: Clears the configured startup preset for the specified mode.
+      parameters:
+      - name: deviceState
+        in: path
+        description: The device startup mode. Accepted values are "online" and "standalone".
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: Example value
+      - name: deviceID
+        in: path
+        description: The ID of the device whose startup preset should be cleared.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                EventID: 101
+      operationId: deleteV1EventpresetStartupeventByDeviceStateDeviceByDeviceID
+      x-operation-id-source: derived
+  /v1/eventpreset:
+    post:
+      tags:
+      - EventPreset
+      summary: Creates an event preset
+      description: 'Request body: JSON object. Supports creating presets
+
+        for either a single device or a device group, based on `deviceID` or `deviceGroupID`. If
+
+        `eventParameters` is empty, it is stored as `{}`.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEventPreset'
+            example:
+              eventPresetName: Example value
+              deviceID: 201
+              deviceGroupID: 1
+              agentType: Device
+              eventType: Run
+              eventParameters: '{"presetName":"Run Event Preset"}'
+              priority: 1
+              maxAttempts: 3
+              expirationEpoch: 1711800000
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventPreset'
+              example:
+                key: 1
+                eventPresetName: Example value
+                deviceID: 201
+                deviceGroupID: 1
+                agentTypeID: 1
+                agentID: 1
+                eventTypeID: 1
+                eventStatus: 1
+                eventParameters: '{"presetName":"Run Event Preset"}'
+                processID: 4321
+                result: Example value
+                percentComplete: 42.5
+                priority: 1
+                expirationEpoch: 1711800000
+                attemptNumber: 1
+                maxAttempts: 3
+                tagString: Example value
+                tagNumber: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1Eventpreset
+      x-operation-id-source: derived
+  /v1/eventpreset/{eventPresetID}/copy/{newDeviceID}:
+    post:
+      tags:
+      - EventPreset
+      summary: Copies an event preset to another device
+      description: 'Copies the existing preset to the destination device after validating read access to the source preset and
+
+        write access to the destination device.'
+      parameters:
+      - name: eventPresetID
+        in: path
+        description: The ID of the source event preset.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      - name: newDeviceID
+        in: path
+        description: The ID of the destination device.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventPreset'
+              example:
+                key: 1
+                eventPresetName: Example value
+                deviceID: 201
+                deviceGroupID: 1
+                agentTypeID: 1
+                agentID: 1
+                eventTypeID: 1
+                eventStatus: 1
+                eventParameters: '{"presetName":"Run Event Preset"}'
+                processID: 4321
+                result: Example value
+                percentComplete: 42.5
+                priority: 1
+                expirationEpoch: 1711800000
+                attemptNumber: 1
+                maxAttempts: 3
+                tagString: Example value
+                tagNumber: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1EventpresetByEventPresetIDCopyByNewDeviceID
+      x-operation-id-source: derived
+components:
+  schemas:
+    IntegerArray:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int64
+            example: 1
+          example:
+          - 1
+      additionalProperties: false
+      example:
+        data:
+        - 1
+    EventPreset:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        eventPresetName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        deviceGroupID:
+          type: integer
+          format: int64
+          example: 1
+        agentTypeID:
+          type: integer
+          format: int64
+          example: 1
+        agentID:
+          type: integer
+          format: int64
+          example: 1
+        eventTypeID:
+          type: integer
+          format: int64
+          example: 1
+        eventStatus:
+          type: integer
+          format: int64
+          example: 1
+        eventParameters:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        processID:
+          type: integer
+          format: int64
+          example: 1
+        result:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        percentComplete:
+          type: number
+          format: double
+          example: 1
+        priority:
+          type: integer
+          format: int64
+          example: 1
+        expirationEpoch:
+          type: integer
+          format: int64
+          example: 1
+        attemptNumber:
+          type: integer
+          format: int64
+          example: 1
+        maxAttempts:
+          type: integer
+          format: int64
+          example: 1
+        tagString:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        tagNumber:
+          type: integer
+          format: int64
+          example: 1
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        eventPresetName: Example value
+        deviceID: 201
+        deviceGroupID: 1
+        agentTypeID: 1
+        agentID: 1
+        eventTypeID: 1
+        eventStatus: 1
+        eventParameters: '{"presetName":"Run Event Preset"}'
+        processID: 4321
+        result: Example value
+        percentComplete: 42.5
+        priority: 1
+        expirationEpoch: 1711800000
+        attemptNumber: 1
+        maxAttempts: 3
+        tagString: Example value
+        tagNumber: 1
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+    CreateEventPreset:
+      type: object
+      properties:
+        eventPresetName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        deviceGroupID:
+          type: integer
+          format: int64
+          example: 1
+        agentType:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        eventType:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        eventParameters:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        priority:
+          type: integer
+          format: int64
+          example: 1
+        maxAttempts:
+          type: integer
+          format: int64
+          example: 1
+        expirationEpoch:
+          type: integer
+          format: int64
+          example: 1
+      additionalProperties: false
+      example:
+        eventPresetName: Example value
+        deviceID: 201
+        deviceGroupID: 1
+        agentType: Device
+        eventType: Run
+        eventParameters: '{"presetName":"Run Event Preset"}'
+        priority: 1
+        maxAttempts: 3
+        expirationEpoch: 1711800000

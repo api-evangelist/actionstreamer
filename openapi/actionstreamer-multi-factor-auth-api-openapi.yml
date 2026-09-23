@@ -1,0 +1,288 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Multifactor Auth API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: multi factor auth
+paths:
+  /v1/multifactorauth/list:
+    get:
+      tags:
+      - multi factor auth
+      summary: Gets the multifactor authentication list
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MultifactorAuth'
+                example:
+                - key: 1
+                  multifactorAuthTypeID: 1
+                  userID: 101
+                  mFASource: testuser@actionstreamer.com
+                  secretKeyImage: Example value
+                  pinCode: 1
+                  userPinCode: 1
+                  pinCodeExpirationDate: '2026-03-30T12:00:00.0000000Z'
+                  isValidated: true
+                  isActive: true
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 1
+                multifactorAuthTypeID: 1
+                mFASource: testuser@actionstreamer.com
+                secretKeyImage: Example value
+                userPinCode: 1
+                pinCodeExpirationDate: '2026-03-30T12:00:00.0000000Z'
+                isValidated: true
+                isActive: true
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1MultifactorauthList
+      x-operation-id-source: derived
+  /v1/multifactorauth/{multifactorAuthID}:
+    get:
+      tags:
+      - multi factor auth
+      summary: Gets a multifactor authentication record by ID
+      parameters:
+      - name: multifactorAuthID
+        in: path
+        description: The multifactor authentication record ID.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultifactorAuth'
+              example:
+                key: 1
+                multifactorAuthTypeID: 1
+                mFASource: testuser@actionstreamer.com
+                secretKeyImage: Example value
+                userPinCode: 1
+                pinCodeExpirationDate: '2026-03-30T12:00:00.0000000Z'
+                isValidated: true
+                isActive: true
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1MultifactorauthByMultifactorAuthID
+      x-operation-id-source: derived
+    put:
+      tags:
+      - multi factor auth
+      summary: Updates a multifactor authentication record
+      description: This endpoint sets the selected multifactor authentication method as the active method.
+      parameters:
+      - name: multifactorAuthID
+        in: path
+        description: The multifactor authentication record ID.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: putV1MultifactorauthByMultifactorAuthID
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - multi factor auth
+      summary: Deletes a multifactor authentication record
+      parameters:
+      - name: multifactorAuthID
+        in: path
+        description: The multifactor authentication record ID.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: deleteV1MultifactorauthByMultifactorAuthID
+      x-operation-id-source: derived
+  /v1/multifactorauth:
+    post:
+      tags:
+      - multi factor auth
+      summary: Creates a new multifactor authentication method
+      description: 'Request body: JSON object.
+
+        TOTP responses can include a QR code image for setup.'
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: postV1Multifactorauth
+      x-operation-id-source: derived
+  /v1/multifactorauth/{multifactorAuthID}/verify:
+    put:
+      tags:
+      - multi factor auth
+      summary: Validates a multifactor authentication code after creation
+      description: 'Request body: JSON object with the verification code in `token`.'
+      parameters:
+      - name: multifactorAuthID
+        in: path
+        description: The multifactor authentication record ID.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Token'
+            example:
+              token: example-token
+        required: true
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: putV1MultifactorauthByMultifactorAuthIDVerify
+      x-operation-id-source: derived
+  /v1/validatemfa:
+    put:
+      tags:
+      - multi factor auth
+      summary: Validates a multifactor authentication code during sign-in
+      description: 'Request body: JSON object with the verification code in `token`.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Token'
+            example:
+              token: example-token
+        required: true
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: putV1Validatemfa
+      x-operation-id-source: derived
+  /v1/multifactorauth/{multifactorAuthID}/resend:
+    put:
+      tags:
+      - multi factor auth
+      summary: Resends the multifactor authentication code for creation
+      parameters:
+      - name: multifactorAuthID
+        in: path
+        description: The multifactor authentication record ID.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: putV1MultifactorauthByMultifactorAuthIDResend
+      x-operation-id-source: derived
+  /v1/multifactorauth/resend:
+    put:
+      tags:
+      - multi factor auth
+      summary: Resends the multifactor authentication code for sign-in
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                mfaID: 301
+      operationId: putV1MultifactorauthResend
+      x-operation-id-source: derived
+components:
+  schemas:
+    MultifactorAuth:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        multifactorAuthTypeID:
+          type: integer
+          format: int64
+          example: 1
+        mFASource:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        secretKeyImage:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        userPinCode:
+          type: integer
+          format: int64
+          example: 1
+        pinCodeExpirationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        isValidated:
+          type: boolean
+          example: true
+        isActive:
+          type: boolean
+          example: true
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        multifactorAuthTypeID: 1
+        mFASource: testuser@actionstreamer.com
+        secretKeyImage: Example value
+        userPinCode: 1
+        pinCodeExpirationDate: '2026-03-30T12:00:00.0000000Z'
+        isValidated: true
+        isActive: true
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+    Token:
+      type: object
+      properties:
+        token:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        token: example-token

@@ -1,0 +1,1255 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Image API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: Image
+paths:
+  /v1/image/{imageID}:
+    get:
+      tags:
+      - Image
+      summary: Gets an image by ID
+      parameters:
+      - name: imageID
+        in: path
+        description: The image ID.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Image'
+              example:
+                key: 1
+                deviceID: 201
+                fileID: 1
+                imageStatus: 1
+                imageTypeID: 1
+                localFilePath: Example value
+                height: 1
+                width: 1
+                filesize: 1
+                startTime: 1
+                startTimeMs: 1
+                tagListID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1ImageByImageID
+      x-operation-id-source: derived
+    put:
+      tags:
+      - Image
+      summary: Updates an image
+      description: 'Request body: JSON object.'
+      parameters:
+      - name: imageID
+        in: path
+        description: The image ID.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Image'
+            example:
+              key: 1
+              deviceID: 201
+              fileID: 1
+              imageStatus: 1
+              imageTypeID: 1
+              localFilePath: Example value
+              height: 1
+              width: 1
+              filesize: 1
+              startTime: 1
+              startTimeMs: 1
+              tagListID: 1
+              creationDate: '2026-03-30T12:00:00.0000000Z'
+        required: true
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: putV1ImageByImageID
+      x-operation-id-source: derived
+    patch:
+      tags:
+      - Image
+      summary: Applies a patch to an image
+      description: 'Request body: array of patch operations.'
+      parameters:
+      - name: imageID
+        in: path
+        description: The image ID.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example: Patch applied successfully.
+      operationId: patchV1ImageByImageID
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - Image
+      summary: Deletes an image
+      parameters:
+      - name: imageID
+        in: path
+        description: The image ID.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: deleteV1ImageByImageID
+      x-operation-id-source: derived
+  /v1/image:
+    post:
+      tags:
+      - Image
+      summary: Creates an image
+      description: 'Request body: JSON object.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateImage'
+            example:
+              deviceID: 201
+              deviceName: WearableDevice
+              fileID: 1
+              localFilePath: Example value
+              height: 1
+              width: 1
+              startTime: 1
+              startTimeMs: 1
+              imageStatus: 1
+              imageTypeID: 1
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Image'
+              example:
+                key: 1
+                deviceID: 201
+                fileID: 1
+                imageStatus: 1
+                imageTypeID: 1
+                localFilePath: Example value
+                height: 1
+                width: 1
+                filesize: 1
+                startTime: 1
+                startTimeMs: 1
+                tagListID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1Image
+      x-operation-id-source: derived
+  /v1/image/{deviceSerial}:
+    post:
+      tags:
+      - Image
+      summary: Creates an image for a device identified by serial number
+      parameters:
+      - name: deviceSerial
+        in: path
+        description: The device serial number from the route.
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: Example value
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Image'
+            example:
+              key: 1
+              deviceID: 201
+              fileID: 1
+              imageStatus: 1
+              imageTypeID: 1
+              localFilePath: Example value
+              height: 1
+              width: 1
+              filesize: 1
+              startTime: 1
+              startTimeMs: 1
+              tagListID: 1
+              creationDate: '2026-03-30T12:00:00.0000000Z'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Image'
+              example:
+                key: 1
+                deviceID: 201
+                fileID: 1
+                imageStatus: 1
+                imageTypeID: 1
+                localFilePath: Example value
+                height: 1
+                width: 1
+                filesize: 1
+                startTime: 1
+                startTimeMs: 1
+                tagListID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1ImageByDeviceSerial
+      x-operation-id-source: derived
+  /v1/image/list:
+    get:
+      tags:
+      - Image
+      summary: Gets the image list
+      description: This endpoint returns `501 Not implemented`.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Image'
+                example:
+                - key: 1
+                  userID: 101
+                  deviceID: 201
+                  fileID: 1
+                  imageStatus: 1
+                  imageTypeID: 1
+                  localFilePath: Example value
+                  height: 1
+                  width: 1
+                  filesize: 1
+                  startTime: 1
+                  startTimeMs: 1
+                  tagListID: 1
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 1
+                deviceID: 201
+                fileID: 1
+                imageStatus: 1
+                imageTypeID: 1
+                localFilePath: Example value
+                height: 1
+                width: 1
+                filesize: 1
+                startTime: 1
+                startTimeMs: 1
+                tagListID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1ImageList
+      x-operation-id-source: derived
+    post:
+      tags:
+      - Image
+      summary: Gets the filtered image list
+      description: 'Request body: JSON object.
+
+        Supports an optional `alldevices=true` query parameter.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImageEpochAndCountFilter'
+            example:
+              deviceID: 201
+              startEpoch: 1711800000
+              endEpoch: 1711800000
+              count: 25
+              order: Example value
+              tagList:
+              - 1
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ImageWithNames'
+                example:
+                - key: 1
+                  userID: 101
+                  deviceID: 201
+                  fileID: 1
+                  imageStatus: 1
+                  imageTypeID: 1
+                  localFilePath: Example value
+                  height: 1
+                  width: 1
+                  filesize: 1
+                  startTime: 1
+                  startTimeMs: 1
+                  tagListID: 1
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+                  deviceName: WearableDevice
+                  tagList:
+                  - key: null
+                    tagName: null
+                    creationDate: null
+                    createdBy: null
+                    lastModifiedDate: null
+                    lastModifiedBy: null
+              example:
+              - key: 1
+                deviceID: 201
+                fileID: 1
+                imageStatus: 1
+                imageTypeID: 1
+                localFilePath: Example value
+                height: 1
+                width: 1
+                filesize: 1
+                startTime: 1
+                startTimeMs: 1
+                tagListID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+                deviceName: WearableDevice
+                tagList:
+                - key: null
+                  tagName: null
+                  creationDate: null
+      operationId: postV1ImageList
+      x-operation-id-source: derived
+  /v1/image/extract/list:
+    post:
+      tags:
+      - Image
+      summary: Gets the extracted image list
+      description: 'Request body: JSON object.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceEpochRange'
+            example:
+              deviceSerial: '10001234'
+              startEpoch: 1711800000
+              endEpoch: 1711800000
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Image'
+                example:
+                - key: 1
+                  userID: 101
+                  deviceID: 201
+                  fileID: 1
+                  imageStatus: 1
+                  imageTypeID: 1
+                  localFilePath: Example value
+                  height: 1
+                  width: 1
+                  filesize: 1
+                  startTime: 1
+                  startTimeMs: 1
+                  tagListID: 1
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 1
+                deviceID: 201
+                fileID: 1
+                imageStatus: 1
+                imageTypeID: 1
+                localFilePath: Example value
+                height: 1
+                width: 1
+                filesize: 1
+                startTime: 1
+                startTimeMs: 1
+                tagListID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1ImageExtractList
+      x-operation-id-source: derived
+  /v1/image/devices/list:
+    post:
+      tags:
+      - Image
+      summary: Gets the image list for multiple devices
+      description: 'Request body: JSON object.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DevicesEpochAndCountFilter'
+            example:
+              deviceIDList:
+              - 1
+              startEpoch: 1711800000
+              endEpoch: 1711800000
+              count: 25
+              order: Example value
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Image'
+                example:
+                - key: 1
+                  userID: 101
+                  deviceID: 201
+                  fileID: 1
+                  imageStatus: 1
+                  imageTypeID: 1
+                  localFilePath: Example value
+                  height: 1
+                  width: 1
+                  filesize: 1
+                  startTime: 1
+                  startTimeMs: 1
+                  tagListID: 1
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 1
+                deviceID: 201
+                fileID: 1
+                imageStatus: 1
+                imageTypeID: 1
+                localFilePath: Example value
+                height: 1
+                width: 1
+                filesize: 1
+                startTime: 1
+                startTimeMs: 1
+                tagListID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1ImageDevicesList
+      x-operation-id-source: derived
+  /v1/image/devices/tag/list:
+    post:
+      tags:
+      - Image
+      summary: Get a list of Images, ImageTags, and a unique list of Tags based on a start and…
+      description: 'Request body: JSON object.
+
+        Supports an optional `minutes` query parameter to constrain the tag aggregation window.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetTagListForDeviceList'
+            example:
+              deviceIDList:
+              - 1
+              tagIDList:
+              - 1
+              startEpoch: 1711800000
+              endEpoch: 1711800000
+              count: 25
+              order: Example value
+              searchText: Example value
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageListWithTags'
+              example:
+                imageList:
+                - key: 1
+                  deviceID: 201
+                  fileID: 1
+                  imageStatus: 1
+                  imageTypeID: 1
+                  localFilePath: Example value
+                  height: 1
+                  width: 1
+                  filesize: 1
+                  startTime: 1
+                  startTimeMs: 1
+                  tagListID: 1
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                imageTagList:
+                - key: 1
+                  imageID: 1
+                  deviceID: 201
+                  tagID: 1
+                  timestamp: 1
+                  timestampMs: 1
+                  confidence: 98.4
+                  left: 1
+                  top: 1
+                  width: 1
+                  height: 1
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  tagName: Example value
+                tagList:
+                - key: 1
+                  tagName: Example value
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1ImageDevicesTagList
+      x-operation-id-source: derived
+  /v1/image/upload:
+    post:
+      tags:
+      - Image
+      summary: Uploads one or more images
+      description: 'Request body: JSON object.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UploadImages'
+            example:
+              deviceID: 201
+              imageIDList:
+              - 1
+        required: true
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: postV1ImageUpload
+      x-operation-id-source: derived
+  /v1/image/createlist/{deviceSerial}:
+    post:
+      tags:
+      - Image
+      summary: Creates one or more image records
+      description: 'Request body: JSON array of image objects.'
+      parameters:
+      - name: deviceSerial
+        in: path
+        description: The device serial number from the route.
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: Example value
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Image'
+                example:
+                - key: 1
+                  userID: 101
+                  deviceID: 201
+                  fileID: 1
+                  imageStatus: 1
+                  imageTypeID: 1
+                  localFilePath: Example value
+                  height: 1
+                  width: 1
+                  filesize: 1
+                  startTime: 1
+                  startTimeMs: 1
+                  tagListID: 1
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 1
+                deviceID: 201
+                fileID: 1
+                imageStatus: 1
+                imageTypeID: 1
+                localFilePath: Example value
+                height: 1
+                width: 1
+                filesize: 1
+                startTime: 1
+                startTimeMs: 1
+                tagListID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1ImageCreatelistByDeviceSerial
+      x-operation-id-source: derived
+components:
+  schemas:
+    UploadImages:
+      type: object
+      properties:
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        imageIDList:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+            example: 1
+          example:
+          - 1
+      additionalProperties: false
+      example:
+        deviceID: 201
+        imageIDList:
+        - 1
+    ImageTagWithNames:
+      type: object
+      properties:
+        tagName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        key:
+          type: integer
+          format: int64
+          example: 1
+        imageID:
+          type: integer
+          format: int64
+          example: 1
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        tagID:
+          type: integer
+          format: int64
+          example: 1
+        timestamp:
+          type: integer
+          format: int64
+          example: 1
+        timestampMs:
+          type: integer
+          format: int64
+          example: 1
+        confidence:
+          type: number
+          format: double
+          example: 1
+        left:
+          type: integer
+          format: int64
+          example: 1
+        top:
+          type: integer
+          format: int64
+          example: 1
+        width:
+          type: integer
+          format: int64
+          example: 1
+        height:
+          type: integer
+          format: int64
+          example: 1
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        imageID: 1
+        deviceID: 201
+        tagID: 1
+        timestamp: 1
+        timestampMs: 1
+        confidence: 98.4
+        left: 1
+        top: 1
+        width: 1
+        height: 1
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+        tagName: Example value
+    ImageListWithTags:
+      type: object
+      properties:
+        imageList:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Image'
+          example:
+          - key: 1
+            userID: 101
+            deviceID: 201
+            fileID: 1
+            imageStatus: 1
+            imageTypeID: 1
+            localFilePath: Example value
+            height: 1
+            width: 1
+            filesize: 1
+            startTime: 1
+            startTimeMs: 1
+            tagListID: 1
+            creationDate: '2026-03-30T12:00:00.0000000Z'
+            createdBy: 1
+            lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+            lastModifiedBy: 1
+        imageTagList:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ImageTagWithNames'
+          example:
+          - key: 1
+            imageID: 1
+            userID: 101
+            deviceID: 201
+            tagID: 1
+            timestamp: 1
+            timestampMs: 1
+            confidence: 98.4
+            left: 1
+            top: 1
+            width: 1
+            height: 1
+            creationDate: '2026-03-30T12:00:00.0000000Z'
+            createdBy: 1
+            lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+            lastModifiedBy: 1
+            tagName: Example value
+        tagList:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Tag'
+          example:
+          - key: 1
+            tagName: Example value
+            creationDate: '2026-03-30T12:00:00.0000000Z'
+            createdBy: 1
+            lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+            lastModifiedBy: 1
+      additionalProperties: false
+      example:
+        imageList:
+        - key: 1
+          deviceID: 201
+          fileID: 1
+          imageStatus: 1
+          imageTypeID: 1
+          localFilePath: Example value
+          height: 1
+          width: 1
+          filesize: 1
+          startTime: 1
+          startTimeMs: 1
+          tagListID: 1
+          creationDate: '2026-03-30T12:00:00.0000000Z'
+        imageTagList:
+        - key: 1
+          imageID: 1
+          deviceID: 201
+          tagID: 1
+          timestamp: 1
+          timestampMs: 1
+          confidence: 98.4
+          left: 1
+          top: 1
+          width: 1
+          height: 1
+          creationDate: '2026-03-30T12:00:00.0000000Z'
+          tagName: Example value
+        tagList:
+        - key: 1
+          tagName: Example value
+          creationDate: '2026-03-30T12:00:00.0000000Z'
+    Image:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        fileID:
+          type: integer
+          format: int64
+          example: 1
+        imageStatus:
+          type: integer
+          format: int64
+          example: 1
+        imageTypeID:
+          type: integer
+          format: int64
+          example: 1
+        localFilePath:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        height:
+          type: integer
+          format: int64
+          example: 1
+        width:
+          type: integer
+          format: int64
+          example: 1
+        filesize:
+          type: integer
+          format: int64
+          example: 1
+        startTime:
+          type: integer
+          format: int64
+          example: 1
+        startTimeMs:
+          type: integer
+          format: int64
+          example: 1
+        tagListID:
+          type: integer
+          format: int64
+          example: 1
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        deviceID: 201
+        fileID: 1
+        imageStatus: 1
+        imageTypeID: 1
+        localFilePath: Example value
+        height: 1
+        width: 1
+        filesize: 1
+        startTime: 1
+        startTimeMs: 1
+        tagListID: 1
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+    ImageWithNames:
+      type: object
+      properties:
+        deviceName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        tagList:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Tag'
+          example:
+          - key: 1
+            tagName: Example value
+            creationDate: '2026-03-30T12:00:00.0000000Z'
+            createdBy: 1
+            lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+            lastModifiedBy: 1
+        key:
+          type: integer
+          format: int64
+          example: 1
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        fileID:
+          type: integer
+          format: int64
+          example: 1
+        imageStatus:
+          type: integer
+          format: int64
+          example: 1
+        imageTypeID:
+          type: integer
+          format: int64
+          example: 1
+        localFilePath:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        height:
+          type: integer
+          format: int64
+          example: 1
+        width:
+          type: integer
+          format: int64
+          example: 1
+        filesize:
+          type: integer
+          format: int64
+          example: 1
+        startTime:
+          type: integer
+          format: int64
+          example: 1
+        startTimeMs:
+          type: integer
+          format: int64
+          example: 1
+        tagListID:
+          type: integer
+          format: int64
+          example: 1
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        deviceID: 201
+        fileID: 1
+        imageStatus: 1
+        imageTypeID: 1
+        localFilePath: Example value
+        height: 1
+        width: 1
+        filesize: 1
+        startTime: 1
+        startTimeMs: 1
+        tagListID: 1
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+        deviceName: WearableDevice
+        tagList:
+        - key: 1
+          tagName: Example value
+          creationDate: '2026-03-30T12:00:00.0000000Z'
+    ImageEpochAndCountFilter:
+      type: object
+      properties:
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        startEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        endEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        count:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        order:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        tagList:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int64
+            example: 1
+          example:
+          - 1
+      additionalProperties: false
+      example:
+        deviceID: 201
+        startEpoch: 1711800000
+        endEpoch: 1711800000
+        count: 25
+        order: Example value
+        tagList:
+        - 1
+    DeviceEpochRange:
+      type: object
+      properties:
+        deviceSerial:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        startEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        endEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+      additionalProperties: false
+      example:
+        deviceSerial: '10001234'
+        startEpoch: 1711800000
+        endEpoch: 1711800000
+    CreateImage:
+      type: object
+      properties:
+        deviceID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        deviceName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        fileID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        localFilePath:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        height:
+          type: integer
+          format: int64
+          example: 1
+        width:
+          type: integer
+          format: int64
+          example: 1
+        startTime:
+          type: integer
+          format: int64
+          example: 1
+        startTimeMs:
+          type: integer
+          format: int64
+          example: 1
+        imageStatus:
+          type: integer
+          format: int64
+          example: 1
+        imageTypeID:
+          type: integer
+          format: int64
+          example: 1
+      additionalProperties: false
+      example:
+        deviceID: 201
+        deviceName: WearableDevice
+        fileID: 1
+        localFilePath: Example value
+        height: 1
+        width: 1
+        startTime: 1
+        startTimeMs: 1
+        imageStatus: 1
+        imageTypeID: 1
+    GetTagListForDeviceList:
+      type: object
+      properties:
+        deviceIDList:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int64
+            example: 1
+          example:
+          - 1
+        tagIDList:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int64
+            example: 1
+          example:
+          - 1
+        startEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        endEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        count:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        order:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        searchText:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        deviceIDList:
+        - 1
+        tagIDList:
+        - 1
+        startEpoch: 1711800000
+        endEpoch: 1711800000
+        count: 25
+        order: Example value
+        searchText: Example value
+    DevicesEpochAndCountFilter:
+      type: object
+      properties:
+        deviceIDList:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int64
+            example: 1
+          example:
+          - 1
+        startEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        endEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        count:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        order:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        deviceIDList:
+        - 1
+        startEpoch: 1711800000
+        endEpoch: 1711800000
+        count: 25
+        order: Example value
+    Tag:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        tagName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        tagName: Example value
+        creationDate: '2026-03-30T12:00:00.0000000Z'

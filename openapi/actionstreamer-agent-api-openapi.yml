@@ -1,0 +1,482 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Agent API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: Agent
+paths:
+  /v1/agent/{agentID}:
+    get:
+      tags:
+      - Agent
+      summary: Retrieves an individual agent based on the provided agentID
+      description: Returns the requested agent when access is allowed.
+      parameters:
+      - name: agentID
+        in: path
+        description: The unique identifier of the agent to retrieve.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Agent'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent'
+              example:
+                key: 1
+                deviceID: 201
+                agentTypeID: 1
+                agentIndex: 1
+                currentEventID: 501
+                processID: 4321
+                version: 1.0.0
+                agentName: Example value
+                agentDescription: Example description
+                recentOutput: Agent started successfully.
+                lastHeardFromDate: '2026-03-30T12:00:00.0000000Z'
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Agent'
+      operationId: getV1AgentByAgentID
+      x-operation-id-source: derived
+    put:
+      tags:
+      - Agent
+      summary: Updates an agent
+      description: 'Request body: JSON object. Updates selected runtime fields such as
+
+        `currentEventID`, `processID`, `agentName`, `agentDescription`, and `recentOutput`.'
+      parameters:
+      - name: agentID
+        in: path
+        description: The ID of the agent to update.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Agent'
+            example:
+              key: 1
+              deviceID: 201
+              agentTypeID: 1
+              agentIndex: 1
+              currentEventID: 501
+              processID: 4321
+              version: 1.0.0
+              agentName: Example value
+              agentDescription: Example description
+              recentOutput: Agent started successfully.
+              lastHeardFromDate: '2026-03-30T12:00:00.0000000Z'
+              creationDate: '2026-03-30T12:00:00.0000000Z'
+        required: true
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: putV1AgentByAgentID
+      x-operation-id-source: derived
+    patch:
+      tags:
+      - Agent
+      summary: Applies a patch to an agent
+      description: 'Request body: array of patch operations. Only allows patching
+
+        `agentDescription`, `recentOutput`, `processID`, and `currentEventID`.'
+      parameters:
+      - name: agentID
+        in: path
+        description: The ID of the agent to patch.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent'
+              example:
+                key: 1
+                deviceID: 201
+                agentTypeID: 1
+                agentIndex: 1
+                currentEventID: 501
+                processID: 4321
+                version: 1.0.0
+                agentName: Example value
+                agentDescription: Example description
+                recentOutput: Agent started successfully.
+                lastHeardFromDate: '2026-03-30T12:00:00.0000000Z'
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: patchV1AgentByAgentID
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - Agent
+      summary: Deletes an agent
+      description: Deletes the agent.
+      parameters:
+      - name: agentID
+        in: path
+        description: The ID of the agent to delete.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: deleteV1AgentByAgentID
+      x-operation-id-source: derived
+  /v1/agent/list:
+    post:
+      tags:
+      - Agent
+      summary: Retrieves a list of agents with additional name details based on the provided…
+      description: 'Request body: JSON object.
+
+        Returns a list of agents with additional name details.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DateAndCountFilter'
+            example:
+              deviceID: 201
+              startDate: '2026-03-30T12:00:00.0000000Z'
+              endDate: '2026-03-30T12:00:00.0000000Z'
+              count: 25
+              order: Example value
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Agent'
+                example:
+                - key: 1
+                  userID: 101
+                  deviceID: 201
+                  agentTypeID: 1
+                  agentIndex: 1
+                  currentEventID: 501
+                  processID: 4321
+                  version: 1.0.0
+                  agentName: Example value
+                  agentDescription: Example description
+                  recentOutput: Agent started successfully.
+                  lastHeardFromDate: '2026-03-30T12:00:00.0000000Z'
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Agent'
+                example:
+                - key: 1
+                  userID: 101
+                  deviceID: 201
+                  agentTypeID: 1
+                  agentIndex: 1
+                  currentEventID: 501
+                  processID: 4321
+                  version: 1.0.0
+                  agentName: Example value
+                  agentDescription: Example description
+                  recentOutput: Agent started successfully.
+                  lastHeardFromDate: '2026-03-30T12:00:00.0000000Z'
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 1
+                deviceID: 201
+                agentTypeID: 1
+                agentIndex: 1
+                currentEventID: 501
+                processID: 4321
+                version: 1.0.0
+                agentName: Example value
+                agentDescription: Example description
+                recentOutput: Agent started successfully.
+                lastHeardFromDate: '2026-03-30T12:00:00.0000000Z'
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+                deviceName: WearableDevice
+                agentType: Device
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Agent'
+                example:
+                - key: 1
+                  userID: 101
+                  deviceID: 201
+                  agentTypeID: 1
+                  agentIndex: 1
+                  currentEventID: 501
+                  processID: 4321
+                  version: 1.0.0
+                  agentName: Example value
+                  agentDescription: Example description
+                  recentOutput: Agent started successfully.
+                  lastHeardFromDate: '2026-03-30T12:00:00.0000000Z'
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+      operationId: postV1AgentList
+      x-operation-id-source: derived
+  /v1/agent:
+    post:
+      tags:
+      - Agent
+      summary: Creates a new agent or updates an existing agent
+      description: 'This endpoint either creates a new agent or updates an existing one. It should be called at agent startup.
+
+        Request body: JSON object. Supports `deviceSerial` or `deviceName`.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterAgent'
+            example:
+              deviceName: WearableDevice
+              deviceSerial: '10001234'
+              agentType: Device
+              agentVersion: 1.0.0
+              agentIndex: 1
+              processID: 4321
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Agent'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent'
+              example:
+                key: 1
+                deviceID: 201
+                agentTypeID: 1
+                agentIndex: 1
+                currentEventID: 501
+                processID: 4321
+                version: 1.0.0
+                agentName: Example value
+                agentDescription: Example description
+                recentOutput: Agent started successfully.
+                lastHeardFromDate: '2026-03-30T12:00:00.0000000Z'
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Agent'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Example value
+            application/json:
+              schema:
+                type: string
+                example: Example value
+            text/json:
+              schema:
+                type: string
+                example: Example value
+      operationId: postV1Agent
+      x-operation-id-source: derived
+components:
+  schemas:
+    Agent:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        agentTypeID:
+          type: integer
+          format: int64
+          example: 1
+        agentIndex:
+          type: integer
+          format: int64
+          example: 1
+        currentEventID:
+          type: integer
+          format: int64
+          example: 1
+        processID:
+          type: integer
+          format: int64
+          example: 1
+        version:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        agentName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        agentDescription:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        recentOutput:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        lastHeardFromDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        deviceID: 201
+        agentTypeID: 1
+        agentIndex: 1
+        currentEventID: 501
+        processID: 4321
+        version: 1.0.0
+        agentName: Example value
+        agentDescription: Example description
+        recentOutput: Agent started successfully.
+        lastHeardFromDate: '2026-03-30T12:00:00.0000000Z'
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+    DateAndCountFilter:
+      type: object
+      properties:
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        startDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        endDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        count:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        order:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        deviceID: 201
+        startDate: '2026-03-30T12:00:00.0000000Z'
+        endDate: '2026-03-30T12:00:00.0000000Z'
+        count: 25
+        order: Example value
+    RegisterAgent:
+      type: object
+      properties:
+        deviceName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        deviceSerial:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        agentType:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        agentVersion:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        agentIndex:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        processID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+      additionalProperties: false
+      example:
+        deviceName: WearableDevice
+        deviceSerial: '10001234'
+        agentType: Device
+        agentVersion: 1.0.0
+        agentIndex: 1
+        processID: 4321

@@ -1,0 +1,433 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Shared Item API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: SharedItem
+paths:
+  /v1/shareditem/{sharedItemID}:
+    get:
+      tags:
+      - SharedItem
+      summary: Gets a shared item by ID
+      parameters:
+      - name: sharedItemID
+        in: path
+        description: The ID of the shared item to retrieve.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SharedItem'
+              example:
+                key: 1
+                itemTypeID: 1
+                sharedItemObjectID: 1
+                collectionTypeID: 1
+                fieldName: Example value
+                sharedByID: 1
+                sharedWithID: 1
+                sharedWithTypeID: 1
+                emailAddress: testuser@actionstreamer.com
+                permissionList: Example value
+                description: Example description
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1ShareditemBySharedItemID
+      x-operation-id-source: derived
+    put:
+      tags:
+      - SharedItem
+      summary: Updates a shared item
+      description: 'Request body: JSON object.'
+      parameters:
+      - name: sharedItemID
+        in: path
+        description: The ID of the shared item to update.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SharedItem'
+            example:
+              key: 1
+              itemTypeID: 1
+              sharedItemObjectID: 1
+              collectionTypeID: 1
+              fieldName: Example value
+              sharedByID: 1
+              sharedWithID: 1
+              sharedWithTypeID: 1
+              emailAddress: testuser@actionstreamer.com
+              permissionList: Example value
+              description: Example description
+              creationDate: '2026-03-30T12:00:00.0000000Z'
+        required: true
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: putV1ShareditemBySharedItemID
+      x-operation-id-source: derived
+    patch:
+      tags:
+      - SharedItem
+      summary: Applies a patch to a shared item
+      description: 'Request body: array of patch operations.'
+      parameters:
+      - name: sharedItemID
+        in: path
+        description: The ID of the shared item to patch.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example: Patch applied successfully.
+      operationId: patchV1ShareditemBySharedItemID
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - SharedItem
+      summary: Deletes a shared item
+      parameters:
+      - name: sharedItemID
+        in: path
+        description: The ID of the shared item to delete.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: deleteV1ShareditemBySharedItemID
+      x-operation-id-source: derived
+  /v1/shareditem/list:
+    get:
+      tags:
+      - SharedItem
+      summary: Gets the shared item list
+      description: Returns items the authenticated user has shared as well as items shared with the authenticated user.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SharedItemWithNames'
+                example:
+                - key: 1
+                  itemTypeID: 1
+                  sharedItemObjectID: 1
+                  collectionTypeID: 1
+                  fieldName: Example value
+                  sharedByID: 1
+                  sharedWithID: 1
+                  sharedWithTypeID: 1
+                  emailAddress: testuser@actionstreamer.com
+                  permissionList: Example value
+                  description: Example description
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+                  itemType: Example value
+                  itemName: Example value
+                  sharedWith: Example value
+                  permissionListNames: Example value
+              example:
+              - key: 1
+                itemTypeID: 1
+                sharedItemObjectID: 1
+                collectionTypeID: 1
+                fieldName: Example value
+                sharedByID: 1
+                sharedWithID: 1
+                sharedWithTypeID: 1
+                emailAddress: testuser@actionstreamer.com
+                permissionList: Example value
+                description: Example description
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+                itemType: Example value
+                itemName: Example value
+                sharedWith: Example value
+                permissionListNames: Example value
+      operationId: getV1ShareditemList
+      x-operation-id-source: derived
+  /v1/shareditem:
+    post:
+      tags:
+      - SharedItem
+      summary: Creates a shared item
+      description: 'Request body: JSON object. Supported `itemType` values currently
+
+        include `device`, `collection`, and `videoclip`. `sharedWithType` should be
+
+        `user` or `group`.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSharedItem'
+            example:
+              itemType: Example value
+              objectID: 1
+              sharedWithType: Example value
+              sharedWith: Example value
+              sharedWithID: 1
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SharedItem'
+              example:
+                key: 1
+                itemTypeID: 1
+                sharedItemObjectID: 1
+                collectionTypeID: 1
+                fieldName: Example value
+                sharedByID: 1
+                sharedWithID: 1
+                sharedWithTypeID: 1
+                emailAddress: testuser@actionstreamer.com
+                permissionList: Example value
+                description: Example description
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1Shareditem
+      x-operation-id-source: derived
+components:
+  schemas:
+    CreateSharedItem:
+      type: object
+      properties:
+        itemType:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        objectID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        sharedWithType:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        sharedWith:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        sharedWithID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+      additionalProperties: false
+      example:
+        itemType: Example value
+        objectID: 1
+        sharedWithType: Example value
+        sharedWith: Example value
+        sharedWithID: 1
+    SharedItem:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        itemTypeID:
+          type: integer
+          format: int64
+          example: 1
+        sharedItemObjectID:
+          type: integer
+          format: int64
+          example: 1
+        collectionTypeID:
+          type: integer
+          format: int64
+          example: 1
+        fieldName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        sharedByID:
+          type: integer
+          format: int64
+          example: 1
+        sharedWithID:
+          type: integer
+          format: int64
+          example: 1
+        sharedWithTypeID:
+          type: integer
+          format: int64
+          example: 1
+        emailAddress:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        permissionList:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        description:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        itemTypeID: 1
+        sharedItemObjectID: 1
+        collectionTypeID: 1
+        fieldName: Example value
+        sharedByID: 1
+        sharedWithID: 1
+        sharedWithTypeID: 1
+        emailAddress: testuser@actionstreamer.com
+        permissionList: Example value
+        description: Example description
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+    SharedItemWithNames:
+      type: object
+      properties:
+        itemType:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        itemName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        sharedWith:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        permissionListNames:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        key:
+          type: integer
+          format: int64
+          example: 1
+        itemTypeID:
+          type: integer
+          format: int64
+          example: 1
+        sharedItemObjectID:
+          type: integer
+          format: int64
+          example: 1
+        collectionTypeID:
+          type: integer
+          format: int64
+          example: 1
+        fieldName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        sharedByID:
+          type: integer
+          format: int64
+          example: 1
+        sharedWithID:
+          type: integer
+          format: int64
+          example: 1
+        sharedWithTypeID:
+          type: integer
+          format: int64
+          example: 1
+        emailAddress:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        permissionList:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        description:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        itemTypeID: 1
+        sharedItemObjectID: 1
+        collectionTypeID: 1
+        fieldName: Example value
+        sharedByID: 1
+        sharedWithID: 1
+        sharedWithTypeID: 1
+        emailAddress: testuser@actionstreamer.com
+        permissionList: Example value
+        description: Example description
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+        itemType: Example value
+        itemName: Example value
+        sharedWith: Example value
+        permissionListNames: Example value

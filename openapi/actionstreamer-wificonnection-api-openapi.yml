@@ -1,0 +1,237 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Wifi Connection API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: WifiConnection
+paths:
+  /v1/wificonnection/{wifiConnectionID}:
+    get:
+      tags:
+      - WifiConnection
+      summary: Gets a Wi-Fi connection by ID
+      description: Returns the Wi-Fi connection details for the authenticated user.
+      parameters:
+      - name: wifiConnectionID
+        in: path
+        description: The ID of the Wi-Fi connection to retrieve.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WifiConnection'
+              example:
+                key: 1
+                securityType: Example value
+                sSID: Example value
+                alias: Example value
+                password: ExamplePassword123!
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1WificonnectionByWifiConnectionID
+      x-operation-id-source: derived
+    put:
+      tags:
+      - WifiConnection
+      summary: Updates a Wi-Fi connection
+      description: 'Request body: JSON object. Invalid or unsupported `securityType` values are
+
+        normalized to `WPA-PSK`.'
+      parameters:
+      - name: wifiConnectionID
+        in: path
+        description: The ID of the Wi-Fi connection to update.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WifiConnection'
+            example:
+              key: 1
+              securityType: Example value
+              sSID: Example value
+              alias: Example value
+              password: ExamplePassword123!
+              creationDate: '2026-03-30T12:00:00.0000000Z'
+        required: true
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: putV1WificonnectionByWifiConnectionID
+      x-operation-id-source: derived
+    patch:
+      tags:
+      - WifiConnection
+      summary: Applies a patch to a Wi-Fi connection
+      description: 'Request body: array of patch operations.'
+      parameters:
+      - name: wifiConnectionID
+        in: path
+        description: The ID of the Wi-Fi connection to patch.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example: Patch applied successfully.
+      operationId: patchV1WificonnectionByWifiConnectionID
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - WifiConnection
+      summary: Deletes a Wi-Fi connection
+      description: Deletes the Wi-Fi connection.
+      parameters:
+      - name: wifiConnectionID
+        in: path
+        description: The ID of the Wi-Fi connection to delete.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: deleteV1WificonnectionByWifiConnectionID
+      x-operation-id-source: derived
+  /v1/wificonnection/list:
+    get:
+      tags:
+      - WifiConnection
+      summary: Gets the Wi-Fi connection list
+      description: Returns Wi-Fi connections associated with the authenticated user.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WifiConnection'
+                example:
+                - key: 1
+                  userID: 101
+                  securityType: Example value
+                  sSID: Example value
+                  alias: Example value
+                  password: ExamplePassword123!
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 1
+                securityType: Example value
+                sSID: Example value
+                alias: Example value
+                password: ExamplePassword123!
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1WificonnectionList
+      x-operation-id-source: derived
+  /v1/wificonnection:
+    post:
+      tags:
+      - WifiConnection
+      summary: Creates a Wi-Fi connection
+      description: 'Request body: JSON object. If `securityType` is not one of
+
+        `WPA-PSK`, `WPA-EAP`, or `WPA-PSK-SHA256`, it defaults to `WPA-PSK`.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WifiConnection'
+            example:
+              key: 1
+              securityType: Example value
+              sSID: Example value
+              alias: Example value
+              password: ExamplePassword123!
+              creationDate: '2026-03-30T12:00:00.0000000Z'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WifiConnection'
+              example:
+                key: 1
+                securityType: Example value
+                sSID: Example value
+                alias: Example value
+                password: ExamplePassword123!
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1Wificonnection
+      x-operation-id-source: derived
+components:
+  schemas:
+    WifiConnection:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        securityType:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        sSID:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        alias:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        password:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        securityType: Example value
+        sSID: Example value
+        alias: Example value
+        password: ExamplePassword123!
+        creationDate: '2026-03-30T12:00:00.0000000Z'

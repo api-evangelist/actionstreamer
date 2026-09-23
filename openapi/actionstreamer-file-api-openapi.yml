@@ -1,0 +1,297 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer File API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: File
+paths:
+  /v1/file:
+    post:
+      tags:
+      - File
+      summary: Creates a file record
+      description: 'Request body: JSON object. Accepts either
+
+        `deviceSerial` or `deviceName`. On success, it returns the created file
+
+        with a signed upload URL in `fileLocation`.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFile'
+            example:
+              deviceName: WearableDevice
+              deviceSerial: '10001234'
+              filename: clip.mp4
+              fileSize: 1
+              sHA256Hash: Example value
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/File'
+              example:
+                key: 1
+                deviceID: 201
+                filename: clip.mp4
+                fileGUID: 11111111-2222-3333-4444-555555555555
+                sHA256Hash: Example value
+                fileLocation: Remote site
+                fileExpiration: '2026-03-30T12:00:00.0000000Z'
+                fileSize: 1
+                fileInS3: true
+                doNotDelete: true
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1File
+      x-operation-id-source: derived
+  /v1/device/{deviceID}/file/{fileID}:
+    delete:
+      tags:
+      - File
+      summary: Deletes a file record
+      description: Deletes the file record and its backing file content when available.
+      parameters:
+      - name: deviceID
+        in: path
+        description: The ID of the device that owns the file.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      - name: fileID
+        in: path
+        description: The ID of the file to delete.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: deleteV1DeviceByDeviceIDFileByFileID
+      x-operation-id-source: derived
+  /v1/file/temp:
+    post:
+      tags:
+      - File
+      summary: Creates a temporary file record and signed upload URL
+      description: 'Request body: JSON object. This endpoint does not create a database file record.
+
+        It returns a signed upload URL, and the response payload is shaped like
+
+        response with `fileID = 0`.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFile'
+            example:
+              deviceName: WearableDevice
+              deviceSerial: '10001234'
+              filename: clip.mp4
+              fileSize: 1
+              sHA256Hash: Example value
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignedURLWithID'
+              example:
+                signedURL: https://api.actionstreamer.com/example
+                fileID: 1
+      operationId: postV1FileTemp
+      x-operation-id-source: derived
+  /v1/file/{fileID}:
+    get:
+      tags:
+      - File
+      summary: Gets a file by ID
+      description: Returns the file with a download location. Download behavior may vary by environment.
+      parameters:
+      - name: fileID
+        in: path
+        description: The ID of the file to retrieve.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/File'
+              example:
+                key: 1
+                deviceID: 201
+                filename: clip.mp4
+                fileGUID: 11111111-2222-3333-4444-555555555555
+                sHA256Hash: Example value
+                fileLocation: Remote site
+                fileExpiration: '2026-03-30T12:00:00.0000000Z'
+                fileSize: 1
+                fileInS3: true
+                doNotDelete: true
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1FileByFileID
+      x-operation-id-source: derived
+  /v1/file/success/{fileID}:
+    post:
+      tags:
+      - File
+      summary: Marks a file upload as successful
+      description: Marks the file upload as successful.
+      parameters:
+      - name: fileID
+        in: path
+        description: The ID of the uploaded file.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: postV1FileSuccessByFileID
+      x-operation-id-source: derived
+components:
+  schemas:
+    File:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        filename:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        fileGUID:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        sHA256Hash:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        fileLocation:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        fileExpiration:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        fileSize:
+          type: integer
+          format: int64
+          example: 1
+        fileInS3:
+          type: boolean
+          example: true
+        doNotDelete:
+          type: boolean
+          example: true
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        deviceID: 201
+        filename: clip.mp4
+        fileGUID: 11111111-2222-3333-4444-555555555555
+        sHA256Hash: Example value
+        fileLocation: Remote site
+        fileExpiration: '2026-03-30T12:00:00.0000000Z'
+        fileSize: 1
+        fileInS3: true
+        doNotDelete: true
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+    SignedURLWithID:
+      type: object
+      properties:
+        signedURL:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        fileID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+      additionalProperties: false
+      example:
+        signedURL: https://api.actionstreamer.com/example
+        fileID: 1
+    CreateFile:
+      type: object
+      properties:
+        deviceName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        deviceSerial:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        filename:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        fileSize:
+          type: integer
+          format: int64
+          example: 1
+        sHA256Hash:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        deviceName: WearableDevice
+        deviceSerial: '10001234'
+        filename: clip.mp4
+        fileSize: 1
+        sHA256Hash: Example value

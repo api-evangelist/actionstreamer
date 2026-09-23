@@ -1,0 +1,278 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Tag API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: Tag
+paths:
+  /v1/tag/image/{deviceSerial}:
+    post:
+      tags:
+      - Tag
+      summary: Generates image tags for an image
+      description: 'Request body: JSON object.
+
+        Supports optional `maxLabels` and `minConfidence`.'
+      parameters:
+      - name: deviceSerial
+        in: path
+        description: The device serial number.
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: Example value
+      - name: mediaType
+        in: query
+        description: The media type that the image came from (image, videoClip)
+        style: form
+        schema:
+          type: string
+          default: videoClip
+          example: Example value
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateImageTagList'
+            example:
+              deviceID: 201
+              mediaID: 1
+              epochTime: 1711800000
+              epochTimeMs: 1711800000
+              objectName: Example value
+              maxLabels: 1
+              minConfidence: 98.4
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ImageLabel'
+                example:
+                - label: Example value
+                  confidence: 98.4
+              example:
+              - label: Example value
+                confidence: 98.4
+      operationId: postV1TagImageByDeviceSerial
+      x-operation-id-source: derived
+  /v1/device/{deviceID}/tag/list:
+    post:
+      tags:
+      - Tag
+      summary: Get a list of tags for a device based on an epoch range
+      description: 'Request body: JSON object with the epoch range to query.'
+      parameters:
+      - name: deviceID
+        in: path
+        description: The device ID.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetTagListForDeviceList'
+            example:
+              deviceIDList:
+              - 1
+              tagIDList:
+              - 1
+              startEpoch: 1711800000
+              endEpoch: 1711800000
+              count: 25
+              order: Example value
+              searchText: Example value
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tag'
+                example:
+                - key: 1
+                  tagName: Example value
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 1
+                tagName: Example value
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1DeviceByDeviceIDTagList
+      x-operation-id-source: derived
+components:
+  schemas:
+    Tag:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        tagName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        tagName: Example value
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+    ImageLabel:
+      type: object
+      properties:
+        label:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        confidence:
+          type: number
+          format: float
+          example: 1
+      additionalProperties: false
+      example:
+        label: Example value
+        confidence: 98.4
+    GenerateImageTagList:
+      type: object
+      properties:
+        deviceID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        mediaID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        epochTime:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        epochTimeMs:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        objectName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        maxLabels:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          example: 1
+        minConfidence:
+          type:
+          - number
+          - 'null'
+          format: float
+          example: 1
+      additionalProperties: false
+      example:
+        deviceID: 201
+        mediaID: 1
+        epochTime: 1711800000
+        epochTimeMs: 1711800000
+        objectName: Example value
+        maxLabels: 1
+        minConfidence: 98.4
+    GetTagListForDeviceList:
+      type: object
+      properties:
+        deviceIDList:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int64
+            example: 1
+          example:
+          - 1
+        tagIDList:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int64
+            example: 1
+          example:
+          - 1
+        startEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        endEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        count:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        order:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        searchText:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        deviceIDList:
+        - 1
+        tagIDList:
+        - 1
+        startEpoch: 1711800000
+        endEpoch: 1711800000
+        count: 25
+        order: Example value
+        searchText: Example value

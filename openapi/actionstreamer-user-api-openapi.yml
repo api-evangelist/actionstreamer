@@ -1,0 +1,329 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer User API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: User
+paths:
+  /v1/user/lastdataupdate:
+    get:
+      tags:
+      - User
+      summary: Gets the last user data refresh timestamp
+      description: Returns the user's last data refresh timestamp.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: string
+                format: date-time
+                example: '2026-03-30T12:00:00.0000000Z'
+              example: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1UserLastdataupdate
+      x-operation-id-source: derived
+  /v1/user/list:
+    get:
+      tags:
+      - User
+      summary: Gets the user email list for the authenticated user domain
+      description: Returns only email addresses in the same email domain as the authenticated user.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json: {}
+      operationId: getV1UserList
+      x-operation-id-source: derived
+  /v1/user/search:
+    get:
+      tags:
+      - User
+      summary: Searches for users who have opted in to be searchable
+      description: Returns users who have enabled the `AllowUserSearch` user setting.
+      parameters:
+      - name: query
+        in: query
+        description: Exact username or email address to search for.
+        style: form
+        schema:
+          type: string
+          example: Example value
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: getV1UserSearch
+      x-operation-id-source: derived
+  /v1/user/detail/list:
+    get:
+      tags:
+      - User
+      summary: Gets the detailed user list
+      description: This endpoint is restricted to admin users.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+                example:
+                - key: 101
+                  userTypeID: 1
+                  username: testuser
+                  emailAddress: testuser@actionstreamer.com
+                  passwordStrength: 4
+                  verificationToken: example-token
+                  verificationTokenExpiration: '2026-03-30T12:00:00.0000000Z'
+                  refreshData: '2026-03-30T12:00:00.0000000Z'
+                  userStatusID: 1
+                  passwordResetToken: example-token
+                  passwordResetTokenExpiration: '2026-03-30T12:00:00.0000000Z'
+                  lastInvalidLoginAttemptDate: '2026-03-30T12:00:00.0000000Z'
+                  lastLoginAttemptDate: '2026-03-30T12:00:00.0000000Z'
+                  invalidLoginAttempts: 1
+                  timeZone: America/New_York
+                  firstName: Test
+                  lastName: User
+                  description: Example description
+                  availability: Available
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 101
+                userTypeID: 1
+                username: testuser
+                emailAddress: testuser@actionstreamer.com
+                passwordStrength: 4
+                verificationToken: example-token
+                verificationTokenExpiration: '2026-03-30T12:00:00.0000000Z'
+                refreshData: '2026-03-30T12:00:00.0000000Z'
+                userStatusID: 1
+                passwordResetToken: example-token
+                passwordResetTokenExpiration: '2026-03-30T12:00:00.0000000Z'
+                lastInvalidLoginAttemptDate: '2026-03-30T12:00:00.0000000Z'
+                lastLoginAttemptDate: '2026-03-30T12:00:00.0000000Z'
+                invalidLoginAttempts: 1
+                timeZone: America/New_York
+                firstName: Test
+                lastName: User
+                description: Example description
+                availability: Available
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1UserDetailList
+      x-operation-id-source: derived
+  /v1/user/timezone:
+    get:
+      tags:
+      - User
+      summary: Gets the authenticated user time zone
+      description: Returns a JSON object with the user's time zone in `value`.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringArg'
+              example:
+                value: Example value
+      operationId: getV1UserTimezone
+      x-operation-id-source: derived
+  /v1/user/features:
+    get:
+      tags:
+      - User
+      summary: Gets the feature list available to the authenticated user
+      description: 'Returns a string array payload. All users currently receive `default`; admin users also receive
+
+        `admin`.'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringArray'
+              example:
+                values:
+                - Example value
+      operationId: getV1UserFeatures
+      x-operation-id-source: derived
+  /v1/user:
+    patch:
+      tags:
+      - User
+      summary: Applies a patch to the authenticated user
+      description: 'Request body: array of patch operations. This endpoint only allows patching the
+
+        `timeZone` field on the authenticated user.'
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: patchV1User
+      x-operation-id-source: derived
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        userTypeID:
+          type: integer
+          format: int64
+          example: 1
+        username:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        emailAddress:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        passwordStrength:
+          type: integer
+          format: int64
+          example: 1
+        verificationToken:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        verificationTokenExpiration:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        refreshData:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        userStatusID:
+          type: integer
+          format: int64
+          example: 1
+        passwordResetToken:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        passwordResetTokenExpiration:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        lastInvalidLoginAttemptDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        lastLoginAttemptDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        invalidLoginAttempts:
+          type: integer
+          format: int64
+          example: 1
+        timeZone:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        firstName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        lastName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        description:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        availability:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 101
+        userTypeID: 1
+        username: testuser
+        emailAddress: testuser@actionstreamer.com
+        passwordStrength: 4
+        verificationToken: example-token
+        verificationTokenExpiration: '2026-03-30T12:00:00.0000000Z'
+        refreshData: '2026-03-30T12:00:00.0000000Z'
+        userStatusID: 1
+        passwordResetToken: example-token
+        passwordResetTokenExpiration: '2026-03-30T12:00:00.0000000Z'
+        lastInvalidLoginAttemptDate: '2026-03-30T12:00:00.0000000Z'
+        lastLoginAttemptDate: '2026-03-30T12:00:00.0000000Z'
+        invalidLoginAttempts: 1
+        timeZone: America/New_York
+        firstName: Test
+        lastName: User
+        description: Example description
+        availability: Available
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+    StringArg:
+      type: object
+      properties:
+        value:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        value: Example value
+    StringArray:
+      type: object
+      properties:
+        values:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            example: Example value
+          example:
+          - Example value
+      additionalProperties: false
+      example:
+        values:
+        - Example value

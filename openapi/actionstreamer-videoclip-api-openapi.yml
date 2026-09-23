@@ -1,0 +1,1762 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Video Clip API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: VideoClip
+paths:
+  /v1/videoclip/{videoClipID}:
+    get:
+      tags:
+      - VideoClip
+      summary: Gets a video clip by ID
+      parameters:
+      - name: videoClipID
+        in: path
+        description: The video clip ID.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoClip'
+              example:
+                key: 1
+                deviceID: 201
+                fileID: 1
+                tSFileID: 1
+                videoClipStatus: 1
+                videoClipTypeID: 1
+                videoClipParameters: Example value
+                localFilePath: Example value
+                height: 1
+                width: 1
+                fileSize: 1
+                framesPerSecond: 1
+                bitrate: 1
+                audioStatus: 1
+                startTime: 1
+                startTimeMs: 1
+                endTime: 1
+                endTimeMs: 1
+                clipLengthInSeconds: 1
+                tagListID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1VideoclipByVideoClipID
+      x-operation-id-source: derived
+    put:
+      tags:
+      - VideoClip
+      summary: Updates a video clip
+      description: 'Request body: JSON object.'
+      parameters:
+      - name: videoClipID
+        in: path
+        description: The video clip ID.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VideoClip'
+            example:
+              key: 1
+              deviceID: 201
+              fileID: 1
+              tSFileID: 1
+              videoClipStatus: 1
+              videoClipTypeID: 1
+              videoClipParameters: Example value
+              localFilePath: Example value
+              height: 1
+              width: 1
+              fileSize: 1
+              framesPerSecond: 1
+              bitrate: 1
+              audioStatus: 1
+              startTime: 1
+              startTimeMs: 1
+              endTime: 1
+              endTimeMs: 1
+              clipLengthInSeconds: 1
+              tagListID: 1
+              creationDate: '2026-03-30T12:00:00.0000000Z'
+        required: true
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: putV1VideoclipByVideoClipID
+      x-operation-id-source: derived
+    patch:
+      tags:
+      - VideoClip
+      summary: Applies a patch to a video clip
+      description: 'Request body: array of patch operations.
+
+        Only a limited set of fields such as `fileID` and `videoClipStatus` can be patched.'
+      parameters:
+      - name: videoClipID
+        in: path
+        description: The video clip ID.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example: Patch applied successfully.
+      operationId: patchV1VideoclipByVideoClipID
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - VideoClip
+      summary: Deletes a video clip
+      parameters:
+      - name: videoClipID
+        in: path
+        description: The video clip ID.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: deleteV1VideoclipByVideoClipID
+      x-operation-id-source: derived
+  /v1/videoclip:
+    post:
+      tags:
+      - VideoClip
+      summary: Creates a video clip
+      description: 'Request body: JSON object.
+
+        This endpoint is not used by devices.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateVideoClip'
+            example:
+              deviceID: 201
+              deviceName: WearableDevice
+              fileID: 1
+              localFilePath: Example value
+              height: 1
+              width: 1
+              framesPerSecond: 1
+              startTime: 1
+              startTimeMs: 1
+              clipLengthInSeconds: 1
+              videoClipStatus: 1
+              videoClipTypeID: 1
+              videoClipParameters: Example value
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoClip'
+              example:
+                key: 1
+                deviceID: 201
+                fileID: 1
+                tSFileID: 1
+                videoClipStatus: 1
+                videoClipTypeID: 1
+                videoClipParameters: Example value
+                localFilePath: Example value
+                height: 1
+                width: 1
+                fileSize: 1
+                framesPerSecond: 1
+                bitrate: 1
+                audioStatus: 1
+                startTime: 1
+                startTimeMs: 1
+                endTime: 1
+                endTimeMs: 1
+                clipLengthInSeconds: 1
+                tagListID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1Videoclip
+      x-operation-id-source: derived
+  /v1/videoclip/{deviceSerial}:
+    post:
+      tags:
+      - VideoClip
+      summary: Creates a video clip for a device identified by serial number
+      parameters:
+      - name: deviceSerial
+        in: path
+        description: The device serial number from the route.
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: Example value
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VideoClip'
+            example:
+              key: 1
+              deviceID: 201
+              fileID: 1
+              tSFileID: 1
+              videoClipStatus: 1
+              videoClipTypeID: 1
+              videoClipParameters: Example value
+              localFilePath: Example value
+              height: 1
+              width: 1
+              fileSize: 1
+              framesPerSecond: 1
+              bitrate: 1
+              audioStatus: 1
+              startTime: 1
+              startTimeMs: 1
+              endTime: 1
+              endTimeMs: 1
+              clipLengthInSeconds: 1
+              tagListID: 1
+              creationDate: '2026-03-30T12:00:00.0000000Z'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoClip'
+              example:
+                key: 1
+                deviceID: 201
+                fileID: 1
+                tSFileID: 1
+                videoClipStatus: 1
+                videoClipTypeID: 1
+                videoClipParameters: Example value
+                localFilePath: Example value
+                height: 1
+                width: 1
+                fileSize: 1
+                framesPerSecond: 1
+                bitrate: 1
+                audioStatus: 1
+                startTime: 1
+                startTimeMs: 1
+                endTime: 1
+                endTimeMs: 1
+                clipLengthInSeconds: 1
+                tagListID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1VideoclipByDeviceSerial
+      x-operation-id-source: derived
+  /v1/videoclip/createlist/{deviceSerial}:
+    post:
+      tags:
+      - VideoClip
+      summary: Creates one or more video clip records
+      description: 'Request body: JSON array of video clip objects.'
+      parameters:
+      - name: deviceSerial
+        in: path
+        description: The device serial number from the route.
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: Example value
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VideoClip'
+                example:
+                - key: 1
+                  userID: 101
+                  deviceID: 201
+                  fileID: 1
+                  tSFileID: 1
+                  videoClipStatus: 1
+                  videoClipTypeID: 1
+                  videoClipParameters: Example value
+                  localFilePath: Example value
+                  height: 1
+                  width: 1
+                  fileSize: 1
+                  framesPerSecond: 1
+                  bitrate: 1
+                  audioStatus: 1
+                  startTime: 1
+                  startTimeMs: 1
+                  endTime: 1
+                  endTimeMs: 1
+                  clipLengthInSeconds: 1
+                  tagListID: 1
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 1
+                deviceID: 201
+                fileID: 1
+                tSFileID: 1
+                videoClipStatus: 1
+                videoClipTypeID: 1
+                videoClipParameters: Example value
+                localFilePath: Example value
+                height: 1
+                width: 1
+                fileSize: 1
+                framesPerSecond: 1
+                bitrate: 1
+                audioStatus: 1
+                startTime: 1
+                startTimeMs: 1
+                endTime: 1
+                endTimeMs: 1
+                clipLengthInSeconds: 1
+                tagListID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1VideoclipCreatelistByDeviceSerial
+      x-operation-id-source: derived
+  /v1/videoclip/upload:
+    post:
+      tags:
+      - VideoClip
+      summary: Uploads one or more video clips
+      description: 'Request body: JSON object.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UploadVideoClips'
+            example:
+              deviceID: 201
+              videoClips:
+              - 1
+        required: true
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: postV1VideoclipUpload
+      x-operation-id-source: derived
+  /v1/videoclip/list:
+    get:
+      tags:
+      - VideoClip
+      summary: Gets the video clip list
+      description: This endpoint returns `501 Not implemented`.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VideoClip'
+                example:
+                - key: 1
+                  userID: 101
+                  deviceID: 201
+                  fileID: 1
+                  tSFileID: 1
+                  videoClipStatus: 1
+                  videoClipTypeID: 1
+                  videoClipParameters: Example value
+                  localFilePath: Example value
+                  height: 1
+                  width: 1
+                  fileSize: 1
+                  framesPerSecond: 1
+                  bitrate: 1
+                  audioStatus: 1
+                  startTime: 1
+                  startTimeMs: 1
+                  endTime: 1
+                  endTimeMs: 1
+                  clipLengthInSeconds: 1
+                  tagListID: 1
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 1
+                deviceID: 201
+                fileID: 1
+                tSFileID: 1
+                videoClipStatus: 1
+                videoClipTypeID: 1
+                videoClipParameters: Example value
+                localFilePath: Example value
+                height: 1
+                width: 1
+                fileSize: 1
+                framesPerSecond: 1
+                bitrate: 1
+                audioStatus: 1
+                startTime: 1
+                startTimeMs: 1
+                endTime: 1
+                endTimeMs: 1
+                clipLengthInSeconds: 1
+                tagListID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1VideoclipList
+      x-operation-id-source: derived
+    post:
+      tags:
+      - VideoClip
+      summary: Gets the filtered video clip list
+      description: 'Request body: JSON object.
+
+        Supports an optional `alldevices=true` query parameter.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VideoClipEpochAndCountFilter'
+            example:
+              deviceID: 201
+              startEpoch: 1711800000
+              endEpoch: 1711800000
+              count: 25
+              order: Example value
+              videoClipTypeID: 1
+              tagList:
+              - 1
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VideoClipWithNames'
+                example:
+                - key: 1
+                  userID: 101
+                  deviceID: 201
+                  fileID: 1
+                  tSFileID: 1
+                  videoClipStatus: 1
+                  videoClipTypeID: 1
+                  videoClipParameters: Example value
+                  localFilePath: Example value
+                  height: 1
+                  width: 1
+                  fileSize: 1
+                  framesPerSecond: 1
+                  bitrate: 1
+                  audioStatus: 1
+                  startTime: 1
+                  startTimeMs: 1
+                  endTime: 1
+                  endTimeMs: 1
+                  clipLengthInSeconds: 1
+                  tagListID: 1
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+                  deviceName: WearableDevice
+                  tagList:
+                  - key: null
+                    tagName: null
+                    creationDate: null
+                    createdBy: null
+                    lastModifiedDate: null
+                    lastModifiedBy: null
+              example:
+              - key: 1
+                deviceID: 201
+                fileID: 1
+                tSFileID: 1
+                videoClipStatus: 1
+                videoClipTypeID: 1
+                videoClipParameters: Example value
+                localFilePath: Example value
+                height: 1
+                width: 1
+                fileSize: 1
+                framesPerSecond: 1
+                bitrate: 1
+                audioStatus: 1
+                startTime: 1
+                startTimeMs: 1
+                endTime: 1
+                endTimeMs: 1
+                clipLengthInSeconds: 1
+                tagListID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+                deviceName: WearableDevice
+                tagList:
+                - key: null
+                  tagName: null
+                  creationDate: null
+      operationId: postV1VideoclipList
+      x-operation-id-source: derived
+  /v1/videoclip/concatenate:
+    post:
+      tags:
+      - VideoClip
+      summary: Enqueue a concatenate clips event based on a start time and end time
+      description: 'Request body: JSON object.
+
+        Supports an optional `usevrs=true` query parameter.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConcatenateClipsArgs'
+            example:
+              deviceID: 201
+              deviceName: WearableDevice
+              startEpoch: 1711800000
+              endEpoch: 1711800000
+              uploadURL: https://api.actionstreamer.com/example
+              postbackURL: https://api.actionstreamer.com/example
+              timeout: Example value
+              videoClips:
+              - key: 1
+                deviceID: 201
+                fileID: 1
+                tSFileID: 1
+                videoClipStatus: 1
+                videoClipTypeID: 1
+                videoClipParameters: Example value
+                localFilePath: Example value
+                height: 1
+                width: 1
+                fileSize: 1
+                framesPerSecond: 1
+                bitrate: 1
+                audioStatus: 1
+                startTime: 1
+                startTimeMs: 1
+                endTime: 1
+                endTimeMs: 1
+                clipLengthInSeconds: 1
+                tagListID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+              example:
+                key: 501
+                deviceID: 201
+                agentTypeID: 1
+                agentID: 1
+                eventTypeID: 1
+                serverEvent: 1
+                eventStatus: 1
+                eventParameters: '{"presetName":"Run Event Preset"}'
+                processID: 4321
+                result: Example value
+                percentComplete: 42.5
+                priority: 1
+                expirationEpoch: 1711800000
+                attemptNumber: 1
+                maxAttempts: 3
+                tagString: Example value
+                tagNumber: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1VideoclipConcatenate
+      x-operation-id-source: derived
+  /v1/videoclip/extract/list:
+    post:
+      tags:
+      - VideoClip
+      summary: Gets the extracted video clip list
+      description: 'Request body: JSON object.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceEpochRange'
+            example:
+              deviceSerial: '10001234'
+              startEpoch: 1711800000
+              endEpoch: 1711800000
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VideoClip'
+                example:
+                - key: 1
+                  userID: 101
+                  deviceID: 201
+                  fileID: 1
+                  tSFileID: 1
+                  videoClipStatus: 1
+                  videoClipTypeID: 1
+                  videoClipParameters: Example value
+                  localFilePath: Example value
+                  height: 1
+                  width: 1
+                  fileSize: 1
+                  framesPerSecond: 1
+                  bitrate: 1
+                  audioStatus: 1
+                  startTime: 1
+                  startTimeMs: 1
+                  endTime: 1
+                  endTimeMs: 1
+                  clipLengthInSeconds: 1
+                  tagListID: 1
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 1
+                deviceID: 201
+                fileID: 1
+                tSFileID: 1
+                videoClipStatus: 1
+                videoClipTypeID: 1
+                videoClipParameters: Example value
+                localFilePath: Example value
+                height: 1
+                width: 1
+                fileSize: 1
+                framesPerSecond: 1
+                bitrate: 1
+                audioStatus: 1
+                startTime: 1
+                startTimeMs: 1
+                endTime: 1
+                endTimeMs: 1
+                clipLengthInSeconds: 1
+                tagListID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1VideoclipExtractList
+      x-operation-id-source: derived
+  /v1/videoclip/devices/list:
+    post:
+      tags:
+      - VideoClip
+      summary: Gets the video clip list for multiple devices
+      description: 'Request body: JSON object.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DevicesEpochAndCountFilter'
+            example:
+              deviceIDList:
+              - 1
+              startEpoch: 1711800000
+              endEpoch: 1711800000
+              count: 25
+              order: Example value
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VideoClip'
+                example:
+                - key: 1
+                  userID: 101
+                  deviceID: 201
+                  fileID: 1
+                  tSFileID: 1
+                  videoClipStatus: 1
+                  videoClipTypeID: 1
+                  videoClipParameters: Example value
+                  localFilePath: Example value
+                  height: 1
+                  width: 1
+                  fileSize: 1
+                  framesPerSecond: 1
+                  bitrate: 1
+                  audioStatus: 1
+                  startTime: 1
+                  startTimeMs: 1
+                  endTime: 1
+                  endTimeMs: 1
+                  clipLengthInSeconds: 1
+                  tagListID: 1
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 1
+                deviceID: 201
+                fileID: 1
+                tSFileID: 1
+                videoClipStatus: 1
+                videoClipTypeID: 1
+                videoClipParameters: Example value
+                localFilePath: Example value
+                height: 1
+                width: 1
+                fileSize: 1
+                framesPerSecond: 1
+                bitrate: 1
+                audioStatus: 1
+                startTime: 1
+                startTimeMs: 1
+                endTime: 1
+                endTimeMs: 1
+                clipLengthInSeconds: 1
+                tagListID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1VideoclipDevicesList
+      x-operation-id-source: derived
+  /v1/videoclip/devices/tag/list:
+    post:
+      tags:
+      - VideoClip
+      summary: Get a list of VideoClips, VideoClipTags, and a unique list of Tags based on a…
+      description: 'Request body: JSON object.
+
+        Supports an optional `minutes` query parameter to constrain the tag aggregation window.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetTagListForDeviceList'
+            example:
+              deviceIDList:
+              - 1
+              tagIDList:
+              - 1
+              startEpoch: 1711800000
+              endEpoch: 1711800000
+              count: 25
+              order: Example value
+              searchText: Example value
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoClipListWithTags'
+              example:
+                videoClipList:
+                - key: 1
+                  deviceID: 201
+                  fileID: 1
+                  tSFileID: 1
+                  videoClipStatus: 1
+                  videoClipTypeID: 1
+                  videoClipParameters: Example value
+                  localFilePath: Example value
+                  height: 1
+                  width: 1
+                  fileSize: 1
+                  framesPerSecond: 1
+                  bitrate: 1
+                  audioStatus: 1
+                  startTime: 1
+                  startTimeMs: 1
+                  endTime: 1
+                  endTimeMs: 1
+                  clipLengthInSeconds: 1
+                  tagListID: 1
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                videoClipTagList:
+                - key: 1
+                  videoClipID: 1
+                  deviceID: 201
+                  containerID: 1
+                  tagID: 1
+                  timestamp: 1
+                  timestampMs: 1
+                  confidence: 98.4
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  tagName: Example value
+                tagList:
+                - key: 1
+                  tagName: Example value
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1VideoclipDevicesTagList
+      x-operation-id-source: derived
+components:
+  schemas:
+    Event:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        agentTypeID:
+          type: integer
+          format: int64
+          example: 1
+        agentID:
+          type: integer
+          format: int64
+          example: 1
+        eventTypeID:
+          type: integer
+          format: int64
+          example: 1
+        serverEvent:
+          type: integer
+          format: int64
+          example: 1
+        eventStatus:
+          type: integer
+          format: int64
+          example: 1
+        eventParameters:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        processID:
+          type: integer
+          format: int64
+          example: 1
+        result:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        percentComplete:
+          type: number
+          format: double
+          example: 1
+        priority:
+          type: integer
+          format: int64
+          example: 1
+        expirationEpoch:
+          type: integer
+          format: int64
+          example: 1
+        attemptNumber:
+          type: integer
+          format: int64
+          example: 1
+        maxAttempts:
+          type: integer
+          format: int64
+          example: 1
+        tagString:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        tagNumber:
+          type: integer
+          format: int64
+          example: 1
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 501
+        deviceID: 201
+        agentTypeID: 1
+        agentID: 1
+        eventTypeID: 1
+        serverEvent: 1
+        eventStatus: 1
+        eventParameters: '{"presetName":"Run Event Preset"}'
+        processID: 4321
+        result: Example value
+        percentComplete: 42.5
+        priority: 1
+        expirationEpoch: 1711800000
+        attemptNumber: 1
+        maxAttempts: 3
+        tagString: Example value
+        tagNumber: 1
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+    VideoClipListWithTags:
+      type: object
+      properties:
+        videoClipList:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/VideoClip'
+          example:
+          - key: 1
+            userID: 101
+            deviceID: 201
+            fileID: 1
+            tSFileID: 1
+            videoClipStatus: 1
+            videoClipTypeID: 1
+            videoClipParameters: Example value
+            localFilePath: Example value
+            height: 1
+            width: 1
+            fileSize: 1
+            framesPerSecond: 1
+            bitrate: 1
+            audioStatus: 1
+            startTime: 1
+            startTimeMs: 1
+            endTime: 1
+            endTimeMs: 1
+            clipLengthInSeconds: 1
+            tagListID: 1
+            creationDate: '2026-03-30T12:00:00.0000000Z'
+            createdBy: 1
+            lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+            lastModifiedBy: 1
+        videoClipTagList:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/VideoClipTagWithNames'
+          example:
+          - key: 1
+            videoClipID: 1
+            userID: 101
+            deviceID: 201
+            containerID: 1
+            tagID: 1
+            timestamp: 1
+            timestampMs: 1
+            confidence: 98.4
+            creationDate: '2026-03-30T12:00:00.0000000Z'
+            createdBy: 1
+            lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+            lastModifiedBy: 1
+            tagName: Example value
+        tagList:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Tag'
+          example:
+          - key: 1
+            tagName: Example value
+            creationDate: '2026-03-30T12:00:00.0000000Z'
+            createdBy: 1
+            lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+            lastModifiedBy: 1
+      additionalProperties: false
+      example:
+        videoClipList:
+        - key: 1
+          deviceID: 201
+          fileID: 1
+          tSFileID: 1
+          videoClipStatus: 1
+          videoClipTypeID: 1
+          videoClipParameters: Example value
+          localFilePath: Example value
+          height: 1
+          width: 1
+          fileSize: 1
+          framesPerSecond: 1
+          bitrate: 1
+          audioStatus: 1
+          startTime: 1
+          startTimeMs: 1
+          endTime: 1
+          endTimeMs: 1
+          clipLengthInSeconds: 1
+          tagListID: 1
+          creationDate: '2026-03-30T12:00:00.0000000Z'
+        videoClipTagList:
+        - key: 1
+          videoClipID: 1
+          deviceID: 201
+          containerID: 1
+          tagID: 1
+          timestamp: 1
+          timestampMs: 1
+          confidence: 98.4
+          creationDate: '2026-03-30T12:00:00.0000000Z'
+          tagName: Example value
+        tagList:
+        - key: 1
+          tagName: Example value
+          creationDate: '2026-03-30T12:00:00.0000000Z'
+    CreateVideoClip:
+      type: object
+      properties:
+        deviceID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        deviceName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        fileID:
+          type: integer
+          format: int64
+          example: 1
+        localFilePath:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        height:
+          type: integer
+          format: int64
+          example: 1
+        width:
+          type: integer
+          format: int64
+          example: 1
+        framesPerSecond:
+          type: number
+          format: double
+          example: 1
+        startTime:
+          type: integer
+          format: int64
+          example: 1
+        startTimeMs:
+          type: integer
+          format: int64
+          example: 1
+        clipLengthInSeconds:
+          type: number
+          format: double
+          example: 1
+        videoClipStatus:
+          type: integer
+          format: int64
+          example: 1
+        videoClipTypeID:
+          type: integer
+          format: int64
+          example: 1
+        videoClipParameters:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        deviceID: 201
+        deviceName: WearableDevice
+        fileID: 1
+        localFilePath: Example value
+        height: 1
+        width: 1
+        framesPerSecond: 1
+        startTime: 1
+        startTimeMs: 1
+        clipLengthInSeconds: 1
+        videoClipStatus: 1
+        videoClipTypeID: 1
+        videoClipParameters: Example value
+    VideoClipEpochAndCountFilter:
+      type: object
+      properties:
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        startEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        endEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        count:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        order:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        videoClipTypeID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        tagList:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int64
+            example: 1
+          example:
+          - 1
+      additionalProperties: false
+      example:
+        deviceID: 201
+        startEpoch: 1711800000
+        endEpoch: 1711800000
+        count: 25
+        order: Example value
+        videoClipTypeID: 1
+        tagList:
+        - 1
+    VideoClipWithNames:
+      type: object
+      properties:
+        deviceName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        tagList:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Tag'
+          example:
+          - key: 1
+            tagName: Example value
+            creationDate: '2026-03-30T12:00:00.0000000Z'
+            createdBy: 1
+            lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+            lastModifiedBy: 1
+        key:
+          type: integer
+          format: int64
+          example: 1
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        fileID:
+          type: integer
+          format: int64
+          example: 1
+        tSFileID:
+          type: integer
+          format: int64
+          example: 1
+        videoClipStatus:
+          type: integer
+          format: int64
+          example: 1
+        videoClipTypeID:
+          type: integer
+          format: int64
+          example: 1
+        videoClipParameters:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        localFilePath:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        height:
+          type: integer
+          format: int64
+          example: 1
+        width:
+          type: integer
+          format: int64
+          example: 1
+        fileSize:
+          type: integer
+          format: int64
+          example: 1
+        framesPerSecond:
+          type: number
+          format: double
+          example: 1
+        bitrate:
+          type: integer
+          format: int64
+          example: 1
+        audioStatus:
+          type: integer
+          format: int64
+          example: 1
+        startTime:
+          type: integer
+          format: int64
+          example: 1
+        startTimeMs:
+          type: integer
+          format: int64
+          example: 1
+        endTime:
+          type: integer
+          format: int64
+          example: 1
+        endTimeMs:
+          type: integer
+          format: int64
+          example: 1
+        clipLengthInSeconds:
+          type: number
+          format: double
+          example: 1
+        tagListID:
+          type: integer
+          format: int64
+          example: 1
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        deviceID: 201
+        fileID: 1
+        tSFileID: 1
+        videoClipStatus: 1
+        videoClipTypeID: 1
+        videoClipParameters: Example value
+        localFilePath: Example value
+        height: 1
+        width: 1
+        fileSize: 1
+        framesPerSecond: 1
+        bitrate: 1
+        audioStatus: 1
+        startTime: 1
+        startTimeMs: 1
+        endTime: 1
+        endTimeMs: 1
+        clipLengthInSeconds: 1
+        tagListID: 1
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+        deviceName: WearableDevice
+        tagList:
+        - key: 1
+          tagName: Example value
+          creationDate: '2026-03-30T12:00:00.0000000Z'
+    DeviceEpochRange:
+      type: object
+      properties:
+        deviceSerial:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        startEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        endEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+      additionalProperties: false
+      example:
+        deviceSerial: '10001234'
+        startEpoch: 1711800000
+        endEpoch: 1711800000
+    ConcatenateClipsArgs:
+      type: object
+      properties:
+        deviceID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        deviceName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        startEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        endEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        uploadURL:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        postbackURL:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        timeout:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        videoClips:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/VideoClip'
+          example:
+          - key: 1
+            userID: 101
+            deviceID: 201
+            fileID: 1
+            tSFileID: 1
+            videoClipStatus: 1
+            videoClipTypeID: 1
+            videoClipParameters: Example value
+            localFilePath: Example value
+            height: 1
+            width: 1
+            fileSize: 1
+            framesPerSecond: 1
+            bitrate: 1
+            audioStatus: 1
+            startTime: 1
+            startTimeMs: 1
+            endTime: 1
+            endTimeMs: 1
+            clipLengthInSeconds: 1
+            tagListID: 1
+            creationDate: '2026-03-30T12:00:00.0000000Z'
+            createdBy: 1
+            lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+            lastModifiedBy: 1
+      additionalProperties: false
+      example:
+        deviceID: 201
+        deviceName: WearableDevice
+        startEpoch: 1711800000
+        endEpoch: 1711800000
+        uploadURL: https://api.actionstreamer.com/example
+        postbackURL: https://api.actionstreamer.com/example
+        timeout: Example value
+        videoClips:
+        - key: 1
+          deviceID: 201
+          fileID: 1
+          tSFileID: 1
+          videoClipStatus: 1
+          videoClipTypeID: 1
+          videoClipParameters: Example value
+          localFilePath: Example value
+          height: 1
+          width: 1
+          fileSize: 1
+          framesPerSecond: 1
+          bitrate: 1
+          audioStatus: 1
+          startTime: 1
+          startTimeMs: 1
+          endTime: 1
+          endTimeMs: 1
+          clipLengthInSeconds: 1
+          tagListID: 1
+          creationDate: '2026-03-30T12:00:00.0000000Z'
+    GetTagListForDeviceList:
+      type: object
+      properties:
+        deviceIDList:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int64
+            example: 1
+          example:
+          - 1
+        tagIDList:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int64
+            example: 1
+          example:
+          - 1
+        startEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        endEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        count:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        order:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        searchText:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        deviceIDList:
+        - 1
+        tagIDList:
+        - 1
+        startEpoch: 1711800000
+        endEpoch: 1711800000
+        count: 25
+        order: Example value
+        searchText: Example value
+    UploadVideoClips:
+      type: object
+      properties:
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        videoClips:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int64
+            example: 1
+          example:
+          - 1
+      additionalProperties: false
+      example:
+        deviceID: 201
+        videoClips:
+        - 1
+    DevicesEpochAndCountFilter:
+      type: object
+      properties:
+        deviceIDList:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int64
+            example: 1
+          example:
+          - 1
+        startEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        endEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        count:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        order:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        deviceIDList:
+        - 1
+        startEpoch: 1711800000
+        endEpoch: 1711800000
+        count: 25
+        order: Example value
+    Tag:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        tagName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        tagName: Example value
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+    VideoClip:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        fileID:
+          type: integer
+          format: int64
+          example: 1
+        tSFileID:
+          type: integer
+          format: int64
+          example: 1
+        videoClipStatus:
+          type: integer
+          format: int64
+          example: 1
+        videoClipTypeID:
+          type: integer
+          format: int64
+          example: 1
+        videoClipParameters:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        localFilePath:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        height:
+          type: integer
+          format: int64
+          example: 1
+        width:
+          type: integer
+          format: int64
+          example: 1
+        fileSize:
+          type: integer
+          format: int64
+          example: 1
+        framesPerSecond:
+          type: number
+          format: double
+          example: 1
+        bitrate:
+          type: integer
+          format: int64
+          example: 1
+        audioStatus:
+          type: integer
+          format: int64
+          example: 1
+        startTime:
+          type: integer
+          format: int64
+          example: 1
+        startTimeMs:
+          type: integer
+          format: int64
+          example: 1
+        endTime:
+          type: integer
+          format: int64
+          example: 1
+        endTimeMs:
+          type: integer
+          format: int64
+          example: 1
+        clipLengthInSeconds:
+          type: number
+          format: double
+          example: 1
+        tagListID:
+          type: integer
+          format: int64
+          example: 1
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        deviceID: 201
+        fileID: 1
+        tSFileID: 1
+        videoClipStatus: 1
+        videoClipTypeID: 1
+        videoClipParameters: Example value
+        localFilePath: Example value
+        height: 1
+        width: 1
+        fileSize: 1
+        framesPerSecond: 1
+        bitrate: 1
+        audioStatus: 1
+        startTime: 1
+        startTimeMs: 1
+        endTime: 1
+        endTimeMs: 1
+        clipLengthInSeconds: 1
+        tagListID: 1
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+    VideoClipTagWithNames:
+      type: object
+      properties:
+        tagName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        key:
+          type: integer
+          format: int64
+          example: 1
+        videoClipID:
+          type: integer
+          format: int64
+          example: 1
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        containerID:
+          type: integer
+          format: int64
+          example: 1
+        tagID:
+          type: integer
+          format: int64
+          example: 1
+        timestamp:
+          type: integer
+          format: int64
+          example: 1
+        timestampMs:
+          type: integer
+          format: int64
+          example: 1
+        confidence:
+          type: number
+          format: double
+          example: 1
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        videoClipID: 1
+        deviceID: 201
+        containerID: 1
+        tagID: 1
+        timestamp: 1
+        timestampMs: 1
+        confidence: 98.4
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+        tagName: Example value

@@ -1,0 +1,48 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Version API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: Version
+paths:
+  /v1/versionauth:
+    post:
+      tags:
+      - Version
+      summary: Checks the version endpoint with authentication
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: postV1Versionauth
+      x-operation-id-source: derived
+  /v1/version:
+    get:
+      tags:
+      - Version
+      summary: Checks the version endpoint without authentication
+      description: Returns the current API version and build date when available.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                Version: 1.0.0
+                BuildDate: '2026-01-01'
+      operationId: getV1Version
+      x-operation-id-source: derived
+  /v1/versionapicall:
+    post:
+      tags:
+      - Version
+      summary: Checks API version call behavior
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: postV1Versionapicall
+      x-operation-id-source: derived

@@ -1,0 +1,397 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Setting API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: Setting
+paths:
+  /v1/usersetting/list:
+    get:
+      tags:
+      - Setting
+      summary: Gets the user setting list
+      description: Supports an optional `userid` query parameter. Admins can use it to read another user's settings.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserSetting'
+                example:
+                - key: 1
+                  userID: 101
+                  settingName: Example value
+                  settingValue: Example value
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 1
+                settingName: Example value
+                settingValue: Example value
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1UsersettingList
+      x-operation-id-source: derived
+  /v1/usersetting:
+    get:
+      tags:
+      - Setting
+      summary: Gets a user setting
+      description: 'Supply the setting name with the `setting_name` query parameter. This endpoint also accepts `settingname`.
+
+        Supports an optional `userid` query parameter for admin access to another user''s setting.'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json: {}
+      operationId: getV1Usersetting
+      x-operation-id-source: derived
+    put:
+      tags:
+      - Setting
+      summary: Creates or updates a user setting
+      description: 'Request body: JSON object.
+
+        Supports an optional `userid` query parameter for admin updates to another user''s setting.'
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: putV1Usersetting
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - Setting
+      summary: Deletes a user setting
+      description: 'Supply the setting name with the `setting_name` query parameter. This endpoint also accepts `settingname`.
+
+        Supports an optional `userid` query parameter for admin deletion of another user''s setting.'
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: deleteV1Usersetting
+      x-operation-id-source: derived
+  /v1/devicesetting/device/{deviceID}/list:
+    get:
+      tags:
+      - Setting
+      summary: Gets the device setting list
+      parameters:
+      - name: deviceID
+        in: path
+        description: The device ID whose settings to return.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DeviceSetting'
+                example:
+                - key: 1
+                  userID: 101
+                  deviceID: 201
+                  settingName: Example value
+                  settingValue: Example value
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 1
+                deviceID: 201
+                settingName: Example value
+                settingValue: Example value
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1DevicesettingDeviceByDeviceIDList
+      x-operation-id-source: derived
+  /v1/devicesetting/device/{deviceID}:
+    get:
+      tags:
+      - Setting
+      summary: Gets a device setting
+      description: Supply the setting name with the `setting_name` query parameter. This endpoint also accepts `settingname`.
+      parameters:
+      - name: deviceID
+        in: path
+        description: The device ID that owns the setting.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json: {}
+      operationId: getV1DevicesettingDeviceByDeviceID
+      x-operation-id-source: derived
+    put:
+      tags:
+      - Setting
+      summary: Creates or updates a device setting
+      description: 'Request body: JSON object.
+
+        Supports an optional `local=true` query parameter to also enqueue a device setting update event.'
+      parameters:
+      - name: deviceID
+        in: path
+        description: The device ID that owns the setting.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: putV1DevicesettingDeviceByDeviceID
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - Setting
+      summary: Deletes a device setting
+      description: Supply the setting name with the `setting_name` query parameter. This endpoint also accepts `settingname`.
+      parameters:
+      - name: deviceID
+        in: path
+        description: The device ID that owns the setting.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: deleteV1DevicesettingDeviceByDeviceID
+      x-operation-id-source: derived
+  /v1/setting/app/{applicationID}/list:
+    get:
+      tags:
+      - Setting
+      summary: Gets the application setting list
+      parameters:
+      - name: applicationID
+        in: path
+        description: The application ID whose settings to return.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AppSetting'
+                example:
+                - key: 1
+                  userID: 101
+                  applicationID: 1
+                  organizationID: 1
+                  settingName: Example value
+                  settingValue: Example value
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 1
+                applicationID: 1
+                organizationID: 1
+                settingName: Example value
+                settingValue: Example value
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1SettingAppByApplicationIDList
+      x-operation-id-source: derived
+  /v1/setting/app/{applicationID}/{settingName}:
+    get:
+      tags:
+      - Setting
+      summary: Gets an application setting
+      parameters:
+      - name: applicationID
+        in: path
+        description: The application ID that owns the setting.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      - name: settingName
+        in: path
+        description: The application setting name.
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: Example value
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppSetting'
+              example:
+                key: 1
+                applicationID: 1
+                organizationID: 1
+                settingName: Example value
+                settingValue: Example value
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1SettingAppByApplicationIDBySettingName
+      x-operation-id-source: derived
+  /v1/setting/app/{applicationID}:
+    put:
+      tags:
+      - Setting
+      summary: Creates or updates an application setting
+      description: 'Request body: JSON object. Only admin users can update application settings.'
+      parameters:
+      - name: applicationID
+        in: path
+        description: The application ID whose setting should be updated.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: putV1SettingAppByApplicationID
+      x-operation-id-source: derived
+components:
+  schemas:
+    AppSetting:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        applicationID:
+          type: integer
+          format: int64
+          example: 1
+        organizationID:
+          type: integer
+          format: int64
+          example: 1
+        settingName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        settingValue:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        applicationID: 1
+        organizationID: 1
+        settingName: Example value
+        settingValue: Example value
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+    DeviceSetting:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        settingName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        settingValue:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        deviceID: 201
+        settingName: Example value
+        settingValue: Example value
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+    UserSetting:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        settingName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        settingValue:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        settingName: Example value
+        settingValue: Example value
+        creationDate: '2026-03-30T12:00:00.0000000Z'

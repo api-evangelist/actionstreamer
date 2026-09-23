@@ -1,0 +1,1266 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Event API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: Event
+paths:
+  /v1/event/dequeue:
+    post:
+      tags:
+      - Event
+      summary: Dequeues the next pending event for a device agent
+      description: 'Request body: JSON object. Accepts either
+
+        `deviceSerial` or `deviceName`.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DequeueEvent'
+            example:
+              deviceName: WearableDevice
+              deviceSerial: '10001234'
+              agentType: Device
+              agentIndex: 1
+              processID: 4321
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+              example:
+                key: 501
+                deviceID: 201
+                agentTypeID: 1
+                agentID: 1
+                eventTypeID: 1
+                serverEvent: 1
+                eventStatus: 1
+                eventParameters: '{"presetName":"Run Event Preset"}'
+                processID: 4321
+                result: Example value
+                percentComplete: 42.5
+                priority: 1
+                expirationEpoch: 1711800000
+                attemptNumber: 1
+                maxAttempts: 3
+                tagString: Example value
+                tagNumber: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1EventDequeue
+      x-operation-id-source: derived
+  /v1/event:
+    post:
+      tags:
+      - Event
+      summary: Creates an event
+      description: 'Request body: JSON object. Supports either
+
+        `deviceSerial` or `deviceID`, either agent and event names or their numeric IDs,
+
+        and optional fields such as `serverEvent`, `eventParameters`, `priority`,
+
+        `maxAttempts`, and `expirationEpoch`.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEvent'
+            example:
+              deviceID: 201
+              deviceSerial: '10001234'
+              agentType: Device
+              eventType: Run
+              agentTypeID: 1
+              eventTypeID: 1
+              serverEvent: 1
+              eventParameters: '{"presetName":"Run Event Preset"}'
+              priority: 1
+              maxAttempts: 3
+              expirationEpoch: 1711800000
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResult'
+              example:
+                code: 1
+                description: Example description
+      operationId: postV1Event
+      x-operation-id-source: derived
+  /v1/event/{eventID}:
+    get:
+      tags:
+      - Event
+      summary: Gets an event by ID
+      description: 'Returns a reduced event status payload.
+
+        The response includes status details for the event.'
+      parameters:
+      - name: eventID
+        in: path
+        description: The ID of the event to retrieve.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetEventStatus'
+              example:
+                eventID: 501
+                eventStatus: 1
+                eventParameters: '{"presetName":"Run Event Preset"}'
+                result: Example value
+                percentComplete: 42.5
+                priority: 1
+                attemptNumber: 1
+                maxAttempts: 3
+                tagString: Example value
+                tagNumber: 1
+      operationId: getV1EventByEventID
+      x-operation-id-source: derived
+    put:
+      tags:
+      - Event
+      summary: Updates an event
+      description: 'Request body: JSON object. Only non-null fields from the request are applied.'
+      parameters:
+      - name: eventID
+        in: path
+        description: The ID of the event to update.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateEvent'
+            example:
+              eventStatus: 1
+              attemptNumber: 1
+              result: Example value
+              processID: 4321
+              percentComplete: 42.5
+              tagString: Example value
+              tagNumber: 1
+        required: true
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: putV1EventByEventID
+      x-operation-id-source: derived
+  /v1/event/status:
+    patch:
+      tags:
+      - Event
+      summary: Updates event status fields
+      description: 'Request body: JSON object. Updates the
+
+        `EventStatus` field for each event ID in the `events` list for the specified device.
+
+        The device can be identified by `deviceID` or by `deviceName`.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchEventStatus'
+            example:
+              deviceID: 201
+              deviceName: WearableDevice
+              eventStatus: 1
+              events:
+              - 1
+        required: true
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: patchV1EventStatus
+      x-operation-id-source: derived
+  /v1/event/{eventID}/progress:
+    patch:
+      tags:
+      - Event
+      summary: Updates event progress fields
+      description: 'Request body: JSON object. Patches only
+
+        `PercentComplete` for the specified event.'
+      parameters:
+      - name: eventID
+        in: path
+        description: The ID of the event to patch.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchEventProgress'
+            example:
+              deviceName: WearableDevice
+              deviceSerial: '10001234'
+              percentComplete: 42.5
+        required: true
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: patchV1EventByEventIDProgress
+      x-operation-id-source: derived
+  /v1/event/list:
+    post:
+      tags:
+      - Event
+      summary: Gets the event list
+      description: 'Request body: JSON object. Set `deviceID` to return events
+
+        for one device, or use `deviceID = 0` to get events for the authenticated user across devices.
+
+        Supports an optional `updatedevice=true` query parameter.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DateAndCountFilter'
+            example:
+              deviceID: 201
+              startDate: '2026-03-30T12:00:00.0000000Z'
+              endDate: '2026-03-30T12:00:00.0000000Z'
+              count: 25
+              order: Example value
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventWithNames'
+                example:
+                - key: 501
+                  userID: 101
+                  deviceID: 201
+                  agentTypeID: 1
+                  agentID: 1
+                  eventTypeID: 1
+                  serverEvent: 1
+                  eventStatus: 1
+                  eventParameters: '{"presetName":"Run Event Preset"}'
+                  processID: 4321
+                  result: Example value
+                  percentComplete: 42.5
+                  priority: 1
+                  expirationEpoch: 1711800000
+                  attemptNumber: 1
+                  maxAttempts: 3
+                  tagString: Example value
+                  tagNumber: 1
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+                  deviceName: WearableDevice
+                  eventType: Run
+                  agentType: Device
+                  version: 1.0.0
+                  eventStatusName: Example value
+                  eventStatusDescription: Example description
+                  agentIndex: 1
+              example:
+              - key: 501
+                deviceID: 201
+                agentTypeID: 1
+                agentID: 1
+                eventTypeID: 1
+                serverEvent: 1
+                eventStatus: 1
+                eventParameters: '{"presetName":"Run Event Preset"}'
+                processID: 4321
+                result: Example value
+                percentComplete: 42.5
+                priority: 1
+                expirationEpoch: 1711800000
+                attemptNumber: 1
+                maxAttempts: 3
+                tagString: Example value
+                tagNumber: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+                deviceName: WearableDevice
+                eventType: Run
+                agentType: Device
+                version: 1.0.0
+                eventStatusName: Example value
+                eventStatusDescription: Example description
+                agentIndex: 1
+      operationId: postV1EventList
+      x-operation-id-source: derived
+  /v1/event/lastevent/agenttype/{agentTypeID}:
+    post:
+      tags:
+      - Event
+      summary: Gets the last event for a device based on agent type
+      description: 'Request body: JSON object. This endpoint follows the same
+
+        filtered event-list behavior as `GetEventListFilter`, including optional `updatedevice=true`.'
+      parameters:
+      - name: agentTypeID
+        in: path
+        description: The agent type ID in the route.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DateAndCountFilter'
+            example:
+              deviceID: 201
+              startDate: '2026-03-30T12:00:00.0000000Z'
+              endDate: '2026-03-30T12:00:00.0000000Z'
+              count: 25
+              order: Example value
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventWithNames'
+                example:
+                - key: 501
+                  userID: 101
+                  deviceID: 201
+                  agentTypeID: 1
+                  agentID: 1
+                  eventTypeID: 1
+                  serverEvent: 1
+                  eventStatus: 1
+                  eventParameters: '{"presetName":"Run Event Preset"}'
+                  processID: 4321
+                  result: Example value
+                  percentComplete: 42.5
+                  priority: 1
+                  expirationEpoch: 1711800000
+                  attemptNumber: 1
+                  maxAttempts: 3
+                  tagString: Example value
+                  tagNumber: 1
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+                  deviceName: WearableDevice
+                  eventType: Run
+                  agentType: Device
+                  version: 1.0.0
+                  eventStatusName: Example value
+                  eventStatusDescription: Example description
+                  agentIndex: 1
+              example:
+              - key: 501
+                deviceID: 201
+                agentTypeID: 1
+                agentID: 1
+                eventTypeID: 1
+                serverEvent: 1
+                eventStatus: 1
+                eventParameters: '{"presetName":"Run Event Preset"}'
+                processID: 4321
+                result: Example value
+                percentComplete: 42.5
+                priority: 1
+                expirationEpoch: 1711800000
+                attemptNumber: 1
+                maxAttempts: 3
+                tagString: Example value
+                tagNumber: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+                deviceName: WearableDevice
+                eventType: Run
+                agentType: Device
+                version: 1.0.0
+                eventStatusName: Example value
+                eventStatusDescription: Example description
+                agentIndex: 1
+      operationId: postV1EventLasteventAgenttypeByAgentTypeID
+      x-operation-id-source: derived
+  /v1/event/list/pending:
+    post:
+      tags:
+      - Event
+      summary: Get a list of pending events
+      description: 'Request body: JSON object. When `deviceName` is provided, this endpoint
+
+        returns at most one pending event for that device.
+
+        If no device is provided, server users can retrieve pending server events instead.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceNameArg'
+            example:
+              deviceName: WearableDevice
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventWithNames'
+                example:
+                - key: 501
+                  userID: 101
+                  deviceID: 201
+                  agentTypeID: 1
+                  agentID: 1
+                  eventTypeID: 1
+                  serverEvent: 1
+                  eventStatus: 1
+                  eventParameters: '{"presetName":"Run Event Preset"}'
+                  processID: 4321
+                  result: Example value
+                  percentComplete: 42.5
+                  priority: 1
+                  expirationEpoch: 1711800000
+                  attemptNumber: 1
+                  maxAttempts: 3
+                  tagString: Example value
+                  tagNumber: 1
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+                  deviceName: WearableDevice
+                  eventType: Run
+                  agentType: Device
+                  version: 1.0.0
+                  eventStatusName: Example value
+                  eventStatusDescription: Example description
+                  agentIndex: 1
+              example:
+              - key: 501
+                deviceID: 201
+                agentTypeID: 1
+                agentID: 1
+                eventTypeID: 1
+                serverEvent: 1
+                eventStatus: 1
+                eventParameters: '{"presetName":"Run Event Preset"}'
+                processID: 4321
+                result: Example value
+                percentComplete: 42.5
+                priority: 1
+                expirationEpoch: 1711800000
+                attemptNumber: 1
+                maxAttempts: 3
+                tagString: Example value
+                tagNumber: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+                deviceName: WearableDevice
+                eventType: Run
+                agentType: Device
+                version: 1.0.0
+                eventStatusName: Example value
+                eventStatusDescription: Example description
+                agentIndex: 1
+      operationId: postV1EventListPending
+      x-operation-id-source: derived
+  /v1/event/list/pending/longpoll:
+    post:
+      tags:
+      - Event
+      summary: Long-polls for pending events for a device
+      description: 'Request body: JSON object. This endpoint polls for up to 60 seconds and returns an
+
+        empty list if no pending events are found before the timeout.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceNameArg'
+            example:
+              deviceName: WearableDevice
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventWithNames'
+                example:
+                - key: 501
+                  userID: 101
+                  deviceID: 201
+                  agentTypeID: 1
+                  agentID: 1
+                  eventTypeID: 1
+                  serverEvent: 1
+                  eventStatus: 1
+                  eventParameters: '{"presetName":"Run Event Preset"}'
+                  processID: 4321
+                  result: Example value
+                  percentComplete: 42.5
+                  priority: 1
+                  expirationEpoch: 1711800000
+                  attemptNumber: 1
+                  maxAttempts: 3
+                  tagString: Example value
+                  tagNumber: 1
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+                  deviceName: WearableDevice
+                  eventType: Run
+                  agentType: Device
+                  version: 1.0.0
+                  eventStatusName: Example value
+                  eventStatusDescription: Example description
+                  agentIndex: 1
+              example:
+              - key: 501
+                deviceID: 201
+                agentTypeID: 1
+                agentID: 1
+                eventTypeID: 1
+                serverEvent: 1
+                eventStatus: 1
+                eventParameters: '{"presetName":"Run Event Preset"}'
+                processID: 4321
+                result: Example value
+                percentComplete: 42.5
+                priority: 1
+                expirationEpoch: 1711800000
+                attemptNumber: 1
+                maxAttempts: 3
+                tagString: Example value
+                tagNumber: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+                deviceName: WearableDevice
+                eventType: Run
+                agentType: Device
+                version: 1.0.0
+                eventStatusName: Example value
+                eventStatusDescription: Example description
+                agentIndex: 1
+      operationId: postV1EventListPendingLongpoll
+      x-operation-id-source: derived
+  /v1/event/list/pending/{deviceID}:
+    delete:
+      tags:
+      - Event
+      summary: Clears pending events for a device
+      description: Clears pending events for the specified device after authorization succeeds.
+      parameters:
+      - name: deviceID
+        in: path
+        description: The ID of the device whose pending events should be cleared.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventWithNames'
+                example:
+                - key: 501
+                  userID: 101
+                  deviceID: 201
+                  agentTypeID: 1
+                  agentID: 1
+                  eventTypeID: 1
+                  serverEvent: 1
+                  eventStatus: 1
+                  eventParameters: '{"presetName":"Run Event Preset"}'
+                  processID: 4321
+                  result: Example value
+                  percentComplete: 42.5
+                  priority: 1
+                  expirationEpoch: 1711800000
+                  attemptNumber: 1
+                  maxAttempts: 3
+                  tagString: Example value
+                  tagNumber: 1
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+                  deviceName: WearableDevice
+                  eventType: Run
+                  agentType: Device
+                  version: 1.0.0
+                  eventStatusName: Example value
+                  eventStatusDescription: Example description
+                  agentIndex: 1
+              example:
+              - key: 501
+                deviceID: 201
+                agentTypeID: 1
+                agentID: 1
+                eventTypeID: 1
+                serverEvent: 1
+                eventStatus: 1
+                eventParameters: '{"presetName":"Run Event Preset"}'
+                processID: 4321
+                result: Example value
+                percentComplete: 42.5
+                priority: 1
+                expirationEpoch: 1711800000
+                attemptNumber: 1
+                maxAttempts: 3
+                tagString: Example value
+                tagNumber: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+                deviceName: WearableDevice
+                eventType: Run
+                agentType: Device
+                version: 1.0.0
+                eventStatusName: Example value
+                eventStatusDescription: Example description
+                agentIndex: 1
+      operationId: deleteV1EventListPendingByDeviceID
+      x-operation-id-source: derived
+  /v1/event/endprocess/{eventID}:
+    post:
+      tags:
+      - Event
+      summary: Queues an event to end the process associated with an event
+      parameters:
+      - name: eventID
+        in: path
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResult'
+              example:
+                code: 1
+                description: Example description
+      operationId: postV1EventEndprocessByEventID
+      x-operation-id-source: derived
+components:
+  schemas:
+    Event:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        agentTypeID:
+          type: integer
+          format: int64
+          example: 1
+        agentID:
+          type: integer
+          format: int64
+          example: 1
+        eventTypeID:
+          type: integer
+          format: int64
+          example: 1
+        serverEvent:
+          type: integer
+          format: int64
+          example: 1
+        eventStatus:
+          type: integer
+          format: int64
+          example: 1
+        eventParameters:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        processID:
+          type: integer
+          format: int64
+          example: 1
+        result:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        percentComplete:
+          type: number
+          format: double
+          example: 1
+        priority:
+          type: integer
+          format: int64
+          example: 1
+        expirationEpoch:
+          type: integer
+          format: int64
+          example: 1
+        attemptNumber:
+          type: integer
+          format: int64
+          example: 1
+        maxAttempts:
+          type: integer
+          format: int64
+          example: 1
+        tagString:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        tagNumber:
+          type: integer
+          format: int64
+          example: 1
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 501
+        deviceID: 201
+        agentTypeID: 1
+        agentID: 1
+        eventTypeID: 1
+        serverEvent: 1
+        eventStatus: 1
+        eventParameters: '{"presetName":"Run Event Preset"}'
+        processID: 4321
+        result: Example value
+        percentComplete: 42.5
+        priority: 1
+        expirationEpoch: 1711800000
+        attemptNumber: 1
+        maxAttempts: 3
+        tagString: Example value
+        tagNumber: 1
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+    DateAndCountFilter:
+      type: object
+      properties:
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        startDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        endDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        count:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        order:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        deviceID: 201
+        startDate: '2026-03-30T12:00:00.0000000Z'
+        endDate: '2026-03-30T12:00:00.0000000Z'
+        count: 25
+        order: Example value
+    PatchEventStatus:
+      type: object
+      properties:
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        deviceName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        eventStatus:
+          type: integer
+          format: int64
+          example: 1
+        events:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+            example: 1
+          example:
+          - 1
+      additionalProperties: false
+      example:
+        deviceID: 201
+        deviceName: WearableDevice
+        eventStatus: 1
+        events:
+        - 1
+    UpdateEvent:
+      type: object
+      properties:
+        eventStatus:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        attemptNumber:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        result:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        processID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        percentComplete:
+          type:
+          - number
+          - 'null'
+          format: double
+          example: 1
+        tagString:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        tagNumber:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+      additionalProperties: false
+      example:
+        eventStatus: 1
+        attemptNumber: 1
+        result: Example value
+        processID: 4321
+        percentComplete: 42.5
+        tagString: Example value
+        tagNumber: 1
+    GetEventStatus:
+      type: object
+      properties:
+        eventID:
+          type: integer
+          format: int64
+          example: 1
+        eventStatus:
+          type: integer
+          format: int64
+          example: 1
+        eventParameters:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        result:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        percentComplete:
+          type: number
+          format: double
+          example: 1
+        priority:
+          type: integer
+          format: int64
+          example: 1
+        attemptNumber:
+          type: integer
+          format: int64
+          example: 1
+        maxAttempts:
+          type: integer
+          format: int64
+          example: 1
+        tagString:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        tagNumber:
+          type: integer
+          format: int64
+          example: 1
+      additionalProperties: false
+      example:
+        eventID: 501
+        eventStatus: 1
+        eventParameters: '{"presetName":"Run Event Preset"}'
+        result: Example value
+        percentComplete: 42.5
+        priority: 1
+        attemptNumber: 1
+        maxAttempts: 3
+        tagString: Example value
+        tagNumber: 1
+    DequeueEvent:
+      type: object
+      properties:
+        deviceName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        deviceSerial:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        agentType:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        agentIndex:
+          type: integer
+          format: int64
+          example: 1
+        processID:
+          type: integer
+          format: int64
+          example: 1
+      additionalProperties: false
+      example:
+        deviceName: WearableDevice
+        deviceSerial: '10001234'
+        agentType: Device
+        agentIndex: 1
+        processID: 4321
+    CreateEvent:
+      type: object
+      properties:
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        deviceSerial:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        agentType:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        eventType:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        agentTypeID:
+          type: integer
+          format: int64
+          example: 1
+        eventTypeID:
+          type: integer
+          format: int64
+          example: 1
+        serverEvent:
+          type: integer
+          format: int64
+          example: 1
+        eventParameters:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        priority:
+          type: integer
+          format: int64
+          example: 1
+        maxAttempts:
+          type: integer
+          format: int64
+          example: 1
+        expirationEpoch:
+          type: integer
+          format: int64
+          example: 1
+      additionalProperties: false
+      example:
+        deviceID: 201
+        deviceSerial: '10001234'
+        agentType: Device
+        eventType: Run
+        agentTypeID: 1
+        eventTypeID: 1
+        serverEvent: 1
+        eventParameters: '{"presetName":"Run Event Preset"}'
+        priority: 1
+        maxAttempts: 3
+        expirationEpoch: 1711800000
+    StandardResult:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int64
+          example: 1
+        description:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        code: 1
+        description: Example description
+    EventWithNames:
+      type: object
+      properties:
+        deviceName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        eventType:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        agentType:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        version:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        eventStatusName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        eventStatusDescription:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        agentIndex:
+          type: integer
+          format: int64
+          example: 1
+        key:
+          type: integer
+          format: int64
+          example: 1
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        agentTypeID:
+          type: integer
+          format: int64
+          example: 1
+        agentID:
+          type: integer
+          format: int64
+          example: 1
+        eventTypeID:
+          type: integer
+          format: int64
+          example: 1
+        serverEvent:
+          type: integer
+          format: int64
+          example: 1
+        eventStatus:
+          type: integer
+          format: int64
+          example: 1
+        eventParameters:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        processID:
+          type: integer
+          format: int64
+          example: 1
+        result:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        percentComplete:
+          type: number
+          format: double
+          example: 1
+        priority:
+          type: integer
+          format: int64
+          example: 1
+        expirationEpoch:
+          type: integer
+          format: int64
+          example: 1
+        attemptNumber:
+          type: integer
+          format: int64
+          example: 1
+        maxAttempts:
+          type: integer
+          format: int64
+          example: 1
+        tagString:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        tagNumber:
+          type: integer
+          format: int64
+          example: 1
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 501
+        deviceID: 201
+        agentTypeID: 1
+        agentID: 1
+        eventTypeID: 1
+        serverEvent: 1
+        eventStatus: 1
+        eventParameters: '{"presetName":"Run Event Preset"}'
+        processID: 4321
+        result: Example value
+        percentComplete: 42.5
+        priority: 1
+        expirationEpoch: 1711800000
+        attemptNumber: 1
+        maxAttempts: 3
+        tagString: Example value
+        tagNumber: 1
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+        deviceName: WearableDevice
+        eventType: Run
+        agentType: Device
+        version: 1.0.0
+        eventStatusName: Example value
+        eventStatusDescription: Example description
+        agentIndex: 1
+    DeviceNameArg:
+      type: object
+      properties:
+        deviceName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        deviceName: WearableDevice
+    PatchEventProgress:
+      type: object
+      properties:
+        deviceName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        deviceSerial:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        percentComplete:
+          type: number
+          format: double
+          example: 1
+      additionalProperties: false
+      example:
+        deviceName: WearableDevice
+        deviceSerial: '10001234'
+        percentComplete: 42.5

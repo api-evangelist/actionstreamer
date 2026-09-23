@@ -1,0 +1,837 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Device Group API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: Device Group
+paths:
+  /v1/devicegroup/{deviceGroupID}:
+    get:
+      tags:
+      - Device Group
+      summary: Gets a device group by ID
+      parameters:
+      - name: deviceGroupID
+        in: path
+        description: The device group ID.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+              example:
+                key: 1
+                collectionName: Example value
+                description: Example description
+                itemTypeID: 1
+                itemID: 1
+                parentID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1DevicegroupByDeviceGroupID
+      x-operation-id-source: derived
+    put:
+      tags:
+      - Device Group
+      summary: Updates a device group
+      description: 'Request body: JSON object containing the updated device group name.'
+      parameters:
+      - name: deviceGroupID
+        in: path
+        description: The device group ID.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StringArg'
+            example:
+              value: Example value
+        required: true
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: putV1DevicegroupByDeviceGroupID
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - Device Group
+      summary: Deletes a device group
+      description: Deletes a device group.
+      parameters:
+      - name: deviceGroupID
+        in: path
+        description: The device group ID.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: deleteV1DevicegroupByDeviceGroupID
+      x-operation-id-source: derived
+  /v1/devicegroup:
+    get:
+      tags:
+      - Device Group
+      summary: Gets a device group by name
+      description: 'Request body: JSON object containing the device group name.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StringArg'
+            example:
+              value: Example value
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+              example:
+                key: 1
+                collectionName: Example value
+                description: Example description
+                itemTypeID: 1
+                itemID: 1
+                parentID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1Devicegroup
+      x-operation-id-source: derived
+    post:
+      tags:
+      - Device Group
+      summary: Creates a device group
+      description: 'Request body: JSON object containing the new device group name.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StringArg'
+            example:
+              value: Example value
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+              example:
+                key: 1
+                collectionName: Example value
+                description: Example description
+                itemTypeID: 1
+                itemID: 1
+                parentID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1Devicegroup
+      x-operation-id-source: derived
+  /v1/devicegroup/list:
+    get:
+      tags:
+      - Device Group
+      summary: Gets the device group list
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Collection'
+                example:
+                - key: 1
+                  collectionName: Example value
+                  description: Example description
+                  userID: 101
+                  itemTypeID: 1
+                  itemID: 1
+                  parentID: 1
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 1
+                collectionName: Example value
+                description: Example description
+                itemTypeID: 1
+                itemID: 1
+                parentID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1DevicegroupList
+      x-operation-id-source: derived
+  /v1/devicegroup/{deviceGroupID}/device/list:
+    get:
+      tags:
+      - Device Group
+      summary: Get a list of devices in a device group
+      parameters:
+      - name: deviceGroupID
+        in: path
+        description: The device group ID.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Device'
+                example:
+                - key: 201
+                  deviceTypeID: 1
+                  userID: 101
+                  deviceName: WearableDevice
+                  serialNumber: '10001234'
+                  deviceDescription: Example description
+                  recentOutput: Agent started successfully.
+                  cameraStatus: online
+                  lastIPAddress: 203.0.113.42
+                  tunnelIPAddress: 203.0.113.42
+                  lastHeardFromDate: '2026-03-30T12:00:00.0000000Z'
+                  offlineNotificationDate: '2026-03-30T12:00:00.0000000Z'
+                  softwareDate: '2026-03-30T12:00:00.0000000Z'
+                  location: Remote site
+                  setupStatus: 1
+                  autoSendFiles: 1
+                  runStartupEvent: 1
+                  deviceReadyEventPresetID: 1
+                  standaloneEventPresetID: 1
+                  logHealth: 1
+                  runAnalytics: 1
+                  audioChannelName: Example value
+                  volume: 75
+                  commentListID: 1
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 201
+                deviceTypeID: 1
+                deviceName: WearableDevice
+                serialNumber: '10001234'
+                deviceDescription: Example description
+                recentOutput: Agent started successfully.
+                cameraStatus: online
+                lastIPAddress: 203.0.113.42
+                tunnelIPAddress: 203.0.113.42
+                lastHeardFromDate: '2026-03-30T12:00:00.0000000Z'
+                offlineNotificationDate: '2026-03-30T12:00:00.0000000Z'
+                softwareDate: '2026-03-30T12:00:00.0000000Z'
+                location: Remote site
+                setupStatus: 1
+                autoSendFiles: 1
+                runStartupEvent: 1
+                deviceReadyEventPresetID: 1
+                standaloneEventPresetID: 1
+                logHealth: 1
+                runAnalytics: 1
+                audioChannelName: Example value
+                volume: 75
+                commentListID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1DevicegroupByDeviceGroupIDDeviceList
+      x-operation-id-source: derived
+  /v1/shareddevicegroup/list:
+    get:
+      tags:
+      - Device Group
+      summary: Get a flat list of root device groups the user has been added to
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SharedItem'
+                example:
+                - key: 1
+                  itemTypeID: 1
+                  sharedItemObjectID: 1
+                  collectionTypeID: 1
+                  fieldName: Example value
+                  sharedByID: 1
+                  sharedWithID: 1
+                  sharedWithTypeID: 1
+                  emailAddress: testuser@actionstreamer.com
+                  permissionList: Example value
+                  description: Example description
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 1
+                itemTypeID: 1
+                sharedItemObjectID: 1
+                collectionTypeID: 1
+                fieldName: Example value
+                sharedByID: 1
+                sharedWithID: 1
+                sharedWithTypeID: 1
+                emailAddress: testuser@actionstreamer.com
+                permissionList: Example value
+                description: Example description
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1ShareddevicegroupList
+      x-operation-id-source: derived
+  /v1/devicegroup/treenode/list:
+    get:
+      tags:
+      - Device Group
+      summary: Get a list of device groups the user has created and all devices and device…
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TreeNode'
+                example:
+                - title: Example value
+                  key: Example value
+                  isLeaf: true
+                  selectable: true
+                  children:
+                  - title: null
+                    key: null
+                    isLeaf: null
+                    selectable: null
+                    children: null
+              example:
+              - title: Example value
+                key: Example value
+                isLeaf: true
+                selectable: true
+                children:
+                - title: null
+                  key: null
+                  isLeaf: null
+                  selectable: null
+                  children: null
+      operationId: getV1DevicegroupTreenodeList
+      x-operation-id-source: derived
+  /v1/devicegroup/tree:
+    get:
+      tags:
+      - Device Group
+      summary: Gets the device group tree
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TreeNode'
+              example:
+                title: Example value
+                key: Example value
+                isLeaf: true
+                selectable: true
+                children:
+                - title: Example value
+                  key: Example value
+                  isLeaf: true
+                  selectable: true
+                  children:
+                  - null
+      operationId: getV1DevicegroupTree
+      x-operation-id-source: derived
+  /v1/shareddevicegroup/tree:
+    get:
+      tags:
+      - Device Group
+      summary: Get a list of device groups the user has been added to by other users and all…
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TreeNode'
+              example:
+                title: Example value
+                key: Example value
+                isLeaf: true
+                selectable: true
+                children:
+                - title: Example value
+                  key: Example value
+                  isLeaf: true
+                  selectable: true
+                  children:
+                  - null
+      operationId: getV1ShareddevicegroupTree
+      x-operation-id-source: derived
+  /v1/shareddevicegroup/treenode/list:
+    get:
+      tags:
+      - Device Group
+      summary: Get a list of device groups the user has been added to by other users and all…
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TreeNode'
+                example:
+                - title: Example value
+                  key: Example value
+                  isLeaf: true
+                  selectable: true
+                  children:
+                  - title: null
+                    key: null
+                    isLeaf: null
+                    selectable: null
+                    children: null
+              example:
+              - title: Example value
+                key: Example value
+                isLeaf: true
+                selectable: true
+                children:
+                - title: null
+                  key: null
+                  isLeaf: null
+                  selectable: null
+                  children: null
+      operationId: getV1ShareddevicegroupTreenodeList
+      x-operation-id-source: derived
+  /v1/devicegroup/{deviceGroupID}/device/{deviceID}:
+    post:
+      tags:
+      - Device Group
+      summary: Adds a device to a device group
+      parameters:
+      - name: deviceGroupID
+        in: path
+        description: The device group ID.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      - name: deviceID
+        in: path
+        description: The device ID to add to the group.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: postV1DevicegroupByDeviceGroupIDDeviceByDeviceID
+      x-operation-id-source: derived
+  /v1/devicegroup/share:
+    post:
+      tags:
+      - Device Group
+      summary: Creates a shared-device-group permission entry
+      description: 'Request body: JSON object.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSharedDeviceGroup'
+            example:
+              deviceGroupID: 1
+              emailAddress: testuser@actionstreamer.com
+              permissionList: Example value
+        required: true
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: postV1DevicegroupShare
+      x-operation-id-source: derived
+components:
+  schemas:
+    SharedItem:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        itemTypeID:
+          type: integer
+          format: int64
+          example: 1
+        sharedItemObjectID:
+          type: integer
+          format: int64
+          example: 1
+        collectionTypeID:
+          type: integer
+          format: int64
+          example: 1
+        fieldName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        sharedByID:
+          type: integer
+          format: int64
+          example: 1
+        sharedWithID:
+          type: integer
+          format: int64
+          example: 1
+        sharedWithTypeID:
+          type: integer
+          format: int64
+          example: 1
+        emailAddress:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        permissionList:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        description:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        itemTypeID: 1
+        sharedItemObjectID: 1
+        collectionTypeID: 1
+        fieldName: Example value
+        sharedByID: 1
+        sharedWithID: 1
+        sharedWithTypeID: 1
+        emailAddress: testuser@actionstreamer.com
+        permissionList: Example value
+        description: Example description
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+    Device:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        deviceTypeID:
+          type: integer
+          format: int64
+          example: 1
+        deviceName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        serialNumber:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        deviceDescription:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        recentOutput:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        cameraStatus:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        lastIPAddress:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        tunnelIPAddress:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        lastHeardFromDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        offlineNotificationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        softwareDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        location:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        setupStatus:
+          type: integer
+          format: int64
+          example: 1
+        autoSendFiles:
+          type: integer
+          format: int64
+          example: 1
+        runStartupEvent:
+          type: integer
+          format: int64
+          example: 1
+        deviceReadyEventPresetID:
+          type: integer
+          format: int64
+          example: 1
+        standaloneEventPresetID:
+          type: integer
+          format: int64
+          example: 1
+        logHealth:
+          type: integer
+          format: int64
+          example: 1
+        runAnalytics:
+          type: integer
+          format: int64
+          example: 1
+        audioChannelName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        volume:
+          type: integer
+          format: int64
+          example: 1
+        commentListID:
+          type: integer
+          format: int64
+          example: 1
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 201
+        deviceTypeID: 1
+        deviceName: WearableDevice
+        serialNumber: '10001234'
+        deviceDescription: Example description
+        recentOutput: Agent started successfully.
+        cameraStatus: online
+        lastIPAddress: 203.0.113.42
+        tunnelIPAddress: 203.0.113.42
+        lastHeardFromDate: '2026-03-30T12:00:00.0000000Z'
+        offlineNotificationDate: '2026-03-30T12:00:00.0000000Z'
+        softwareDate: '2026-03-30T12:00:00.0000000Z'
+        location: Remote site
+        setupStatus: 1
+        autoSendFiles: 1
+        runStartupEvent: 1
+        deviceReadyEventPresetID: 1
+        standaloneEventPresetID: 1
+        logHealth: 1
+        runAnalytics: 1
+        audioChannelName: Example value
+        volume: 75
+        commentListID: 1
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+    CreateSharedDeviceGroup:
+      type: object
+      properties:
+        deviceGroupID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        emailAddress:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        permissionList:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        deviceGroupID: 1
+        emailAddress: testuser@actionstreamer.com
+        permissionList: Example value
+    StringArg:
+      type: object
+      properties:
+        value:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        value: Example value
+    Collection:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        collectionName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        description:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        itemTypeID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        itemID:
+          type: integer
+          format: int64
+          example: 1
+        parentID:
+          type: integer
+          format: int64
+          example: 1
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        collectionName: Example value
+        description: Example description
+        itemTypeID: 1
+        itemID: 1
+        parentID: 1
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+    TreeNode:
+      type: object
+      properties:
+        title:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        key:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        isLeaf:
+          type: boolean
+          example: true
+        selectable:
+          type: boolean
+          example: true
+        children:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/TreeNode'
+          example:
+          - title: Example value
+            key: Example value
+            isLeaf: true
+            selectable: true
+            children:
+            - title: null
+              key: null
+              isLeaf: null
+              selectable: null
+              children: null
+      additionalProperties: false
+      example:
+        title: Example value
+        key: Example value
+        isLeaf: true
+        selectable: true
+        children:
+        - title: Example value
+          key: Example value
+          isLeaf: true
+          selectable: true
+          children:
+          - null

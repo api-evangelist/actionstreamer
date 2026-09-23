@@ -1,0 +1,25 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Register API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: Register
+paths:
+  /v1/register:
+    post:
+      tags:
+      - Register
+      summary: Registers a new user
+      description: 'Request body: JSON object with `emailAddress`, `password`, and `invitationCode`.
+
+        In standalone environments, new users are activated immediately.'
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: postV1Register
+      x-operation-id-source: derived

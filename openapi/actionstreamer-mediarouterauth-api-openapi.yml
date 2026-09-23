@@ -1,0 +1,104 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Media Router Auth API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: MediaRouterAuth
+paths:
+  /v1/mediarouter/auth:
+    post:
+      tags:
+      - MediaRouterAuth
+      summary: Authorizes a media router request
+      description: 'Request body: JSON object with media router request fields.
+
+        Read requests are accepted for the requested path.
+
+        Other requests must provide valid media router credentials or token data.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MediaRouterAuthRequest'
+            example:
+              user: Example value
+              password: ExamplePassword123!
+              token: example-token
+              action: publish
+              path: Example value
+              protocol: srt
+              ip: Example value
+              id: Example value
+              query: Example value
+        required: true
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: postV1MediarouterAuth
+      x-operation-id-source: derived
+components:
+  schemas:
+    MediaRouterAuthRequest:
+      type: object
+      properties:
+        user:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        password:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        token:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        action:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        path:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        protocol:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        ip:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        id:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        query:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        user: Example value
+        password: ExamplePassword123!
+        token: example-token
+        action: publish
+        path: Example value
+        protocol: srt
+        ip: Example value
+        id: Example value
+        query: Example value

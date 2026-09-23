@@ -1,0 +1,346 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Log Message API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: LogMessage
+paths:
+  /v1/logmessage/{logMessageID}:
+    get:
+      tags:
+      - LogMessage
+      summary: Gets a log message by ID
+      parameters:
+      - name: logMessageID
+        in: path
+        description: The log message ID.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogMessage'
+              example:
+                key: 1
+                deviceID: 201
+                agentID: 1
+                processID: 4321
+                version: 1.0.0
+                message: Example value
+                messageDate: '2026-03-30T12:00:00.0000000Z'
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1LogmessageByLogMessageID
+      x-operation-id-source: derived
+  /v1/logmessage/list:
+    post:
+      tags:
+      - LogMessage
+      summary: Gets the log message list
+      description: 'Request body: JSON object with the device and date range to query.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DateAndCountFilter'
+            example:
+              deviceID: 201
+              startDate: '2026-03-30T12:00:00.0000000Z'
+              endDate: '2026-03-30T12:00:00.0000000Z'
+              count: 25
+              order: Example value
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LogMessageWithNames'
+                example:
+                - key: 1
+                  userID: 101
+                  deviceID: 201
+                  agentID: 1
+                  processID: 4321
+                  version: 1.0.0
+                  message: Example value
+                  messageDate: '2026-03-30T12:00:00.0000000Z'
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+                  deviceName: WearableDevice
+                  agentType: Device
+                  agentIndex: 1
+              example:
+              - key: 1
+                deviceID: 201
+                agentID: 1
+                processID: 4321
+                version: 1.0.0
+                message: Example value
+                messageDate: '2026-03-30T12:00:00.0000000Z'
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+                deviceName: WearableDevice
+                agentType: Device
+                agentIndex: 1
+      operationId: postV1LogmessageList
+      x-operation-id-source: derived
+  /v1/logmessage:
+    post:
+      tags:
+      - LogMessage
+      summary: Creates a log message
+      description: 'Request body: JSON object.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateLogMessage'
+            example:
+              deviceName: WearableDevice
+              agentType: Device
+              agentVersion: 1.0.0
+              agentIndex: 1
+              processID: 4321
+              message: Example value
+              logDate: '2026-03-30T12:00:00.0000000Z'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogMessage'
+              example:
+                key: 1
+                deviceID: 201
+                agentID: 1
+                processID: 4321
+                version: 1.0.0
+                message: Example value
+                messageDate: '2026-03-30T12:00:00.0000000Z'
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1Logmessage
+      x-operation-id-source: derived
+components:
+  schemas:
+    LogMessageWithNames:
+      type: object
+      properties:
+        deviceName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        agentType:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        agentIndex:
+          type: integer
+          format: int64
+          example: 1
+        key:
+          type: integer
+          format: int64
+          example: 1
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        agentID:
+          type: integer
+          format: int64
+          example: 1
+        processID:
+          type: integer
+          format: int64
+          example: 1
+        version:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        message:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        messageDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        deviceID: 201
+        agentID: 1
+        processID: 4321
+        version: 1.0.0
+        message: Example value
+        messageDate: '2026-03-30T12:00:00.0000000Z'
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+        deviceName: WearableDevice
+        agentType: Device
+        agentIndex: 1
+    CreateLogMessage:
+      type: object
+      properties:
+        deviceName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        agentType:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        agentVersion:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        agentIndex:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        processID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        message:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        logDate:
+          type: string
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        deviceName: WearableDevice
+        agentType: Device
+        agentVersion: 1.0.0
+        agentIndex: 1
+        processID: 4321
+        message: Example value
+        logDate: '2026-03-30T12:00:00.0000000Z'
+    DateAndCountFilter:
+      type: object
+      properties:
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        startDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        endDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        count:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        order:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        deviceID: 201
+        startDate: '2026-03-30T12:00:00.0000000Z'
+        endDate: '2026-03-30T12:00:00.0000000Z'
+        count: 25
+        order: Example value
+    LogMessage:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        agentID:
+          type: integer
+          format: int64
+          example: 1
+        processID:
+          type: integer
+          format: int64
+          example: 1
+        version:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        message:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        messageDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        deviceID: 201
+        agentID: 1
+        processID: 4321
+        version: 1.0.0
+        message: Example value
+        messageDate: '2026-03-30T12:00:00.0000000Z'
+        creationDate: '2026-03-30T12:00:00.0000000Z'

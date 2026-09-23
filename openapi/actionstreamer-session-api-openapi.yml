@@ -1,0 +1,219 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Session API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: Session
+paths:
+  /v1/session:
+    get:
+      tags:
+      - Session
+      summary: Gets the current session information
+      description: 'Returns a JSON object where `name` is `MFAType` and
+
+        `value` is the current MFA type ID for the session.'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NameValuePair'
+              example:
+                name: RemoteWorker
+                value: Example value
+      operationId: getV1Session
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - Session
+      summary: Deletes the current session
+      description: Signs out the current session.
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: deleteV1Session
+      x-operation-id-source: derived
+    post:
+      tags:
+      - Session
+      summary: Creates a session
+      description: 'Expects an HTTP Basic Authorization header containing the username and password. On success, returns a
+
+        session payload containing the session GUID and MFA information.'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateSessionResult'
+              example:
+                sessionGuid: 11111111-2222-3333-4444-555555555555
+                mfaTypeId: 1
+                browserGUID: 11111111-2222-3333-4444-555555555555
+      operationId: postV1Session
+      x-operation-id-source: derived
+  /v1/session/list:
+    get:
+      tags:
+      - Session
+      summary: Gets the session list
+      description: Returns sessions associated with the authenticated user.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Session'
+                example:
+                - key: 1
+                  sessionGUID: 11111111-2222-3333-4444-555555555555
+                  expirationDate: '2026-03-30T12:00:00.0000000Z'
+                  iPAddress: 203.0.113.42
+                  location: Remote site
+                  userAgent: Example value
+                  deviceDescription: Example description
+                  awaitingMFA: 1
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+              example:
+              - key: 1
+                sessionGUID: 11111111-2222-3333-4444-555555555555
+                expirationDate: '2026-03-30T12:00:00.0000000Z'
+                iPAddress: 203.0.113.42
+                location: Remote site
+                userAgent: Example value
+                deviceDescription: Example description
+                awaitingMFA: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1SessionList
+      x-operation-id-source: derived
+  /v1/session/{sessionID}:
+    delete:
+      tags:
+      - Session
+      summary: Deletes a session by ID
+      parameters:
+      - name: sessionID
+        in: path
+        description: The ID of the session to delete.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: deleteV1SessionBySessionID
+      x-operation-id-source: derived
+components:
+  schemas:
+    Session:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        sessionGUID:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        expirationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        iPAddress:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        location:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        userAgent:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        deviceDescription:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        awaitingMFA:
+          type: integer
+          format: int64
+          example: 1
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        sessionGUID: 11111111-2222-3333-4444-555555555555
+        expirationDate: '2026-03-30T12:00:00.0000000Z'
+        iPAddress: 203.0.113.42
+        location: Remote site
+        userAgent: Example value
+        deviceDescription: Example description
+        awaitingMFA: 1
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+    CreateSessionResult:
+      type: object
+      properties:
+        sessionGuid:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        mfaTypeId:
+          type: integer
+          format: int64
+          example: 1
+        browserGUID:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        sessionGuid: 11111111-2222-3333-4444-555555555555
+        mfaTypeId: 1
+        browserGUID: 11111111-2222-3333-4444-555555555555
+    NameValuePair:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        value:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        name: RemoteWorker
+        value: Example value

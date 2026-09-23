@@ -1,0 +1,73 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Permission Type API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: PermissionType
+paths:
+  /v1/permissiontype/list:
+    get:
+      tags:
+      - PermissionType
+      summary: Gets the permission type list
+      description: Returns the supported permission types.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PermissionType'
+                example:
+                - key: 1
+                  permissionTypeName: Example value
+                  description: Example description
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 1
+                permissionTypeName: Example value
+                description: Example description
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1PermissiontypeList
+      x-operation-id-source: derived
+components:
+  schemas:
+    PermissionType:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        permissionTypeName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        description:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        permissionTypeName: Example value
+        description: Example description
+        creationDate: '2026-03-30T12:00:00.0000000Z'

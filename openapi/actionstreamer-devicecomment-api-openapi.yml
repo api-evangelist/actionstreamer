@@ -1,0 +1,283 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Device Comment API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: DeviceComment
+paths:
+  /v1/device/{deviceID}/comment/{commentID}:
+    get:
+      tags:
+      - DeviceComment
+      summary: Gets a device comment by ID
+      parameters:
+      - name: deviceID
+        in: path
+        description: The ID of the device that owns the comment list.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      - name: commentID
+        in: path
+        description: The ID of the comment to retrieve.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+              example:
+                key: 1
+                commentText: Example value
+                commentDate: '2026-03-30T12:00:00.0000000Z'
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1DeviceByDeviceIDCommentByCommentID
+      x-operation-id-source: derived
+    put:
+      tags:
+      - DeviceComment
+      summary: Updates a device comment
+      description: 'Request body: JSON object. This endpoint updates the comment text from
+
+        `value` after HTML-encoding it, and only the comment creator can update the comment.'
+      parameters:
+      - name: deviceID
+        in: path
+        description: The ID of the device that owns the comment.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      - name: commentID
+        in: path
+        description: The ID of the comment to update.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StringArg'
+            example:
+              value: Example value
+        required: true
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: putV1DeviceByDeviceIDCommentByCommentID
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - DeviceComment
+      summary: Deletes a device comment
+      description: 'The caller must have write access to the device, and only the comment owner can
+
+        delete the comment.'
+      parameters:
+      - name: deviceID
+        in: path
+        description: The ID of the device that owns the comment.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      - name: commentID
+        in: path
+        description: The ID of the comment to delete.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: deleteV1DeviceByDeviceIDCommentByCommentID
+      x-operation-id-source: derived
+  /v1/device/{deviceID}/comment/list:
+    get:
+      tags:
+      - DeviceComment
+      summary: Gets the device comment list
+      parameters:
+      - name: deviceID
+        in: path
+        description: The ID of the device whose comments should be returned.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CommentWithNames'
+                example:
+                - key: 1
+                  userID: 101
+                  commentText: Example value
+                  commentDate: '2026-03-30T12:00:00.0000000Z'
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+                  username: testuser
+              example:
+              - key: 1
+                commentText: Example value
+                commentDate: '2026-03-30T12:00:00.0000000Z'
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+                username: testuser
+      operationId: getV1DeviceByDeviceIDCommentList
+      x-operation-id-source: derived
+  /v1/device/{deviceID}/comment:
+    post:
+      tags:
+      - DeviceComment
+      summary: Creates a device comment
+      description: 'Request body: JSON object. This endpoint stores the comment text from
+
+        `value` after HTML-encoding it. If the device does not already have a comment collection, one is
+
+        created automatically before the comment is added.'
+      parameters:
+      - name: deviceID
+        in: path
+        description: The ID of the device to comment on.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StringArg'
+            example:
+              value: Example value
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+              example:
+                key: 1
+                commentText: Example value
+                commentDate: '2026-03-30T12:00:00.0000000Z'
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1DeviceByDeviceIDComment
+      x-operation-id-source: derived
+components:
+  schemas:
+    Comment:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        commentText:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        commentDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        commentText: Example value
+        commentDate: '2026-03-30T12:00:00.0000000Z'
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+    CommentWithNames:
+      type: object
+      properties:
+        username:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        key:
+          type: integer
+          format: int64
+          example: 1
+        commentText:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        commentDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        commentText: Example value
+        commentDate: '2026-03-30T12:00:00.0000000Z'
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+        username: testuser
+    StringArg:
+      type: object
+      properties:
+        value:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        value: Example value

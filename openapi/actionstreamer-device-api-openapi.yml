@@ -1,0 +1,939 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Device API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: Device
+paths:
+  /v1/device/{deviceID}:
+    get:
+      tags:
+      - Device
+      summary: Gets a device by ID
+      parameters:
+      - name: deviceID
+        in: path
+        description: The device ID.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+              example:
+                key: 201
+                deviceTypeID: 1
+                deviceName: WearableDevice
+                serialNumber: '10001234'
+                deviceDescription: Example description
+                recentOutput: Agent started successfully.
+                cameraStatus: online
+                lastIPAddress: 203.0.113.42
+                tunnelIPAddress: 203.0.113.42
+                lastHeardFromDate: '2026-03-30T12:00:00.0000000Z'
+                offlineNotificationDate: '2026-03-30T12:00:00.0000000Z'
+                softwareDate: '2026-03-30T12:00:00.0000000Z'
+                location: Remote site
+                setupStatus: 1
+                autoSendFiles: 1
+                runStartupEvent: 1
+                deviceReadyEventPresetID: 1
+                standaloneEventPresetID: 1
+                logHealth: 1
+                runAnalytics: 1
+                audioChannelName: Example value
+                volume: 75
+                commentListID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1DeviceByDeviceID
+      x-operation-id-source: derived
+    put:
+      tags:
+      - Device
+      summary: Updates a device
+      parameters:
+      - name: deviceID
+        in: path
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Device'
+            example:
+              key: 201
+              deviceTypeID: 1
+              deviceName: WearableDevice
+              serialNumber: '10001234'
+              deviceDescription: Example description
+              recentOutput: Agent started successfully.
+              cameraStatus: online
+              lastIPAddress: 203.0.113.42
+              tunnelIPAddress: 203.0.113.42
+              lastHeardFromDate: '2026-03-30T12:00:00.0000000Z'
+              offlineNotificationDate: '2026-03-30T12:00:00.0000000Z'
+              softwareDate: '2026-03-30T12:00:00.0000000Z'
+              location: Remote site
+              setupStatus: 1
+              autoSendFiles: 1
+              runStartupEvent: 1
+              deviceReadyEventPresetID: 1
+              standaloneEventPresetID: 1
+              logHealth: 1
+              runAnalytics: 1
+              audioChannelName: Example value
+              volume: 75
+              commentListID: 1
+              creationDate: '2026-03-30T12:00:00.0000000Z'
+        required: true
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: putV1DeviceByDeviceID
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - Device
+      summary: Deletes a device
+      parameters:
+      - name: deviceID
+        in: path
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: deleteV1DeviceByDeviceID
+      x-operation-id-source: derived
+    patch:
+      tags:
+      - Device
+      summary: Applies a patch to a device
+      parameters:
+      - name: deviceID
+        in: path
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: patchV1DeviceByDeviceID
+      x-operation-id-source: derived
+  /v1/device/name:
+    post:
+      tags:
+      - Device
+      summary: Gets a device by name or serial number
+      description: 'Request body: JSON object.
+
+        The lookup first tries the serial number and then falls back to device name.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceNameArg'
+            example:
+              deviceName: WearableDevice
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+              example:
+                key: 201
+                deviceTypeID: 1
+                deviceName: WearableDevice
+                serialNumber: '10001234'
+                deviceDescription: Example description
+                recentOutput: Agent started successfully.
+                cameraStatus: online
+                lastIPAddress: 203.0.113.42
+                tunnelIPAddress: 203.0.113.42
+                lastHeardFromDate: '2026-03-30T12:00:00.0000000Z'
+                offlineNotificationDate: '2026-03-30T12:00:00.0000000Z'
+                softwareDate: '2026-03-30T12:00:00.0000000Z'
+                location: Remote site
+                setupStatus: 1
+                autoSendFiles: 1
+                runStartupEvent: 1
+                deviceReadyEventPresetID: 1
+                standaloneEventPresetID: 1
+                logHealth: 1
+                runAnalytics: 1
+                audioChannelName: Example value
+                volume: 75
+                commentListID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1DeviceName
+      x-operation-id-source: derived
+  /v1/device/list:
+    get:
+      tags:
+      - Device
+      summary: Gets the device list
+      description: 'Supports optional query parameters including `orderby`, `shared`, and `userid`.
+
+        Admins can use `userid` to retrieve another user''s device list.'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Device'
+                example:
+                - key: 201
+                  deviceTypeID: 1
+                  userID: 101
+                  deviceName: WearableDevice
+                  serialNumber: '10001234'
+                  deviceDescription: Example description
+                  recentOutput: Agent started successfully.
+                  cameraStatus: online
+                  lastIPAddress: 203.0.113.42
+                  tunnelIPAddress: 203.0.113.42
+                  lastHeardFromDate: '2026-03-30T12:00:00.0000000Z'
+                  offlineNotificationDate: '2026-03-30T12:00:00.0000000Z'
+                  softwareDate: '2026-03-30T12:00:00.0000000Z'
+                  location: Remote site
+                  setupStatus: 1
+                  autoSendFiles: 1
+                  runStartupEvent: 1
+                  deviceReadyEventPresetID: 1
+                  standaloneEventPresetID: 1
+                  logHealth: 1
+                  runAnalytics: 1
+                  audioChannelName: Example value
+                  volume: 75
+                  commentListID: 1
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 201
+                deviceTypeID: 1
+                deviceName: WearableDevice
+                serialNumber: '10001234'
+                deviceDescription: Example description
+                recentOutput: Agent started successfully.
+                cameraStatus: online
+                lastIPAddress: 203.0.113.42
+                tunnelIPAddress: 203.0.113.42
+                lastHeardFromDate: '2026-03-30T12:00:00.0000000Z'
+                offlineNotificationDate: '2026-03-30T12:00:00.0000000Z'
+                softwareDate: '2026-03-30T12:00:00.0000000Z'
+                location: Remote site
+                setupStatus: 1
+                autoSendFiles: 1
+                runStartupEvent: 1
+                deviceReadyEventPresetID: 1
+                standaloneEventPresetID: 1
+                logHealth: 1
+                runAnalytics: 1
+                audioChannelName: Example value
+                volume: 75
+                commentListID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1DeviceList
+      x-operation-id-source: derived
+  /v1/device/sharedwithme/list:
+    get:
+      tags:
+      - Device
+      summary: Get a list of devices shared with the logged in user
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Device'
+                example:
+                - key: 201
+                  deviceTypeID: 1
+                  userID: 101
+                  deviceName: WearableDevice
+                  serialNumber: '10001234'
+                  deviceDescription: Example description
+                  recentOutput: Agent started successfully.
+                  cameraStatus: online
+                  lastIPAddress: 203.0.113.42
+                  tunnelIPAddress: 203.0.113.42
+                  lastHeardFromDate: '2026-03-30T12:00:00.0000000Z'
+                  offlineNotificationDate: '2026-03-30T12:00:00.0000000Z'
+                  softwareDate: '2026-03-30T12:00:00.0000000Z'
+                  location: Remote site
+                  setupStatus: 1
+                  autoSendFiles: 1
+                  runStartupEvent: 1
+                  deviceReadyEventPresetID: 1
+                  standaloneEventPresetID: 1
+                  logHealth: 1
+                  runAnalytics: 1
+                  audioChannelName: Example value
+                  volume: 75
+                  commentListID: 1
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 201
+                deviceTypeID: 1
+                deviceName: WearableDevice
+                serialNumber: '10001234'
+                deviceDescription: Example description
+                recentOutput: Agent started successfully.
+                cameraStatus: online
+                lastIPAddress: 203.0.113.42
+                tunnelIPAddress: 203.0.113.42
+                lastHeardFromDate: '2026-03-30T12:00:00.0000000Z'
+                offlineNotificationDate: '2026-03-30T12:00:00.0000000Z'
+                softwareDate: '2026-03-30T12:00:00.0000000Z'
+                location: Remote site
+                setupStatus: 1
+                autoSendFiles: 1
+                runStartupEvent: 1
+                deviceReadyEventPresetID: 1
+                standaloneEventPresetID: 1
+                logHealth: 1
+                runAnalytics: 1
+                audioChannelName: Example value
+                volume: 75
+                commentListID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1DeviceSharedwithmeList
+      x-operation-id-source: derived
+  /v1/device/sharedbyme/list:
+    get:
+      tags:
+      - Device
+      summary: Get a list of devices shared by the logged in user
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Device'
+                example:
+                - key: 201
+                  deviceTypeID: 1
+                  userID: 101
+                  deviceName: WearableDevice
+                  serialNumber: '10001234'
+                  deviceDescription: Example description
+                  recentOutput: Agent started successfully.
+                  cameraStatus: online
+                  lastIPAddress: 203.0.113.42
+                  tunnelIPAddress: 203.0.113.42
+                  lastHeardFromDate: '2026-03-30T12:00:00.0000000Z'
+                  offlineNotificationDate: '2026-03-30T12:00:00.0000000Z'
+                  softwareDate: '2026-03-30T12:00:00.0000000Z'
+                  location: Remote site
+                  setupStatus: 1
+                  autoSendFiles: 1
+                  runStartupEvent: 1
+                  deviceReadyEventPresetID: 1
+                  standaloneEventPresetID: 1
+                  logHealth: 1
+                  runAnalytics: 1
+                  audioChannelName: Example value
+                  volume: 75
+                  commentListID: 1
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 201
+                deviceTypeID: 1
+                deviceName: WearableDevice
+                serialNumber: '10001234'
+                deviceDescription: Example description
+                recentOutput: Agent started successfully.
+                cameraStatus: online
+                lastIPAddress: 203.0.113.42
+                tunnelIPAddress: 203.0.113.42
+                lastHeardFromDate: '2026-03-30T12:00:00.0000000Z'
+                offlineNotificationDate: '2026-03-30T12:00:00.0000000Z'
+                softwareDate: '2026-03-30T12:00:00.0000000Z'
+                location: Remote site
+                setupStatus: 1
+                autoSendFiles: 1
+                runStartupEvent: 1
+                deviceReadyEventPresetID: 1
+                standaloneEventPresetID: 1
+                logHealth: 1
+                runAnalytics: 1
+                audioChannelName: Example value
+                volume: 75
+                commentListID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1DeviceSharedbymeList
+      x-operation-id-source: derived
+  /v1/device:
+    post:
+      tags:
+      - Device
+      summary: Creates a device
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Device'
+            example:
+              key: 201
+              deviceTypeID: 1
+              deviceName: WearableDevice
+              serialNumber: '10001234'
+              deviceDescription: Example description
+              recentOutput: Agent started successfully.
+              cameraStatus: online
+              lastIPAddress: 203.0.113.42
+              tunnelIPAddress: 203.0.113.42
+              lastHeardFromDate: '2026-03-30T12:00:00.0000000Z'
+              offlineNotificationDate: '2026-03-30T12:00:00.0000000Z'
+              softwareDate: '2026-03-30T12:00:00.0000000Z'
+              location: Remote site
+              setupStatus: 1
+              autoSendFiles: 1
+              runStartupEvent: 1
+              deviceReadyEventPresetID: 1
+              standaloneEventPresetID: 1
+              logHealth: 1
+              runAnalytics: 1
+              audioChannelName: Example value
+              volume: 75
+              commentListID: 1
+              creationDate: '2026-03-30T12:00:00.0000000Z'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+              example:
+                key: 201
+                deviceTypeID: 1
+                deviceName: WearableDevice
+                serialNumber: '10001234'
+                deviceDescription: Example description
+                recentOutput: Agent started successfully.
+                cameraStatus: online
+                lastIPAddress: 203.0.113.42
+                tunnelIPAddress: 203.0.113.42
+                lastHeardFromDate: '2026-03-30T12:00:00.0000000Z'
+                offlineNotificationDate: '2026-03-30T12:00:00.0000000Z'
+                softwareDate: '2026-03-30T12:00:00.0000000Z'
+                location: Remote site
+                setupStatus: 1
+                autoSendFiles: 1
+                runStartupEvent: 1
+                deviceReadyEventPresetID: 1
+                standaloneEventPresetID: 1
+                logHealth: 1
+                runAnalytics: 1
+                audioChannelName: Example value
+                volume: 75
+                commentListID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1Device
+      x-operation-id-source: derived
+  /v1/device/share:
+    post:
+      tags:
+      - Device
+      summary: Creates a shared-device permission entry
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSharedDevice'
+            example:
+              deviceID: 201
+              emailAddress: testuser@actionstreamer.com
+              permissionList: Example value
+        required: true
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: postV1DeviceShare
+      x-operation-id-source: derived
+  /v1/device/ready:
+    post:
+      tags:
+      - Device
+      summary: Marks a device as ready and returns the current device record
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterAgent'
+            example:
+              deviceName: WearableDevice
+              deviceSerial: '10001234'
+              agentType: Device
+              agentVersion: 1.0.0
+              agentIndex: 1
+              processID: 4321
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+              example:
+                key: 201
+                deviceTypeID: 1
+                deviceName: WearableDevice
+                serialNumber: '10001234'
+                deviceDescription: Example description
+                recentOutput: Agent started successfully.
+                cameraStatus: online
+                lastIPAddress: 203.0.113.42
+                tunnelIPAddress: 203.0.113.42
+                lastHeardFromDate: '2026-03-30T12:00:00.0000000Z'
+                offlineNotificationDate: '2026-03-30T12:00:00.0000000Z'
+                softwareDate: '2026-03-30T12:00:00.0000000Z'
+                location: Remote site
+                setupStatus: 1
+                autoSendFiles: 1
+                runStartupEvent: 1
+                deviceReadyEventPresetID: 1
+                standaloneEventPresetID: 1
+                logHealth: 1
+                runAnalytics: 1
+                audioChannelName: Example value
+                volume: 75
+                commentListID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1DeviceReady
+      x-operation-id-source: derived
+  /v1/device/{deviceID}/transfer:
+    post:
+      tags:
+      - Device
+      summary: Transfers a device to another user
+      description: 'Request body: JSON object.
+
+        This endpoint is session-only and admin-only.'
+      parameters:
+      - name: deviceID
+        in: path
+        description: The device ID to transfer.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransferDeviceArgs'
+            example:
+              newAPIKey: Example value
+              newSecretKey: Example value
+              environment: Example value
+              webServiceBaseUrl: https://api.actionstreamer.com/example
+        required: true
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: postV1DeviceByDeviceIDTransfer
+      x-operation-id-source: derived
+  /v1/device/{deviceID}/runanalytics/{runAnalytics}:
+    post:
+      tags:
+      - Device
+      summary: Sets the device analytics state and queues any required event
+      parameters:
+      - name: deviceID
+        in: path
+        description: The device ID.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      - name: runAnalytics
+        in: path
+        description: Use 0 to disable analytics and 1 to enable analytics.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                EventID: 101
+      operationId: postV1DeviceByDeviceIDRunanalyticsByRunAnalytics
+      x-operation-id-source: derived
+  /v1/device/list/all:
+    get:
+      tags:
+      - Device
+      summary: Gets the full device list available to the authenticated user
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Device'
+                example:
+                - key: 201
+                  deviceTypeID: 1
+                  userID: 101
+                  deviceName: WearableDevice
+                  serialNumber: '10001234'
+                  deviceDescription: Example description
+                  recentOutput: Agent started successfully.
+                  cameraStatus: online
+                  lastIPAddress: 203.0.113.42
+                  tunnelIPAddress: 203.0.113.42
+                  lastHeardFromDate: '2026-03-30T12:00:00.0000000Z'
+                  offlineNotificationDate: '2026-03-30T12:00:00.0000000Z'
+                  softwareDate: '2026-03-30T12:00:00.0000000Z'
+                  location: Remote site
+                  setupStatus: 1
+                  autoSendFiles: 1
+                  runStartupEvent: 1
+                  deviceReadyEventPresetID: 1
+                  standaloneEventPresetID: 1
+                  logHealth: 1
+                  runAnalytics: 1
+                  audioChannelName: Example value
+                  volume: 75
+                  commentListID: 1
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 201
+                deviceTypeID: 1
+                deviceName: WearableDevice
+                serialNumber: '10001234'
+                deviceDescription: Example description
+                recentOutput: Agent started successfully.
+                cameraStatus: online
+                lastIPAddress: 203.0.113.42
+                tunnelIPAddress: 203.0.113.42
+                lastHeardFromDate: '2026-03-30T12:00:00.0000000Z'
+                offlineNotificationDate: '2026-03-30T12:00:00.0000000Z'
+                softwareDate: '2026-03-30T12:00:00.0000000Z'
+                location: Remote site
+                setupStatus: 1
+                autoSendFiles: 1
+                runStartupEvent: 1
+                deviceReadyEventPresetID: 1
+                standaloneEventPresetID: 1
+                logHealth: 1
+                runAnalytics: 1
+                audioChannelName: Example value
+                volume: 75
+                commentListID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1DeviceListAll
+      x-operation-id-source: derived
+components:
+  schemas:
+    Device:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        deviceTypeID:
+          type: integer
+          format: int64
+          example: 1
+        deviceName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        serialNumber:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        deviceDescription:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        recentOutput:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        cameraStatus:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        lastIPAddress:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        tunnelIPAddress:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        lastHeardFromDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        offlineNotificationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        softwareDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        location:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        setupStatus:
+          type: integer
+          format: int64
+          example: 1
+        autoSendFiles:
+          type: integer
+          format: int64
+          example: 1
+        runStartupEvent:
+          type: integer
+          format: int64
+          example: 1
+        deviceReadyEventPresetID:
+          type: integer
+          format: int64
+          example: 1
+        standaloneEventPresetID:
+          type: integer
+          format: int64
+          example: 1
+        logHealth:
+          type: integer
+          format: int64
+          example: 1
+        runAnalytics:
+          type: integer
+          format: int64
+          example: 1
+        audioChannelName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        volume:
+          type: integer
+          format: int64
+          example: 1
+        commentListID:
+          type: integer
+          format: int64
+          example: 1
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 201
+        deviceTypeID: 1
+        deviceName: WearableDevice
+        serialNumber: '10001234'
+        deviceDescription: Example description
+        recentOutput: Agent started successfully.
+        cameraStatus: online
+        lastIPAddress: 203.0.113.42
+        tunnelIPAddress: 203.0.113.42
+        lastHeardFromDate: '2026-03-30T12:00:00.0000000Z'
+        offlineNotificationDate: '2026-03-30T12:00:00.0000000Z'
+        softwareDate: '2026-03-30T12:00:00.0000000Z'
+        location: Remote site
+        setupStatus: 1
+        autoSendFiles: 1
+        runStartupEvent: 1
+        deviceReadyEventPresetID: 1
+        standaloneEventPresetID: 1
+        logHealth: 1
+        runAnalytics: 1
+        audioChannelName: Example value
+        volume: 75
+        commentListID: 1
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+    TransferDeviceArgs:
+      type: object
+      properties:
+        newAPIKey:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        newSecretKey:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        environment:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        webServiceBaseUrl:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        newAPIKey: Example value
+        newSecretKey: Example value
+        environment: Example value
+        webServiceBaseUrl: https://api.actionstreamer.com/example
+    RegisterAgent:
+      type: object
+      properties:
+        deviceName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        deviceSerial:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        agentType:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        agentVersion:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        agentIndex:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        processID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+      additionalProperties: false
+      example:
+        deviceName: WearableDevice
+        deviceSerial: '10001234'
+        agentType: Device
+        agentVersion: 1.0.0
+        agentIndex: 1
+        processID: 4321
+    CreateSharedDevice:
+      type: object
+      properties:
+        deviceID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        emailAddress:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        permissionList:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        deviceID: 201
+        emailAddress: testuser@actionstreamer.com
+        permissionList: Example value
+    DeviceNameArg:
+      type: object
+      properties:
+        deviceName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        deviceName: WearableDevice
