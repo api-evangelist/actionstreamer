@@ -794,589 +794,24 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Event:
+    CaptionSearch:
       type: object
       properties:
-        key:
-          type: integer
-          format: int64
-          example: 1
-        deviceID:
-          type: integer
-          format: int64
-          example: 1
-        agentTypeID:
-          type: integer
-          format: int64
-          example: 1
-        agentID:
-          type: integer
-          format: int64
-          example: 1
-        eventTypeID:
-          type: integer
-          format: int64
-          example: 1
-        serverEvent:
-          type: integer
-          format: int64
-          example: 1
-        eventStatus:
-          type: integer
-          format: int64
-          example: 1
-        eventParameters:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        processID:
-          type: integer
-          format: int64
-          example: 1
-        result:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        percentComplete:
-          type: number
-          format: double
-          example: 1
-        priority:
-          type: integer
-          format: int64
-          example: 1
-        expirationEpoch:
-          type: integer
-          format: int64
-          example: 1
-        attemptNumber:
-          type: integer
-          format: int64
-          example: 1
-        maxAttempts:
-          type: integer
-          format: int64
-          example: 1
-        tagString:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        tagNumber:
-          type: integer
-          format: int64
-          example: 1
-        creationDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2026-03-30T12:00:00.0000000Z'
-      additionalProperties: false
-      example:
-        key: 501
-        deviceID: 201
-        agentTypeID: 1
-        agentID: 1
-        eventTypeID: 1
-        serverEvent: 1
-        eventStatus: 1
-        eventParameters: '{"presetName":"Run Event Preset"}'
-        processID: 4321
-        result: Example value
-        percentComplete: 42.5
-        priority: 1
-        expirationEpoch: 1711800000
-        attemptNumber: 1
-        maxAttempts: 3
-        tagString: Example value
-        tagNumber: 1
-        creationDate: '2026-03-30T12:00:00.0000000Z'
-    UploadAudioClips:
-      type: object
-      properties:
-        deviceID:
-          type: integer
-          format: int64
-          example: 1
-        audioClips:
-          type:
-          - array
-          - 'null'
-          items:
-            type: integer
-            format: int32
-            example: 1
-          example:
-          - 1
-      additionalProperties: false
-      example:
-        deviceID: 201
-        audioClips:
-        - 1
-    AudioClipWithCaption:
-      type: object
-      properties:
-        captionID:
-          type: integer
-          format: int64
-          example: 1
-        transcript:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        key:
-          type: integer
-          format: int64
-          example: 1
-        deviceID:
-          type: integer
-          format: int64
-          example: 1
-        fileID:
-          type: integer
-          format: int64
-          example: 1
-        audioClipStatus:
-          type: integer
-          format: int64
-          example: 1
-        audioClipTypeID:
-          type: integer
-          format: int64
-          example: 1
-        audioClipParameters:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        localFilePath:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        fileSize:
-          type: integer
-          format: int64
-          example: 1
-        bitrate:
-          type: integer
-          format: int64
-          example: 1
-        startTime:
-          type: integer
-          format: int64
-          example: 1
-        startTimeMs:
-          type: integer
-          format: int64
-          example: 1
-        endTime:
-          type: integer
-          format: int64
-          example: 1
-        endTimeMs:
-          type: integer
-          format: int64
-          example: 1
-        clipLengthInSeconds:
-          type: number
-          format: double
-          example: 1
-        tagListID:
-          type: integer
-          format: int64
-          example: 1
-        creationDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2026-03-30T12:00:00.0000000Z'
-      additionalProperties: false
-      example:
-        key: 1
-        deviceID: 201
-        fileID: 1
-        audioClipStatus: 1
-        audioClipTypeID: 1
-        audioClipParameters: Example value
-        localFilePath: Example value
-        fileSize: 1
-        bitrate: 1
-        startTime: 1
-        startTimeMs: 1
-        endTime: 1
-        endTimeMs: 1
-        clipLengthInSeconds: 1
-        tagListID: 1
-        creationDate: '2026-03-30T12:00:00.0000000Z'
-        captionID: 1
-        transcript: Example value
-    CreateAudioClip:
-      type: object
-      properties:
-        deviceID:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        deviceName:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        fileID:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        localFilePath:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        startTime:
-          type: integer
-          format: int64
-          example: 1
-        startTimeMs:
-          type: integer
-          format: int64
-          example: 1
-        clipLengthInSeconds:
-          type: number
-          format: double
-          example: 1
-        audioClipStatus:
-          type: integer
-          format: int64
-          example: 1
-        audioClipTypeID:
-          type: integer
-          format: int64
-          example: 1
-        audioClipParameters:
-          type:
-          - string
-          - 'null'
-          example: Example value
-      additionalProperties: false
-      example:
-        deviceID: 201
-        deviceName: WearableDevice
-        fileID: 1
-        localFilePath: Example value
-        startTime: 1
-        startTimeMs: 1
-        clipLengthInSeconds: 1
-        audioClipStatus: 1
-        audioClipTypeID: 1
-        audioClipParameters: Example value
-    AudioClipTagWithNames:
-      type: object
-      properties:
-        tagName:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        key:
-          type: integer
-          format: int64
-          example: 1
-        audioClipID:
-          type: integer
-          format: int64
-          example: 1
-        deviceID:
-          type: integer
-          format: int64
-          example: 1
-        tagID:
-          type: integer
-          format: int64
-          example: 1
-        timestamp:
-          type: integer
-          format: int64
-          example: 1
-        timestampMs:
-          type: integer
-          format: int64
-          example: 1
-        confidence:
-          type: number
-          format: double
-          example: 1
-        creationDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2026-03-30T12:00:00.0000000Z'
-      additionalProperties: false
-      example:
-        key: 1
-        audioClipID: 1
-        deviceID: 201
-        tagID: 1
-        timestamp: 1
-        timestampMs: 1
-        confidence: 98.4
-        creationDate: '2026-03-30T12:00:00.0000000Z'
-        tagName: Example value
-    AudioClipEpochAndCountFilter:
-      type: object
-      properties:
-        deviceID:
-          type: integer
-          format: int64
-          example: 1
-        startEpoch:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        endEpoch:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        count:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        order:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        audioClipTypeID:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        tagList:
-          type:
-          - array
-          - 'null'
-          items:
-            type: integer
-            format: int64
-            example: 1
-          example:
-          - 1
-      additionalProperties: false
-      example:
-        deviceID: 201
-        startEpoch: 1711800000
-        endEpoch: 1711800000
-        count: 25
-        order: Example value
-        audioClipTypeID: 1
-        tagList:
-        - 1
-    DeviceEpochRange:
-      type: object
-      properties:
-        deviceSerial:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        startEpoch:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        endEpoch:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-      additionalProperties: false
-      example:
-        deviceSerial: '10001234'
-        startEpoch: 1711800000
-        endEpoch: 1711800000
-    AudioClip:
-      type: object
-      properties:
-        key:
-          type: integer
-          format: int64
-          example: 1
-        deviceID:
-          type: integer
-          format: int64
-          example: 1
-        fileID:
-          type: integer
-          format: int64
-          example: 1
-        audioClipStatus:
-          type: integer
-          format: int64
-          example: 1
-        audioClipTypeID:
-          type: integer
-          format: int64
-          example: 1
-        audioClipParameters:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        localFilePath:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        fileSize:
-          type: integer
-          format: int64
-          example: 1
-        bitrate:
-          type: integer
-          format: int64
-          example: 1
-        startTime:
-          type: integer
-          format: int64
-          example: 1
-        startTimeMs:
-          type: integer
-          format: int64
-          example: 1
-        endTime:
-          type: integer
-          format: int64
-          example: 1
-        endTimeMs:
-          type: integer
-          format: int64
-          example: 1
-        clipLengthInSeconds:
-          type: number
-          format: double
-          example: 1
-        tagListID:
-          type: integer
-          format: int64
-          example: 1
-        creationDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2026-03-30T12:00:00.0000000Z'
-      additionalProperties: false
-      example:
-        key: 1
-        deviceID: 201
-        fileID: 1
-        audioClipStatus: 1
-        audioClipTypeID: 1
-        audioClipParameters: Example value
-        localFilePath: Example value
-        fileSize: 1
-        bitrate: 1
-        startTime: 1
-        startTimeMs: 1
-        endTime: 1
-        endTimeMs: 1
-        clipLengthInSeconds: 1
-        tagListID: 1
-        creationDate: '2026-03-30T12:00:00.0000000Z'
-    GetTagListForDeviceList:
-      type: object
-      properties:
-        deviceIDList:
-          type:
-          - array
-          - 'null'
-          items:
-            type: integer
-            format: int64
-            example: 1
-          example:
-          - 1
-        tagIDList:
-          type:
-          - array
-          - 'null'
-          items:
-            type: integer
-            format: int64
-            example: 1
-          example:
-          - 1
-        startEpoch:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        endEpoch:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        count:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        order:
-          type:
-          - string
-          - 'null'
-          example: Example value
         searchText:
           type:
           - string
           - 'null'
           example: Example value
-      additionalProperties: false
-      example:
         deviceIDList:
-        - 1
-        tagIDList:
-        - 1
-        startEpoch: 1711800000
-        endEpoch: 1711800000
-        count: 25
-        order: Example value
-        searchText: Example value
-    ConcatenateAudioClipsArgs:
-      type: object
-      properties:
-        deviceID:
           type:
-          - integer
+          - array
           - 'null'
-          format: int64
-          example: 1
-        deviceName:
-          type:
-          - string
-          - 'null'
-          example: Example value
+          items:
+            type: integer
+            format: int64
+            example: 1
+          example:
+          - 1
         startEpoch:
           type:
           - integer
@@ -1389,174 +824,13 @@ components:
           - 'null'
           format: int64
           example: 1
-        uploadURL:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        postbackURL:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        timeout:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        audioClips:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/AudioClip'
-          example:
-          - key: 1
-            userID: 101
-            deviceID: 201
-            fileID: 1
-            audioClipStatus: 1
-            audioClipTypeID: 1
-            audioClipParameters: Example value
-            localFilePath: Example value
-            fileSize: 1
-            bitrate: 1
-            startTime: 1
-            startTimeMs: 1
-            endTime: 1
-            endTimeMs: 1
-            clipLengthInSeconds: 1
-            tagListID: 1
-            creationDate: '2026-03-30T12:00:00.0000000Z'
-            createdBy: 1
-            lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
-            lastModifiedBy: 1
       additionalProperties: false
       example:
-        deviceID: 201
-        deviceName: WearableDevice
+        searchText: Example value
+        deviceIDList:
+        - 1
         startEpoch: 1711800000
         endEpoch: 1711800000
-        uploadURL: https://api.actionstreamer.com/example
-        postbackURL: https://api.actionstreamer.com/example
-        timeout: Example value
-        audioClips:
-        - key: 1
-          deviceID: 201
-          fileID: 1
-          audioClipStatus: 1
-          audioClipTypeID: 1
-          audioClipParameters: Example value
-          localFilePath: Example value
-          fileSize: 1
-          bitrate: 1
-          startTime: 1
-          startTimeMs: 1
-          endTime: 1
-          endTimeMs: 1
-          clipLengthInSeconds: 1
-          tagListID: 1
-          creationDate: '2026-03-30T12:00:00.0000000Z'
-    AudioClipListWithTags:
-      type: object
-      properties:
-        audioClipList:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/AudioClipWithCaption'
-          example:
-          - key: 1
-            userID: 101
-            deviceID: 201
-            fileID: 1
-            audioClipStatus: 1
-            audioClipTypeID: 1
-            audioClipParameters: Example value
-            localFilePath: Example value
-            fileSize: 1
-            bitrate: 1
-            startTime: 1
-            startTimeMs: 1
-            endTime: 1
-            endTimeMs: 1
-            clipLengthInSeconds: 1
-            tagListID: 1
-            creationDate: '2026-03-30T12:00:00.0000000Z'
-            createdBy: 1
-            lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
-            lastModifiedBy: 1
-            captionID: 1
-            transcript: Example value
-        audioClipTagList:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/AudioClipTagWithNames'
-          example:
-          - key: 1
-            audioClipID: 1
-            userID: 101
-            deviceID: 201
-            tagID: 1
-            timestamp: 1
-            timestampMs: 1
-            confidence: 98.4
-            creationDate: '2026-03-30T12:00:00.0000000Z'
-            createdBy: 1
-            lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
-            lastModifiedBy: 1
-            tagName: Example value
-        tagList:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Tag'
-          example:
-          - key: 1
-            tagName: Example value
-            creationDate: '2026-03-30T12:00:00.0000000Z'
-            createdBy: 1
-            lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
-            lastModifiedBy: 1
-      additionalProperties: false
-      example:
-        audioClipList:
-        - key: 1
-          deviceID: 201
-          fileID: 1
-          audioClipStatus: 1
-          audioClipTypeID: 1
-          audioClipParameters: Example value
-          localFilePath: Example value
-          fileSize: 1
-          bitrate: 1
-          startTime: 1
-          startTimeMs: 1
-          endTime: 1
-          endTimeMs: 1
-          clipLengthInSeconds: 1
-          tagListID: 1
-          creationDate: '2026-03-30T12:00:00.0000000Z'
-          captionID: 1
-          transcript: Example value
-        audioClipTagList:
-        - key: 1
-          audioClipID: 1
-          deviceID: 201
-          tagID: 1
-          timestamp: 1
-          timestampMs: 1
-          confidence: 98.4
-          creationDate: '2026-03-30T12:00:00.0000000Z'
-          tagName: Example value
-        tagList:
-        - key: 1
-          tagName: Example value
-          creationDate: '2026-03-30T12:00:00.0000000Z'
     AudioClipWithNames:
       type: object
       properties:
@@ -1669,6 +943,338 @@ components:
         - key: 1
           tagName: Example value
           creationDate: '2026-03-30T12:00:00.0000000Z'
+    AudioClipEpochAndCountFilter:
+      type: object
+      properties:
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        startEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        endEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        count:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        order:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        audioClipTypeID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        tagList:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int64
+            example: 1
+          example:
+          - 1
+      additionalProperties: false
+      example:
+        deviceID: 201
+        startEpoch: 1711800000
+        endEpoch: 1711800000
+        count: 25
+        order: Example value
+        audioClipTypeID: 1
+        tagList:
+        - 1
+    AudioClipWithCaption:
+      type: object
+      properties:
+        captionID:
+          type: integer
+          format: int64
+          example: 1
+        transcript:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        key:
+          type: integer
+          format: int64
+          example: 1
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        fileID:
+          type: integer
+          format: int64
+          example: 1
+        audioClipStatus:
+          type: integer
+          format: int64
+          example: 1
+        audioClipTypeID:
+          type: integer
+          format: int64
+          example: 1
+        audioClipParameters:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        localFilePath:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        fileSize:
+          type: integer
+          format: int64
+          example: 1
+        bitrate:
+          type: integer
+          format: int64
+          example: 1
+        startTime:
+          type: integer
+          format: int64
+          example: 1
+        startTimeMs:
+          type: integer
+          format: int64
+          example: 1
+        endTime:
+          type: integer
+          format: int64
+          example: 1
+        endTimeMs:
+          type: integer
+          format: int64
+          example: 1
+        clipLengthInSeconds:
+          type: number
+          format: double
+          example: 1
+        tagListID:
+          type: integer
+          format: int64
+          example: 1
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        deviceID: 201
+        fileID: 1
+        audioClipStatus: 1
+        audioClipTypeID: 1
+        audioClipParameters: Example value
+        localFilePath: Example value
+        fileSize: 1
+        bitrate: 1
+        startTime: 1
+        startTimeMs: 1
+        endTime: 1
+        endTimeMs: 1
+        clipLengthInSeconds: 1
+        tagListID: 1
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+        captionID: 1
+        transcript: Example value
+    AudioClipTagWithNames:
+      type: object
+      properties:
+        tagName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        key:
+          type: integer
+          format: int64
+          example: 1
+        audioClipID:
+          type: integer
+          format: int64
+          example: 1
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        tagID:
+          type: integer
+          format: int64
+          example: 1
+        timestamp:
+          type: integer
+          format: int64
+          example: 1
+        timestampMs:
+          type: integer
+          format: int64
+          example: 1
+        confidence:
+          type: number
+          format: double
+          example: 1
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        audioClipID: 1
+        deviceID: 201
+        tagID: 1
+        timestamp: 1
+        timestampMs: 1
+        confidence: 98.4
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+        tagName: Example value
+    Tag:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        tagName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        tagName: Example value
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+    Event:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        agentTypeID:
+          type: integer
+          format: int64
+          example: 1
+        agentID:
+          type: integer
+          format: int64
+          example: 1
+        eventTypeID:
+          type: integer
+          format: int64
+          example: 1
+        serverEvent:
+          type: integer
+          format: int64
+          example: 1
+        eventStatus:
+          type: integer
+          format: int64
+          example: 1
+        eventParameters:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        processID:
+          type: integer
+          format: int64
+          example: 1
+        result:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        percentComplete:
+          type: number
+          format: double
+          example: 1
+        priority:
+          type: integer
+          format: int64
+          example: 1
+        expirationEpoch:
+          type: integer
+          format: int64
+          example: 1
+        attemptNumber:
+          type: integer
+          format: int64
+          example: 1
+        maxAttempts:
+          type: integer
+          format: int64
+          example: 1
+        tagString:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        tagNumber:
+          type: integer
+          format: int64
+          example: 1
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 501
+        deviceID: 201
+        agentTypeID: 1
+        agentID: 1
+        eventTypeID: 1
+        serverEvent: 1
+        eventStatus: 1
+        eventParameters: '{"presetName":"Run Event Preset"}'
+        processID: 4321
+        result: Example value
+        percentComplete: 42.5
+        priority: 1
+        expirationEpoch: 1711800000
+        attemptNumber: 1
+        maxAttempts: 3
+        tagString: Example value
+        tagNumber: 1
+        creationDate: '2026-03-30T12:00:00.0000000Z'
     DevicesEpochAndCountFilter:
       type: object
       properties:
@@ -1713,15 +1319,312 @@ components:
         endEpoch: 1711800000
         count: 25
         order: Example value
-    CaptionSearch:
+    ConcatenateAudioClipsArgs:
       type: object
       properties:
-        searchText:
+        deviceID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        deviceName:
           type:
           - string
           - 'null'
           example: Example value
+        startEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        endEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        uploadURL:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        postbackURL:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        timeout:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        audioClips:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AudioClip'
+          example:
+          - key: 1
+            userID: 101
+            deviceID: 201
+            fileID: 1
+            audioClipStatus: 1
+            audioClipTypeID: 1
+            audioClipParameters: Example value
+            localFilePath: Example value
+            fileSize: 1
+            bitrate: 1
+            startTime: 1
+            startTimeMs: 1
+            endTime: 1
+            endTimeMs: 1
+            clipLengthInSeconds: 1
+            tagListID: 1
+            creationDate: '2026-03-30T12:00:00.0000000Z'
+            createdBy: 1
+            lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+            lastModifiedBy: 1
+      additionalProperties: false
+      example:
+        deviceID: 201
+        deviceName: WearableDevice
+        startEpoch: 1711800000
+        endEpoch: 1711800000
+        uploadURL: https://api.actionstreamer.com/example
+        postbackURL: https://api.actionstreamer.com/example
+        timeout: Example value
+        audioClips:
+        - key: 1
+          deviceID: 201
+          fileID: 1
+          audioClipStatus: 1
+          audioClipTypeID: 1
+          audioClipParameters: Example value
+          localFilePath: Example value
+          fileSize: 1
+          bitrate: 1
+          startTime: 1
+          startTimeMs: 1
+          endTime: 1
+          endTimeMs: 1
+          clipLengthInSeconds: 1
+          tagListID: 1
+          creationDate: '2026-03-30T12:00:00.0000000Z'
+    AudioClip:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        fileID:
+          type: integer
+          format: int64
+          example: 1
+        audioClipStatus:
+          type: integer
+          format: int64
+          example: 1
+        audioClipTypeID:
+          type: integer
+          format: int64
+          example: 1
+        audioClipParameters:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        localFilePath:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        fileSize:
+          type: integer
+          format: int64
+          example: 1
+        bitrate:
+          type: integer
+          format: int64
+          example: 1
+        startTime:
+          type: integer
+          format: int64
+          example: 1
+        startTimeMs:
+          type: integer
+          format: int64
+          example: 1
+        endTime:
+          type: integer
+          format: int64
+          example: 1
+        endTimeMs:
+          type: integer
+          format: int64
+          example: 1
+        clipLengthInSeconds:
+          type: number
+          format: double
+          example: 1
+        tagListID:
+          type: integer
+          format: int64
+          example: 1
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        deviceID: 201
+        fileID: 1
+        audioClipStatus: 1
+        audioClipTypeID: 1
+        audioClipParameters: Example value
+        localFilePath: Example value
+        fileSize: 1
+        bitrate: 1
+        startTime: 1
+        startTimeMs: 1
+        endTime: 1
+        endTimeMs: 1
+        clipLengthInSeconds: 1
+        tagListID: 1
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+    CreateAudioClip:
+      type: object
+      properties:
+        deviceID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        deviceName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        fileID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        localFilePath:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        startTime:
+          type: integer
+          format: int64
+          example: 1
+        startTimeMs:
+          type: integer
+          format: int64
+          example: 1
+        clipLengthInSeconds:
+          type: number
+          format: double
+          example: 1
+        audioClipStatus:
+          type: integer
+          format: int64
+          example: 1
+        audioClipTypeID:
+          type: integer
+          format: int64
+          example: 1
+        audioClipParameters:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        deviceID: 201
+        deviceName: WearableDevice
+        fileID: 1
+        localFilePath: Example value
+        startTime: 1
+        startTimeMs: 1
+        clipLengthInSeconds: 1
+        audioClipStatus: 1
+        audioClipTypeID: 1
+        audioClipParameters: Example value
+    UploadAudioClips:
+      type: object
+      properties:
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        audioClips:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+            example: 1
+          example:
+          - 1
+      additionalProperties: false
+      example:
+        deviceID: 201
+        audioClips:
+        - 1
+    DeviceEpochRange:
+      type: object
+      properties:
+        deviceSerial:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        startEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        endEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+      additionalProperties: false
+      example:
+        deviceSerial: '10001234'
+        startEpoch: 1711800000
+        endEpoch: 1711800000
+    GetTagListForDeviceList:
+      type: object
+      properties:
         deviceIDList:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int64
+            example: 1
+          example:
+          - 1
+        tagIDList:
           type:
           - array
           - 'null'
@@ -1743,33 +1646,130 @@ components:
           - 'null'
           format: int64
           example: 1
-      additionalProperties: false
-      example:
-        searchText: Example value
-        deviceIDList:
-        - 1
-        startEpoch: 1711800000
-        endEpoch: 1711800000
-    Tag:
-      type: object
-      properties:
-        key:
-          type: integer
+        count:
+          type:
+          - integer
+          - 'null'
           format: int64
           example: 1
-        tagName:
+        order:
           type:
           - string
           - 'null'
           example: Example value
-        creationDate:
+        searchText:
           type:
           - string
           - 'null'
-          format: date-time
-          example: '2026-03-30T12:00:00.0000000Z'
+          example: Example value
       additionalProperties: false
       example:
-        key: 1
-        tagName: Example value
-        creationDate: '2026-03-30T12:00:00.0000000Z'
+        deviceIDList:
+        - 1
+        tagIDList:
+        - 1
+        startEpoch: 1711800000
+        endEpoch: 1711800000
+        count: 25
+        order: Example value
+        searchText: Example value
+    AudioClipListWithTags:
+      type: object
+      properties:
+        audioClipList:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AudioClipWithCaption'
+          example:
+          - key: 1
+            userID: 101
+            deviceID: 201
+            fileID: 1
+            audioClipStatus: 1
+            audioClipTypeID: 1
+            audioClipParameters: Example value
+            localFilePath: Example value
+            fileSize: 1
+            bitrate: 1
+            startTime: 1
+            startTimeMs: 1
+            endTime: 1
+            endTimeMs: 1
+            clipLengthInSeconds: 1
+            tagListID: 1
+            creationDate: '2026-03-30T12:00:00.0000000Z'
+            createdBy: 1
+            lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+            lastModifiedBy: 1
+            captionID: 1
+            transcript: Example value
+        audioClipTagList:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AudioClipTagWithNames'
+          example:
+          - key: 1
+            audioClipID: 1
+            userID: 101
+            deviceID: 201
+            tagID: 1
+            timestamp: 1
+            timestampMs: 1
+            confidence: 98.4
+            creationDate: '2026-03-30T12:00:00.0000000Z'
+            createdBy: 1
+            lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+            lastModifiedBy: 1
+            tagName: Example value
+        tagList:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Tag'
+          example:
+          - key: 1
+            tagName: Example value
+            creationDate: '2026-03-30T12:00:00.0000000Z'
+            createdBy: 1
+            lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+            lastModifiedBy: 1
+      additionalProperties: false
+      example:
+        audioClipList:
+        - key: 1
+          deviceID: 201
+          fileID: 1
+          audioClipStatus: 1
+          audioClipTypeID: 1
+          audioClipParameters: Example value
+          localFilePath: Example value
+          fileSize: 1
+          bitrate: 1
+          startTime: 1
+          startTimeMs: 1
+          endTime: 1
+          endTimeMs: 1
+          clipLengthInSeconds: 1
+          tagListID: 1
+          creationDate: '2026-03-30T12:00:00.0000000Z'
+          captionID: 1
+          transcript: Example value
+        audioClipTagList:
+        - key: 1
+          audioClipID: 1
+          deviceID: 201
+          tagID: 1
+          timestamp: 1
+          timestampMs: 1
+          confidence: 98.4
+          creationDate: '2026-03-30T12:00:00.0000000Z'
+          tagName: Example value
+        tagList:
+        - key: 1
+          tagName: Example value
+          creationDate: '2026-03-30T12:00:00.0000000Z'

@@ -563,6 +563,55 @@ components:
         permissionList: Example value
         description: Example description
         creationDate: '2026-03-30T12:00:00.0000000Z'
+    TreeNode:
+      type: object
+      properties:
+        title:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        key:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        isLeaf:
+          type: boolean
+          example: true
+        selectable:
+          type: boolean
+          example: true
+        children:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/TreeNode'
+          example:
+          - title: Example value
+            key: Example value
+            isLeaf: true
+            selectable: true
+            children:
+            - title: null
+              key: null
+              isLeaf: null
+              selectable: null
+              children: null
+      additionalProperties: false
+      example:
+        title: Example value
+        key: Example value
+        isLeaf: true
+        selectable: true
+        children:
+        - title: Example value
+          key: Example value
+          isLeaf: true
+          selectable: true
+          children:
+          - null
     Device:
       type: object
       properties:
@@ -705,30 +754,6 @@ components:
         volume: 75
         commentListID: 1
         creationDate: '2026-03-30T12:00:00.0000000Z'
-    CreateSharedDeviceGroup:
-      type: object
-      properties:
-        deviceGroupID:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        emailAddress:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        permissionList:
-          type:
-          - string
-          - 'null'
-          example: Example value
-      additionalProperties: false
-      example:
-        deviceGroupID: 1
-        emailAddress: testuser@actionstreamer.com
-        permissionList: Example value
     StringArg:
       type: object
       properties:
@@ -786,52 +811,27 @@ components:
         itemID: 1
         parentID: 1
         creationDate: '2026-03-30T12:00:00.0000000Z'
-    TreeNode:
+    CreateSharedDeviceGroup:
       type: object
       properties:
-        title:
+        deviceGroupID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        emailAddress:
           type:
           - string
           - 'null'
           example: Example value
-        key:
+        permissionList:
           type:
           - string
           - 'null'
           example: Example value
-        isLeaf:
-          type: boolean
-          example: true
-        selectable:
-          type: boolean
-          example: true
-        children:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/TreeNode'
-          example:
-          - title: Example value
-            key: Example value
-            isLeaf: true
-            selectable: true
-            children:
-            - title: null
-              key: null
-              isLeaf: null
-              selectable: null
-              children: null
       additionalProperties: false
       example:
-        title: Example value
-        key: Example value
-        isLeaf: true
-        selectable: true
-        children:
-        - title: Example value
-          key: Example value
-          isLeaf: true
-          selectable: true
-          children:
-          - null
+        deviceGroupID: 1
+        emailAddress: testuser@actionstreamer.com
+        permissionList: Example value

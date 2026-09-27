@@ -697,287 +697,7 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Event:
-      type: object
-      properties:
-        key:
-          type: integer
-          format: int64
-          example: 1
-        deviceID:
-          type: integer
-          format: int64
-          example: 1
-        agentTypeID:
-          type: integer
-          format: int64
-          example: 1
-        agentID:
-          type: integer
-          format: int64
-          example: 1
-        eventTypeID:
-          type: integer
-          format: int64
-          example: 1
-        serverEvent:
-          type: integer
-          format: int64
-          example: 1
-        eventStatus:
-          type: integer
-          format: int64
-          example: 1
-        eventParameters:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        processID:
-          type: integer
-          format: int64
-          example: 1
-        result:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        percentComplete:
-          type: number
-          format: double
-          example: 1
-        priority:
-          type: integer
-          format: int64
-          example: 1
-        expirationEpoch:
-          type: integer
-          format: int64
-          example: 1
-        attemptNumber:
-          type: integer
-          format: int64
-          example: 1
-        maxAttempts:
-          type: integer
-          format: int64
-          example: 1
-        tagString:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        tagNumber:
-          type: integer
-          format: int64
-          example: 1
-        creationDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2026-03-30T12:00:00.0000000Z'
-      additionalProperties: false
-      example:
-        key: 501
-        deviceID: 201
-        agentTypeID: 1
-        agentID: 1
-        eventTypeID: 1
-        serverEvent: 1
-        eventStatus: 1
-        eventParameters: '{"presetName":"Run Event Preset"}'
-        processID: 4321
-        result: Example value
-        percentComplete: 42.5
-        priority: 1
-        expirationEpoch: 1711800000
-        attemptNumber: 1
-        maxAttempts: 3
-        tagString: Example value
-        tagNumber: 1
-        creationDate: '2026-03-30T12:00:00.0000000Z'
-    DateAndCountFilter:
-      type: object
-      properties:
-        deviceID:
-          type: integer
-          format: int64
-          example: 1
-        startDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2026-03-30T12:00:00.0000000Z'
-        endDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2026-03-30T12:00:00.0000000Z'
-        count:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        order:
-          type:
-          - string
-          - 'null'
-          example: Example value
-      additionalProperties: false
-      example:
-        deviceID: 201
-        startDate: '2026-03-30T12:00:00.0000000Z'
-        endDate: '2026-03-30T12:00:00.0000000Z'
-        count: 25
-        order: Example value
-    PatchEventStatus:
-      type: object
-      properties:
-        deviceID:
-          type: integer
-          format: int64
-          example: 1
-        deviceName:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        eventStatus:
-          type: integer
-          format: int64
-          example: 1
-        events:
-          type:
-          - array
-          - 'null'
-          items:
-            type: integer
-            format: int32
-            example: 1
-          example:
-          - 1
-      additionalProperties: false
-      example:
-        deviceID: 201
-        deviceName: WearableDevice
-        eventStatus: 1
-        events:
-        - 1
-    UpdateEvent:
-      type: object
-      properties:
-        eventStatus:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        attemptNumber:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        result:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        processID:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        percentComplete:
-          type:
-          - number
-          - 'null'
-          format: double
-          example: 1
-        tagString:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        tagNumber:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-      additionalProperties: false
-      example:
-        eventStatus: 1
-        attemptNumber: 1
-        result: Example value
-        processID: 4321
-        percentComplete: 42.5
-        tagString: Example value
-        tagNumber: 1
-    GetEventStatus:
-      type: object
-      properties:
-        eventID:
-          type: integer
-          format: int64
-          example: 1
-        eventStatus:
-          type: integer
-          format: int64
-          example: 1
-        eventParameters:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        result:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        percentComplete:
-          type: number
-          format: double
-          example: 1
-        priority:
-          type: integer
-          format: int64
-          example: 1
-        attemptNumber:
-          type: integer
-          format: int64
-          example: 1
-        maxAttempts:
-          type: integer
-          format: int64
-          example: 1
-        tagString:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        tagNumber:
-          type: integer
-          format: int64
-          example: 1
-      additionalProperties: false
-      example:
-        eventID: 501
-        eventStatus: 1
-        eventParameters: '{"presetName":"Run Event Preset"}'
-        result: Example value
-        percentComplete: 42.5
-        priority: 1
-        attemptNumber: 1
-        maxAttempts: 3
-        tagString: Example value
-        tagNumber: 1
-    DequeueEvent:
+    DeviceNameArg:
       type: object
       properties:
         deviceName:
@@ -985,111 +705,9 @@ components:
           - string
           - 'null'
           example: Example value
-        deviceSerial:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        agentType:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        agentIndex:
-          type: integer
-          format: int64
-          example: 1
-        processID:
-          type: integer
-          format: int64
-          example: 1
       additionalProperties: false
       example:
         deviceName: WearableDevice
-        deviceSerial: '10001234'
-        agentType: Device
-        agentIndex: 1
-        processID: 4321
-    CreateEvent:
-      type: object
-      properties:
-        deviceID:
-          type: integer
-          format: int64
-          example: 1
-        deviceSerial:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        agentType:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        eventType:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        agentTypeID:
-          type: integer
-          format: int64
-          example: 1
-        eventTypeID:
-          type: integer
-          format: int64
-          example: 1
-        serverEvent:
-          type: integer
-          format: int64
-          example: 1
-        eventParameters:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        priority:
-          type: integer
-          format: int64
-          example: 1
-        maxAttempts:
-          type: integer
-          format: int64
-          example: 1
-        expirationEpoch:
-          type: integer
-          format: int64
-          example: 1
-      additionalProperties: false
-      example:
-        deviceID: 201
-        deviceSerial: '10001234'
-        agentType: Device
-        eventType: Run
-        agentTypeID: 1
-        eventTypeID: 1
-        serverEvent: 1
-        eventParameters: '{"presetName":"Run Event Preset"}'
-        priority: 1
-        maxAttempts: 3
-        expirationEpoch: 1711800000
-    StandardResult:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int64
-          example: 1
-        description:
-          type:
-          - string
-          - 'null'
-          example: Example value
-      additionalProperties: false
-      example:
-        code: 1
-        description: Example description
     EventWithNames:
       type: object
       properties:
@@ -1231,17 +849,302 @@ components:
         eventStatusName: Example value
         eventStatusDescription: Example description
         agentIndex: 1
-    DeviceNameArg:
+    Event:
       type: object
       properties:
-        deviceName:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        agentTypeID:
+          type: integer
+          format: int64
+          example: 1
+        agentID:
+          type: integer
+          format: int64
+          example: 1
+        eventTypeID:
+          type: integer
+          format: int64
+          example: 1
+        serverEvent:
+          type: integer
+          format: int64
+          example: 1
+        eventStatus:
+          type: integer
+          format: int64
+          example: 1
+        eventParameters:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        processID:
+          type: integer
+          format: int64
+          example: 1
+        result:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        percentComplete:
+          type: number
+          format: double
+          example: 1
+        priority:
+          type: integer
+          format: int64
+          example: 1
+        expirationEpoch:
+          type: integer
+          format: int64
+          example: 1
+        attemptNumber:
+          type: integer
+          format: int64
+          example: 1
+        maxAttempts:
+          type: integer
+          format: int64
+          example: 1
+        tagString:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        tagNumber:
+          type: integer
+          format: int64
+          example: 1
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 501
+        deviceID: 201
+        agentTypeID: 1
+        agentID: 1
+        eventTypeID: 1
+        serverEvent: 1
+        eventStatus: 1
+        eventParameters: '{"presetName":"Run Event Preset"}'
+        processID: 4321
+        result: Example value
+        percentComplete: 42.5
+        priority: 1
+        expirationEpoch: 1711800000
+        attemptNumber: 1
+        maxAttempts: 3
+        tagString: Example value
+        tagNumber: 1
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+    DateAndCountFilter:
+      type: object
+      properties:
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        startDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        endDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        count:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        order:
           type:
           - string
           - 'null'
           example: Example value
       additionalProperties: false
       example:
+        deviceID: 201
+        startDate: '2026-03-30T12:00:00.0000000Z'
+        endDate: '2026-03-30T12:00:00.0000000Z'
+        count: 25
+        order: Example value
+    UpdateEvent:
+      type: object
+      properties:
+        eventStatus:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        attemptNumber:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        result:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        processID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        percentComplete:
+          type:
+          - number
+          - 'null'
+          format: double
+          example: 1
+        tagString:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        tagNumber:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+      additionalProperties: false
+      example:
+        eventStatus: 1
+        attemptNumber: 1
+        result: Example value
+        processID: 4321
+        percentComplete: 42.5
+        tagString: Example value
+        tagNumber: 1
+    StandardResult:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int64
+          example: 1
+        description:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        code: 1
+        description: Example description
+    GetEventStatus:
+      type: object
+      properties:
+        eventID:
+          type: integer
+          format: int64
+          example: 1
+        eventStatus:
+          type: integer
+          format: int64
+          example: 1
+        eventParameters:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        result:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        percentComplete:
+          type: number
+          format: double
+          example: 1
+        priority:
+          type: integer
+          format: int64
+          example: 1
+        attemptNumber:
+          type: integer
+          format: int64
+          example: 1
+        maxAttempts:
+          type: integer
+          format: int64
+          example: 1
+        tagString:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        tagNumber:
+          type: integer
+          format: int64
+          example: 1
+      additionalProperties: false
+      example:
+        eventID: 501
+        eventStatus: 1
+        eventParameters: '{"presetName":"Run Event Preset"}'
+        result: Example value
+        percentComplete: 42.5
+        priority: 1
+        attemptNumber: 1
+        maxAttempts: 3
+        tagString: Example value
+        tagNumber: 1
+    PatchEventStatus:
+      type: object
+      properties:
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        deviceName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        eventStatus:
+          type: integer
+          format: int64
+          example: 1
+        events:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+            example: 1
+          example:
+          - 1
+      additionalProperties: false
+      example:
+        deviceID: 201
         deviceName: WearableDevice
+        eventStatus: 1
+        events:
+        - 1
     PatchEventProgress:
       type: object
       properties:
@@ -1264,3 +1167,100 @@ components:
         deviceName: WearableDevice
         deviceSerial: '10001234'
         percentComplete: 42.5
+    DequeueEvent:
+      type: object
+      properties:
+        deviceName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        deviceSerial:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        agentType:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        agentIndex:
+          type: integer
+          format: int64
+          example: 1
+        processID:
+          type: integer
+          format: int64
+          example: 1
+      additionalProperties: false
+      example:
+        deviceName: WearableDevice
+        deviceSerial: '10001234'
+        agentType: Device
+        agentIndex: 1
+        processID: 4321
+    CreateEvent:
+      type: object
+      properties:
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        deviceSerial:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        agentType:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        eventType:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        agentTypeID:
+          type: integer
+          format: int64
+          example: 1
+        eventTypeID:
+          type: integer
+          format: int64
+          example: 1
+        serverEvent:
+          type: integer
+          format: int64
+          example: 1
+        eventParameters:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        priority:
+          type: integer
+          format: int64
+          example: 1
+        maxAttempts:
+          type: integer
+          format: int64
+          example: 1
+        expirationEpoch:
+          type: integer
+          format: int64
+          example: 1
+      additionalProperties: false
+      example:
+        deviceID: 201
+        deviceSerial: '10001234'
+        agentType: Device
+        eventType: Run
+        agentTypeID: 1
+        eventTypeID: 1
+        serverEvent: 1
+        eventParameters: '{"presetName":"Run Event Preset"}'
+        priority: 1
+        maxAttempts: 3
+        expirationEpoch: 1711800000

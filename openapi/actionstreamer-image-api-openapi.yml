@@ -627,101 +627,68 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    UploadImages:
+    GetTagListForDeviceList:
       type: object
       properties:
-        deviceID:
-          type: integer
-          format: int64
-          example: 1
-        imageIDList:
+        deviceIDList:
           type:
           - array
           - 'null'
           items:
             type: integer
-            format: int32
+            format: int64
             example: 1
           example:
           - 1
-      additionalProperties: false
-      example:
-        deviceID: 201
-        imageIDList:
-        - 1
-    ImageTagWithNames:
-      type: object
-      properties:
-        tagName:
+        tagIDList:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int64
+            example: 1
+          example:
+          - 1
+        startEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        endEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        count:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        order:
           type:
           - string
           - 'null'
           example: Example value
-        key:
-          type: integer
-          format: int64
-          example: 1
-        imageID:
-          type: integer
-          format: int64
-          example: 1
-        deviceID:
-          type: integer
-          format: int64
-          example: 1
-        tagID:
-          type: integer
-          format: int64
-          example: 1
-        timestamp:
-          type: integer
-          format: int64
-          example: 1
-        timestampMs:
-          type: integer
-          format: int64
-          example: 1
-        confidence:
-          type: number
-          format: double
-          example: 1
-        left:
-          type: integer
-          format: int64
-          example: 1
-        top:
-          type: integer
-          format: int64
-          example: 1
-        width:
-          type: integer
-          format: int64
-          example: 1
-        height:
-          type: integer
-          format: int64
-          example: 1
-        creationDate:
+        searchText:
           type:
           - string
           - 'null'
-          format: date-time
-          example: '2026-03-30T12:00:00.0000000Z'
+          example: Example value
       additionalProperties: false
       example:
-        key: 1
-        imageID: 1
-        deviceID: 201
-        tagID: 1
-        timestamp: 1
-        timestampMs: 1
-        confidence: 98.4
-        left: 1
-        top: 1
-        width: 1
-        height: 1
-        creationDate: '2026-03-30T12:00:00.0000000Z'
-        tagName: Example value
+        deviceIDList:
+        - 1
+        tagIDList:
+        - 1
+        startEpoch: 1711800000
+        endEpoch: 1711800000
+        count: 25
+        order: Example value
+        searchText: Example value
     ImageListWithTags:
       type: object
       properties:
@@ -820,79 +787,55 @@ components:
         - key: 1
           tagName: Example value
           creationDate: '2026-03-30T12:00:00.0000000Z'
-    Image:
+    ImageEpochAndCountFilter:
       type: object
       properties:
-        key:
-          type: integer
-          format: int64
-          example: 1
         deviceID:
           type: integer
           format: int64
           example: 1
-        fileID:
-          type: integer
+        startEpoch:
+          type:
+          - integer
+          - 'null'
           format: int64
           example: 1
-        imageStatus:
-          type: integer
+        endEpoch:
+          type:
+          - integer
+          - 'null'
           format: int64
           example: 1
-        imageTypeID:
-          type: integer
+        count:
+          type:
+          - integer
+          - 'null'
           format: int64
           example: 1
-        localFilePath:
+        order:
           type:
           - string
           - 'null'
           example: Example value
-        height:
-          type: integer
-          format: int64
-          example: 1
-        width:
-          type: integer
-          format: int64
-          example: 1
-        filesize:
-          type: integer
-          format: int64
-          example: 1
-        startTime:
-          type: integer
-          format: int64
-          example: 1
-        startTimeMs:
-          type: integer
-          format: int64
-          example: 1
-        tagListID:
-          type: integer
-          format: int64
-          example: 1
-        creationDate:
+        tagList:
           type:
-          - string
+          - array
           - 'null'
-          format: date-time
-          example: '2026-03-30T12:00:00.0000000Z'
+          items:
+            type: integer
+            format: int64
+            example: 1
+          example:
+          - 1
       additionalProperties: false
       example:
-        key: 1
         deviceID: 201
-        fileID: 1
-        imageStatus: 1
-        imageTypeID: 1
-        localFilePath: Example value
-        height: 1
-        width: 1
-        filesize: 1
-        startTime: 1
-        startTimeMs: 1
-        tagListID: 1
-        creationDate: '2026-03-30T12:00:00.0000000Z'
+        startEpoch: 1711800000
+        endEpoch: 1711800000
+        count: 25
+        order: Example value
+        tagList:
+        - 1
     ImageWithNames:
       type: object
       properties:
@@ -989,13 +932,42 @@ components:
         - key: 1
           tagName: Example value
           creationDate: '2026-03-30T12:00:00.0000000Z'
-    ImageEpochAndCountFilter:
+    Tag:
       type: object
       properties:
-        deviceID:
+        key:
           type: integer
           format: int64
           example: 1
+        tagName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        tagName: Example value
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+    DevicesEpochAndCountFilter:
+      type: object
+      properties:
+        deviceIDList:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int64
+            example: 1
+          example:
+          - 1
         startEpoch:
           type:
           - integer
@@ -1019,24 +991,35 @@ components:
           - string
           - 'null'
           example: Example value
-        tagList:
+      additionalProperties: false
+      example:
+        deviceIDList:
+        - 1
+        startEpoch: 1711800000
+        endEpoch: 1711800000
+        count: 25
+        order: Example value
+    UploadImages:
+      type: object
+      properties:
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        imageIDList:
           type:
           - array
           - 'null'
           items:
             type: integer
-            format: int64
+            format: int32
             example: 1
           example:
           - 1
       additionalProperties: false
       example:
         deviceID: 201
-        startEpoch: 1711800000
-        endEpoch: 1711800000
-        count: 25
-        order: Example value
-        tagList:
+        imageIDList:
         - 1
     DeviceEpochRange:
       type: object
@@ -1124,124 +1107,58 @@ components:
         startTimeMs: 1
         imageStatus: 1
         imageTypeID: 1
-    GetTagListForDeviceList:
-      type: object
-      properties:
-        deviceIDList:
-          type:
-          - array
-          - 'null'
-          items:
-            type: integer
-            format: int64
-            example: 1
-          example:
-          - 1
-        tagIDList:
-          type:
-          - array
-          - 'null'
-          items:
-            type: integer
-            format: int64
-            example: 1
-          example:
-          - 1
-        startEpoch:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        endEpoch:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        count:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        order:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        searchText:
-          type:
-          - string
-          - 'null'
-          example: Example value
-      additionalProperties: false
-      example:
-        deviceIDList:
-        - 1
-        tagIDList:
-        - 1
-        startEpoch: 1711800000
-        endEpoch: 1711800000
-        count: 25
-        order: Example value
-        searchText: Example value
-    DevicesEpochAndCountFilter:
-      type: object
-      properties:
-        deviceIDList:
-          type:
-          - array
-          - 'null'
-          items:
-            type: integer
-            format: int64
-            example: 1
-          example:
-          - 1
-        startEpoch:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        endEpoch:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        count:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        order:
-          type:
-          - string
-          - 'null'
-          example: Example value
-      additionalProperties: false
-      example:
-        deviceIDList:
-        - 1
-        startEpoch: 1711800000
-        endEpoch: 1711800000
-        count: 25
-        order: Example value
-    Tag:
+    Image:
       type: object
       properties:
         key:
           type: integer
           format: int64
           example: 1
-        tagName:
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        fileID:
+          type: integer
+          format: int64
+          example: 1
+        imageStatus:
+          type: integer
+          format: int64
+          example: 1
+        imageTypeID:
+          type: integer
+          format: int64
+          example: 1
+        localFilePath:
           type:
           - string
           - 'null'
           example: Example value
+        height:
+          type: integer
+          format: int64
+          example: 1
+        width:
+          type: integer
+          format: int64
+          example: 1
+        filesize:
+          type: integer
+          format: int64
+          example: 1
+        startTime:
+          type: integer
+          format: int64
+          example: 1
+        startTimeMs:
+          type: integer
+          format: int64
+          example: 1
+        tagListID:
+          type: integer
+          format: int64
+          example: 1
         creationDate:
           type:
           - string
@@ -1251,5 +1168,88 @@ components:
       additionalProperties: false
       example:
         key: 1
-        tagName: Example value
+        deviceID: 201
+        fileID: 1
+        imageStatus: 1
+        imageTypeID: 1
+        localFilePath: Example value
+        height: 1
+        width: 1
+        filesize: 1
+        startTime: 1
+        startTimeMs: 1
+        tagListID: 1
         creationDate: '2026-03-30T12:00:00.0000000Z'
+    ImageTagWithNames:
+      type: object
+      properties:
+        tagName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        key:
+          type: integer
+          format: int64
+          example: 1
+        imageID:
+          type: integer
+          format: int64
+          example: 1
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        tagID:
+          type: integer
+          format: int64
+          example: 1
+        timestamp:
+          type: integer
+          format: int64
+          example: 1
+        timestampMs:
+          type: integer
+          format: int64
+          example: 1
+        confidence:
+          type: number
+          format: double
+          example: 1
+        left:
+          type: integer
+          format: int64
+          example: 1
+        top:
+          type: integer
+          format: int64
+          example: 1
+        width:
+          type: integer
+          format: int64
+          example: 1
+        height:
+          type: integer
+          format: int64
+          example: 1
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        imageID: 1
+        deviceID: 201
+        tagID: 1
+        timestamp: 1
+        timestampMs: 1
+        confidence: 98.4
+        left: 1
+        top: 1
+        width: 1
+        height: 1
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+        tagName: Example value

@@ -30,7 +30,7 @@ tags:
 - Device Management
 - Public Safety
 - Industrial
-- Computer-Vision
+- Computer Vision
 - Media
 tags_raw:
 - Company
@@ -43,6 +43,7 @@ tags_raw:
 - Industrial
 - Computer Vision
 - Media
+- Computer-Vision
 apis:
 - aid: actionstreamer:actionstreamer-agent-api
   name: ActionStreamer Agent API
@@ -996,8 +997,6 @@ apis:
   humanURL: https://developer.actionstreamer.com/docs/API_Reference/WebAPI/overview
   baseURL: https://api.actionstreamer.com/v1
   tags:
-  - APIKeys
-  tags_raw:
   - API Key
   properties:
   - type: OpenAPI
@@ -1128,8 +1127,6 @@ apis:
   humanURL: https://developer.actionstreamer.com/docs/API_Reference/WebAPI/overview
   baseURL: https://api.actionstreamer.com/v1
   tags:
-  - multi-factor-auth
-  tags_raw:
   - multi factor auth
   properties:
   - type: OpenAPI
@@ -1156,8 +1153,6 @@ apis:
   humanURL: https://developer.actionstreamer.com/docs/API_Reference/WebAPI/overview
   baseURL: https://api.actionstreamer.com/v1
   tags:
-  - UserGroup
-  tags_raw:
   - User Group
   properties:
   - type: OpenAPI

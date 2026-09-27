@@ -122,29 +122,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Tag:
-      type: object
-      properties:
-        key:
-          type: integer
-          format: int64
-          example: 1
-        tagName:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        creationDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2026-03-30T12:00:00.0000000Z'
-      additionalProperties: false
-      example:
-        key: 1
-        tagName: Example value
-        creationDate: '2026-03-30T12:00:00.0000000Z'
     ImageLabel:
       type: object
       properties:
@@ -161,59 +138,6 @@ components:
       example:
         label: Example value
         confidence: 98.4
-    GenerateImageTagList:
-      type: object
-      properties:
-        deviceID:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        mediaID:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        epochTime:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        epochTimeMs:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        objectName:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        maxLabels:
-          type:
-          - integer
-          - 'null'
-          format: int32
-          example: 1
-        minConfidence:
-          type:
-          - number
-          - 'null'
-          format: float
-          example: 1
-      additionalProperties: false
-      example:
-        deviceID: 201
-        mediaID: 1
-        epochTime: 1711800000
-        epochTimeMs: 1711800000
-        objectName: Example value
-        maxLabels: 1
-        minConfidence: 98.4
     GetTagListForDeviceList:
       type: object
       properties:
@@ -276,3 +200,79 @@ components:
         count: 25
         order: Example value
         searchText: Example value
+    GenerateImageTagList:
+      type: object
+      properties:
+        deviceID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        mediaID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        epochTime:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        epochTimeMs:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        objectName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        maxLabels:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          example: 1
+        minConfidence:
+          type:
+          - number
+          - 'null'
+          format: float
+          example: 1
+      additionalProperties: false
+      example:
+        deviceID: 201
+        mediaID: 1
+        epochTime: 1711800000
+        epochTimeMs: 1711800000
+        objectName: Example value
+        maxLabels: 1
+        minConfidence: 98.4
+    Tag:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        tagName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        tagName: Example value
+        creationDate: '2026-03-30T12:00:00.0000000Z'

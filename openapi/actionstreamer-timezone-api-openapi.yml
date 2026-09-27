@@ -52,6 +52,18 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    FloatArg:
+      type: object
+      properties:
+        value:
+          type:
+          - number
+          - 'null'
+          format: double
+          example: 1
+      additionalProperties: false
+      example:
+        value: -4
     TimeZone:
       type: object
       properties:
@@ -69,15 +81,3 @@ components:
       example:
         key: America/New_York
         displayName: (UTC-05:00) Eastern Time (New York)
-    FloatArg:
-      type: object
-      properties:
-        value:
-          type:
-          - number
-          - 'null'
-          format: double
-          example: 1
-      additionalProperties: false
-      example:
-        value: -4

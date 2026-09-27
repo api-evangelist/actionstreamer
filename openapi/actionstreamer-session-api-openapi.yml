@@ -119,6 +119,23 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    NameValuePair:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        value:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        name: RemoteWorker
+        value: Example value
     Session:
       type: object
       properties:
@@ -200,20 +217,3 @@ components:
         sessionGuid: 11111111-2222-3333-4444-555555555555
         mfaTypeId: 1
         browserGUID: 11111111-2222-3333-4444-555555555555
-    NameValuePair:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        value:
-          type:
-          - string
-          - 'null'
-          example: Example value
-      additionalProperties: false
-      example:
-        name: RemoteWorker
-        value: Example value

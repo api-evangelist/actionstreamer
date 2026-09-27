@@ -221,6 +221,17 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Token:
+      type: object
+      properties:
+        token:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        token: example-token
     MultifactorAuth:
       type: object
       properties:
@@ -275,14 +286,3 @@ components:
         isValidated: true
         isActive: true
         creationDate: '2026-03-30T12:00:00.0000000Z'
-    Token:
-      type: object
-      properties:
-        token:
-          type:
-          - string
-          - 'null'
-          example: Example value
-      additionalProperties: false
-      example:
-        token: example-token

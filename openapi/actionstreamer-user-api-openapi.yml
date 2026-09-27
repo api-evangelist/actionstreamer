@@ -174,6 +174,33 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    StringArray:
+      type: object
+      properties:
+        values:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            example: Example value
+          example:
+          - Example value
+      additionalProperties: false
+      example:
+        values:
+        - Example value
+    StringArg:
+      type: object
+      properties:
+        value:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        value: Example value
     User:
       type: object
       properties:
@@ -300,30 +327,3 @@ components:
         description: Example description
         availability: Available
         creationDate: '2026-03-30T12:00:00.0000000Z'
-    StringArg:
-      type: object
-      properties:
-        value:
-          type:
-          - string
-          - 'null'
-          example: Example value
-      additionalProperties: false
-      example:
-        value: Example value
-    StringArray:
-      type: object
-      properties:
-        values:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            example: Example value
-          example:
-          - Example value
-      additionalProperties: false
-      example:
-        values:
-        - Example value

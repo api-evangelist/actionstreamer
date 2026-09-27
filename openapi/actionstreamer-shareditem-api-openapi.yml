@@ -228,114 +228,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    CreateSharedItem:
-      type: object
-      properties:
-        itemType:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        objectID:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        sharedWithType:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        sharedWith:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        sharedWithID:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-      additionalProperties: false
-      example:
-        itemType: Example value
-        objectID: 1
-        sharedWithType: Example value
-        sharedWith: Example value
-        sharedWithID: 1
-    SharedItem:
-      type: object
-      properties:
-        key:
-          type: integer
-          format: int64
-          example: 1
-        itemTypeID:
-          type: integer
-          format: int64
-          example: 1
-        sharedItemObjectID:
-          type: integer
-          format: int64
-          example: 1
-        collectionTypeID:
-          type: integer
-          format: int64
-          example: 1
-        fieldName:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        sharedByID:
-          type: integer
-          format: int64
-          example: 1
-        sharedWithID:
-          type: integer
-          format: int64
-          example: 1
-        sharedWithTypeID:
-          type: integer
-          format: int64
-          example: 1
-        emailAddress:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        permissionList:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        description:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        creationDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2026-03-30T12:00:00.0000000Z'
-      additionalProperties: false
-      example:
-        key: 1
-        itemTypeID: 1
-        sharedItemObjectID: 1
-        collectionTypeID: 1
-        fieldName: Example value
-        sharedByID: 1
-        sharedWithID: 1
-        sharedWithTypeID: 1
-        emailAddress: testuser@actionstreamer.com
-        permissionList: Example value
-        description: Example description
-        creationDate: '2026-03-30T12:00:00.0000000Z'
     SharedItemWithNames:
       type: object
       properties:
@@ -431,3 +323,111 @@ components:
         itemName: Example value
         sharedWith: Example value
         permissionListNames: Example value
+    SharedItem:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        itemTypeID:
+          type: integer
+          format: int64
+          example: 1
+        sharedItemObjectID:
+          type: integer
+          format: int64
+          example: 1
+        collectionTypeID:
+          type: integer
+          format: int64
+          example: 1
+        fieldName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        sharedByID:
+          type: integer
+          format: int64
+          example: 1
+        sharedWithID:
+          type: integer
+          format: int64
+          example: 1
+        sharedWithTypeID:
+          type: integer
+          format: int64
+          example: 1
+        emailAddress:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        permissionList:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        description:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        itemTypeID: 1
+        sharedItemObjectID: 1
+        collectionTypeID: 1
+        fieldName: Example value
+        sharedByID: 1
+        sharedWithID: 1
+        sharedWithTypeID: 1
+        emailAddress: testuser@actionstreamer.com
+        permissionList: Example value
+        description: Example description
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+    CreateSharedItem:
+      type: object
+      properties:
+        itemType:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        objectID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        sharedWithType:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        sharedWith:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        sharedWithID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+      additionalProperties: false
+      example:
+        itemType: Example value
+        objectID: 1
+        sharedWithType: Example value
+        sharedWith: Example value
+        sharedWithID: 1

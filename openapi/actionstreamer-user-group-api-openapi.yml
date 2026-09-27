@@ -213,54 +213,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    UserAvailability:
-      type: object
-      properties:
-        key:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        emailAddress:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        firstName:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        lastName:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        description:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        availability:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        timeZone:
-          type:
-          - string
-          - 'null'
-          example: Example value
-      additionalProperties: false
-      example:
-        key: 101
-        emailAddress: testuser@actionstreamer.com
-        firstName: Test
-        lastName: User
-        description: Example description
-        availability: Available
-        timeZone: America/New_York
     StringArg:
       type: object
       properties:
@@ -318,3 +270,51 @@ components:
         itemID: 1
         parentID: 1
         creationDate: '2026-03-30T12:00:00.0000000Z'
+    UserAvailability:
+      type: object
+      properties:
+        key:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        emailAddress:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        firstName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        lastName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        description:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        availability:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        timeZone:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        key: 101
+        emailAddress: testuser@actionstreamer.com
+        firstName: Test
+        lastName: User
+        description: Example description
+        availability: Available
+        timeZone: America/New_York

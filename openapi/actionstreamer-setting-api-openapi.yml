@@ -293,18 +293,10 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    AppSetting:
+    UserSetting:
       type: object
       properties:
         key:
-          type: integer
-          format: int64
-          example: 1
-        applicationID:
-          type: integer
-          format: int64
-          example: 1
-        organizationID:
           type: integer
           format: int64
           example: 1
@@ -327,8 +319,6 @@ components:
       additionalProperties: false
       example:
         key: 1
-        applicationID: 1
-        organizationID: 1
         settingName: Example value
         settingValue: Example value
         creationDate: '2026-03-30T12:00:00.0000000Z'
@@ -366,10 +356,18 @@ components:
         settingName: Example value
         settingValue: Example value
         creationDate: '2026-03-30T12:00:00.0000000Z'
-    UserSetting:
+    AppSetting:
       type: object
       properties:
         key:
+          type: integer
+          format: int64
+          example: 1
+        applicationID:
+          type: integer
+          format: int64
+          example: 1
+        organizationID:
           type: integer
           format: int64
           example: 1
@@ -392,6 +390,8 @@ components:
       additionalProperties: false
       example:
         key: 1
+        applicationID: 1
+        organizationID: 1
         settingName: Example value
         settingValue: Example value
         creationDate: '2026-03-30T12:00:00.0000000Z'

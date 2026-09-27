@@ -243,24 +243,6 @@ components:
         fileInS3: true
         doNotDelete: true
         creationDate: '2026-03-30T12:00:00.0000000Z'
-    SignedURLWithID:
-      type: object
-      properties:
-        signedURL:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        fileID:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-      additionalProperties: false
-      example:
-        signedURL: https://api.actionstreamer.com/example
-        fileID: 1
     CreateFile:
       type: object
       properties:
@@ -295,3 +277,21 @@ components:
         filename: clip.mp4
         fileSize: 1
         sHA256Hash: Example value
+    SignedURLWithID:
+      type: object
+      properties:
+        signedURL:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        fileID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+      additionalProperties: false
+      example:
+        signedURL: https://api.actionstreamer.com/example
+        fileID: 1
