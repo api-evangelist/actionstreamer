@@ -293,35 +293,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    UserSetting:
-      type: object
-      properties:
-        key:
-          type: integer
-          format: int64
-          example: 1
-        settingName:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        settingValue:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        creationDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2026-03-30T12:00:00.0000000Z'
-      additionalProperties: false
-      example:
-        key: 1
-        settingName: Example value
-        settingValue: Example value
-        creationDate: '2026-03-30T12:00:00.0000000Z'
     DeviceSetting:
       type: object
       properties:
@@ -392,6 +363,35 @@ components:
         key: 1
         applicationID: 1
         organizationID: 1
+        settingName: Example value
+        settingValue: Example value
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+    UserSetting:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        settingName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        settingValue:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
         settingName: Example value
         settingValue: Example value
         creationDate: '2026-03-30T12:00:00.0000000Z'

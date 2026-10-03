@@ -54,6 +54,17 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    GetEventType:
+      type: object
+      properties:
+        agentType:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        agentType: Device
     EventType:
       type: object
       properties:
@@ -93,14 +104,3 @@ components:
         eventTypeName: Run
         description: Example description
         creationDate: '2026-03-30T12:00:00.0000000Z'
-    GetEventType:
-      type: object
-      properties:
-        agentType:
-          type:
-          - string
-          - 'null'
-          example: Example value
-      additionalProperties: false
-      example:
-        agentType: Device

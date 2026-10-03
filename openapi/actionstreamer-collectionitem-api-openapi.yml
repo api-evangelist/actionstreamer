@@ -139,6 +139,24 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    CreateCollectionItem:
+      type: object
+      properties:
+        itemType:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        itemID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+      additionalProperties: false
+      example:
+        itemType: Example value
+        itemID: 1
     CollectionItem:
       type: object
       properties:
@@ -171,21 +189,3 @@ components:
         itemTypeID: 1
         itemID: 1
         creationDate: '2026-03-30T12:00:00.0000000Z'
-    CreateCollectionItem:
-      type: object
-      properties:
-        itemType:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        itemID:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-      additionalProperties: false
-      example:
-        itemType: Example value
-        itemID: 1
