@@ -492,17 +492,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    StringArg:
-      type: object
-      properties:
-        value:
-          type:
-          - string
-          - 'null'
-          example: Example value
-      additionalProperties: false
-      example:
-        value: Example value
     CreateSharedDeviceGroup:
       type: object
       properties:
@@ -527,6 +516,17 @@ components:
         deviceGroupID: 1
         emailAddress: testuser@actionstreamer.com
         permissionList: Example value
+    StringArg:
+      type: object
+      properties:
+        value:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        value: Example value
     Device:
       type: object
       properties:
@@ -669,52 +669,6 @@ components:
         volume: 75
         commentListID: 1
         creationDate: '2026-03-30T12:00:00.0000000Z'
-    Collection:
-      type: object
-      properties:
-        key:
-          type: integer
-          format: int64
-          example: 1
-        collectionName:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        description:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        itemTypeID:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        itemID:
-          type: integer
-          format: int64
-          example: 1
-        parentID:
-          type: integer
-          format: int64
-          example: 1
-        creationDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2026-03-30T12:00:00.0000000Z'
-      additionalProperties: false
-      example:
-        key: 1
-        collectionName: Example value
-        description: Example description
-        itemTypeID: 1
-        itemID: 1
-        parentID: 1
-        creationDate: '2026-03-30T12:00:00.0000000Z'
     SharedItem:
       type: object
       properties:
@@ -835,3 +789,49 @@ components:
           selectable: true
           children:
           - null
+    Collection:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        collectionName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        description:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        itemTypeID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        itemID:
+          type: integer
+          format: int64
+          example: 1
+        parentID:
+          type: integer
+          format: int64
+          example: 1
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        collectionName: Example value
+        description: Example description
+        itemTypeID: 1
+        itemID: 1
+        parentID: 1
+        creationDate: '2026-03-30T12:00:00.0000000Z'

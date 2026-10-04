@@ -688,35 +688,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    TransferDeviceArgs:
-      type: object
-      properties:
-        newAPIKey:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        newSecretKey:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        environment:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        webServiceBaseUrl:
-          type:
-          - string
-          - 'null'
-          example: Example value
-      additionalProperties: false
-      example:
-        newAPIKey: Example value
-        newSecretKey: Example value
-        environment: Example value
-        webServiceBaseUrl: https://api.actionstreamer.com/example
     CreateSharedDevice:
       type: object
       properties:
@@ -741,7 +712,7 @@ components:
         deviceID: 201
         emailAddress: testuser@actionstreamer.com
         permissionList: Example value
-    DeviceNameArg:
+    RegisterAgent:
       type: object
       properties:
         deviceName:
@@ -749,9 +720,41 @@ components:
           - string
           - 'null'
           example: Example value
+        deviceSerial:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        agentType:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        agentVersion:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        agentIndex:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        processID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
       additionalProperties: false
       example:
         deviceName: WearableDevice
+        deviceSerial: '10001234'
+        agentType: Device
+        agentVersion: 1.0.0
+        agentIndex: 1
+        processID: 4321
     Device:
       type: object
       properties:
@@ -894,7 +897,36 @@ components:
         volume: 75
         commentListID: 1
         creationDate: '2026-03-30T12:00:00.0000000Z'
-    RegisterAgent:
+    TransferDeviceArgs:
+      type: object
+      properties:
+        newAPIKey:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        newSecretKey:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        environment:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        webServiceBaseUrl:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        newAPIKey: Example value
+        newSecretKey: Example value
+        environment: Example value
+        webServiceBaseUrl: https://api.actionstreamer.com/example
+    DeviceNameArg:
       type: object
       properties:
         deviceName:
@@ -902,38 +934,6 @@ components:
           - string
           - 'null'
           example: Example value
-        deviceSerial:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        agentType:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        agentVersion:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        agentIndex:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        processID:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
       additionalProperties: false
       example:
         deviceName: WearableDevice
-        deviceSerial: '10001234'
-        agentType: Device
-        agentVersion: 1.0.0
-        agentIndex: 1
-        processID: 4321

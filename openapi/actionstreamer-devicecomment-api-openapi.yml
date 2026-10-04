@@ -204,36 +204,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Comment:
-      type: object
-      properties:
-        key:
-          type: integer
-          format: int64
-          example: 1
-        commentText:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        commentDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2026-03-30T12:00:00.0000000Z'
-        creationDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2026-03-30T12:00:00.0000000Z'
-      additionalProperties: false
-      example:
-        key: 1
-        commentText: Example value
-        commentDate: '2026-03-30T12:00:00.0000000Z'
-        creationDate: '2026-03-30T12:00:00.0000000Z'
     CommentWithNames:
       type: object
       properties:
@@ -270,6 +240,36 @@ components:
         commentDate: '2026-03-30T12:00:00.0000000Z'
         creationDate: '2026-03-30T12:00:00.0000000Z'
         username: testuser
+    Comment:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        commentText:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        commentDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        commentText: Example value
+        commentDate: '2026-03-30T12:00:00.0000000Z'
+        creationDate: '2026-03-30T12:00:00.0000000Z'
     StringArg:
       type: object
       properties:

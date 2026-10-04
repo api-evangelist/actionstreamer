@@ -327,6 +327,77 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    VerticalLine:
+      type: object
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+          example: 1
+        color:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        timestamp: 1
+        color: Example value
+    Dataset:
+      type: object
+      properties:
+        label:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/DataPoint'
+          example:
+          - time: 1
+            value: -4
+      additionalProperties: false
+      example:
+        label: Example value
+        data:
+        - time: 1
+          value: -4
+    LineChartResponse:
+      type: object
+      properties:
+        datasets:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Dataset'
+          example:
+          - label: Example value
+            data:
+            - time: null
+              value: null
+        verticalLines:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/VerticalLine'
+          example:
+          - timestamp: 1
+            color: Example value
+      additionalProperties: false
+      example:
+        datasets:
+        - label: Example value
+          data:
+          - null
+        verticalLines:
+        - timestamp: 1
+          color: Example value
     DeviceHealth:
       type: object
       properties:
@@ -362,52 +433,109 @@ components:
         healthDate: '2026-03-30T12:00:00.0000000Z'
         healthJSON: Example value
         creationDate: '2026-03-30T12:00:00.0000000Z'
-    Dataset:
+    LineChartArgs:
       type: object
       properties:
-        label:
+        startEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        endEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        count:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        variableName:
           type:
           - string
           - 'null'
           example: Example value
-        data:
+        verticalLineTimestamps:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/DataPoint'
+            type: integer
+            format: int64
+            example: 1
           example:
-          - time: 1
-            value: -4
+          - 1
       additionalProperties: false
       example:
-        label: Example value
-        data:
-        - time: 1
-          value: -4
-    CreateDeviceHealth:
+        startEpoch: 1711800000
+        endEpoch: 1711800000
+        count: 25
+        variableName: Example value
+        verticalLineTimestamps:
+        - 1
+    DataPoint:
       type: object
       properties:
-        deviceName:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        deviceSerial:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        healthJSON:
-          type:
-          - string
-          - 'null'
-          example: Example value
+        time:
+          type: integer
+          format: int64
+          example: 1
+        value:
+          type: number
+          format: double
+          example: 1
       additionalProperties: false
       example:
-        deviceName: WearableDevice
-        deviceSerial: '10001234'
-        healthJSON: Example value
+        time: 1
+        value: -4
+    EpochAndCountFilter:
+      type: object
+      properties:
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        startEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        endEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        count:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        order:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        videoClipTypeID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+      additionalProperties: false
+      example:
+        deviceID: 201
+        startEpoch: 1711800000
+        endEpoch: 1711800000
+        count: 25
+        order: Example value
+        videoClipTypeID: 1
     DeviceHealthRow:
       type: object
       properties:
@@ -546,154 +674,26 @@ components:
         lastHeardFromDate: '2026-03-30T12:00:00.0000000Z'
         lastVideoClipDate: '2026-03-30T12:00:00.0000000Z'
         softwareDeployDate: '2026-03-30T12:00:00.0000000Z'
-    EpochAndCountFilter:
+    CreateDeviceHealth:
       type: object
       properties:
-        deviceID:
-          type: integer
-          format: int64
-          example: 1
-        startEpoch:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        endEpoch:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        count:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        order:
+        deviceName:
           type:
           - string
           - 'null'
           example: Example value
-        videoClipTypeID:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-      additionalProperties: false
-      example:
-        deviceID: 201
-        startEpoch: 1711800000
-        endEpoch: 1711800000
-        count: 25
-        order: Example value
-        videoClipTypeID: 1
-    LineChartResponse:
-      type: object
-      properties:
-        datasets:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Dataset'
-          example:
-          - label: Example value
-            data:
-            - time: null
-              value: null
-        verticalLines:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/VerticalLine'
-          example:
-          - timestamp: 1
-            color: Example value
-      additionalProperties: false
-      example:
-        datasets:
-        - label: Example value
-          data:
-          - null
-        verticalLines:
-        - timestamp: 1
-          color: Example value
-    LineChartArgs:
-      type: object
-      properties:
-        startEpoch:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        endEpoch:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        count:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        variableName:
+        deviceSerial:
           type:
           - string
           - 'null'
           example: Example value
-        verticalLineTimestamps:
-          type:
-          - array
-          - 'null'
-          items:
-            type: integer
-            format: int64
-            example: 1
-          example:
-          - 1
-      additionalProperties: false
-      example:
-        startEpoch: 1711800000
-        endEpoch: 1711800000
-        count: 25
-        variableName: Example value
-        verticalLineTimestamps:
-        - 1
-    DataPoint:
-      type: object
-      properties:
-        time:
-          type: integer
-          format: int64
-          example: 1
-        value:
-          type: number
-          format: double
-          example: 1
-      additionalProperties: false
-      example:
-        time: 1
-        value: -4
-    VerticalLine:
-      type: object
-      properties:
-        timestamp:
-          type: integer
-          format: int64
-          example: 1
-        color:
+        healthJSON:
           type:
           - string
           - 'null'
           example: Example value
       additionalProperties: false
       example:
-        timestamp: 1
-        color: Example value
+        deviceName: WearableDevice
+        deviceSerial: '10001234'
+        healthJSON: Example value

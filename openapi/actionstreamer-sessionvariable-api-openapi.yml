@@ -128,6 +128,23 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    NameValuePair:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        value:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        name: RemoteWorker
+        value: Example value
     SessionVariable:
       type: object
       properties:
@@ -167,20 +184,3 @@ components:
         variableName: Example value
         variableValue: Example value
         creationDate: '2026-03-30T12:00:00.0000000Z'
-    NameValuePair:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        value:
-          type:
-          - string
-          - 'null'
-          example: Example value
-      additionalProperties: false
-      example:
-        name: RemoteWorker
-        value: Example value

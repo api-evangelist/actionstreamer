@@ -407,60 +407,23 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    CreateEventPreset:
+    IntegerArray:
       type: object
       properties:
-        eventPresetName:
+        data:
           type:
-          - string
+          - array
           - 'null'
-          example: Example value
-        deviceID:
-          type: integer
-          format: int64
-          example: 1
-        deviceGroupID:
-          type: integer
-          format: int64
-          example: 1
-        agentType:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        eventType:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        eventParameters:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        priority:
-          type: integer
-          format: int64
-          example: 1
-        maxAttempts:
-          type: integer
-          format: int64
-          example: 1
-        expirationEpoch:
-          type: integer
-          format: int64
-          example: 1
+          items:
+            type: integer
+            format: int64
+            example: 1
+          example:
+          - 1
       additionalProperties: false
       example:
-        eventPresetName: Example value
-        deviceID: 201
-        deviceGroupID: 1
-        agentType: Device
-        eventType: Run
-        eventParameters: '{"presetName":"Run Event Preset"}'
-        priority: 1
-        maxAttempts: 3
-        expirationEpoch: 1711800000
+        data:
+        - 1
     EventPreset:
       type: object
       properties:
@@ -567,20 +530,57 @@ components:
         tagString: Example value
         tagNumber: 1
         creationDate: '2026-03-30T12:00:00.0000000Z'
-    IntegerArray:
+    CreateEventPreset:
       type: object
       properties:
-        data:
+        eventPresetName:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            type: integer
-            format: int64
-            example: 1
-          example:
-          - 1
+          example: Example value
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        deviceGroupID:
+          type: integer
+          format: int64
+          example: 1
+        agentType:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        eventType:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        eventParameters:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        priority:
+          type: integer
+          format: int64
+          example: 1
+        maxAttempts:
+          type: integer
+          format: int64
+          example: 1
+        expirationEpoch:
+          type: integer
+          format: int64
+          example: 1
       additionalProperties: false
       example:
-        data:
-        - 1
+        eventPresetName: Example value
+        deviceID: 201
+        deviceGroupID: 1
+        agentType: Device
+        eventType: Run
+        eventParameters: '{"presetName":"Run Event Preset"}'
+        priority: 1
+        maxAttempts: 3
+        expirationEpoch: 1711800000

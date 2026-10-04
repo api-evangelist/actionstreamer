@@ -230,17 +230,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    StringArg:
-      type: object
-      properties:
-        value:
-          type:
-          - string
-          - 'null'
-          example: Example value
-      additionalProperties: false
-      example:
-        value: Example value
     Project:
       type: object
       properties:
@@ -286,3 +275,14 @@ components:
         deviceGroupID: 1
         conferenceURL: https://api.actionstreamer.com/example
         creationDate: '2026-03-30T12:00:00.0000000Z'
+    StringArg:
+      type: object
+      properties:
+        value:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        value: Example value

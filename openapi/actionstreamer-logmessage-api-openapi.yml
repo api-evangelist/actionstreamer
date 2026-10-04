@@ -140,6 +140,57 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    LogMessage:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        agentID:
+          type: integer
+          format: int64
+          example: 1
+        processID:
+          type: integer
+          format: int64
+          example: 1
+        version:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        message:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        messageDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        deviceID: 201
+        agentID: 1
+        processID: 4321
+        version: 1.0.0
+        message: Example value
+        messageDate: '2026-03-30T12:00:00.0000000Z'
+        creationDate: '2026-03-30T12:00:00.0000000Z'
     CreateLogMessage:
       type: object
       properties:
@@ -256,57 +307,6 @@ components:
         deviceName: WearableDevice
         agentType: Device
         agentIndex: 1
-    LogMessage:
-      type: object
-      properties:
-        key:
-          type: integer
-          format: int64
-          example: 1
-        deviceID:
-          type: integer
-          format: int64
-          example: 1
-        agentID:
-          type: integer
-          format: int64
-          example: 1
-        processID:
-          type: integer
-          format: int64
-          example: 1
-        version:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        message:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        messageDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2026-03-30T12:00:00.0000000Z'
-        creationDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2026-03-30T12:00:00.0000000Z'
-      additionalProperties: false
-      example:
-        key: 1
-        deviceID: 201
-        agentID: 1
-        processID: 4321
-        version: 1.0.0
-        message: Example value
-        messageDate: '2026-03-30T12:00:00.0000000Z'
-        creationDate: '2026-03-30T12:00:00.0000000Z'
     DateAndCountFilter:
       type: object
       properties:
