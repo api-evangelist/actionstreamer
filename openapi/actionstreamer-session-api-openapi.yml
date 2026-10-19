@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: ActionStreamer Session API
-  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-10-08 19:37:24 UTC'
   termsOfService: https://actionstreamer.com/terms-of-use
   contact:
     name: Contact
@@ -119,23 +119,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    NameValuePair:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        value:
-          type:
-          - string
-          - 'null'
-          example: Example value
-      additionalProperties: false
-      example:
-        name: RemoteWorker
-        value: Example value
     Session:
       type: object
       properties:
@@ -217,3 +200,20 @@ components:
         sessionGuid: 11111111-2222-3333-4444-555555555555
         mfaTypeId: 1
         browserGUID: 11111111-2222-3333-4444-555555555555
+    NameValuePair:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        value:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        name: RemoteWorker
+        value: Example value

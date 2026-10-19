@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: ActionStreamer Media Router Auth API
-  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-10-08 19:37:24 UTC'
   termsOfService: https://actionstreamer.com/terms-of-use
   contact:
     name: Contact
@@ -17,9 +17,16 @@ paths:
       summary: Authorizes a media router request
       description: 'Request body: JSON object with media router request fields.
 
-        Read requests are accepted for the requested path.
-
-        Other requests must provide valid media router credentials or token data.'
+        Requests must provide valid media router credentials or token data for the requested path.'
+      parameters:
+      - name: mediaServerID
+        in: query
+        style: form
+        schema:
+          type: integer
+          format: int64
+          default: 0
+          example: 1
       requestBody:
         content:
           application/json:

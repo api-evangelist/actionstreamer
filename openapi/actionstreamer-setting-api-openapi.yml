@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: ActionStreamer Setting API
-  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-10-08 19:37:24 UTC'
   termsOfService: https://actionstreamer.com/terms-of-use
   contact:
     name: Contact
@@ -293,40 +293,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    DeviceSetting:
-      type: object
-      properties:
-        key:
-          type: integer
-          format: int64
-          example: 1
-        deviceID:
-          type: integer
-          format: int64
-          example: 1
-        settingName:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        settingValue:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        creationDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2026-03-30T12:00:00.0000000Z'
-      additionalProperties: false
-      example:
-        key: 1
-        deviceID: 201
-        settingName: Example value
-        settingValue: Example value
-        creationDate: '2026-03-30T12:00:00.0000000Z'
     AppSetting:
       type: object
       properties:
@@ -363,6 +329,40 @@ components:
         key: 1
         applicationID: 1
         organizationID: 1
+        settingName: Example value
+        settingValue: Example value
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+    DeviceSetting:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        settingName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        settingValue:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        deviceID: 201
         settingName: Example value
         settingValue: Example value
         creationDate: '2026-03-30T12:00:00.0000000Z'

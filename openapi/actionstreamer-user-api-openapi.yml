@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: ActionStreamer User API
-  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-10-08 19:37:24 UTC'
   termsOfService: https://actionstreamer.com/terms-of-use
   contact:
     name: Contact
@@ -190,6 +190,17 @@ components:
       example:
         values:
         - Example value
+    StringArg:
+      type: object
+      properties:
+        value:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        value: Example value
     User:
       type: object
       properties:
@@ -316,14 +327,3 @@ components:
         description: Example description
         availability: Available
         creationDate: '2026-03-30T12:00:00.0000000Z'
-    StringArg:
-      type: object
-      properties:
-        value:
-          type:
-          - string
-          - 'null'
-          example: Example value
-      additionalProperties: false
-      example:
-        value: Example value

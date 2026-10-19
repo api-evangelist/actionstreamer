@@ -1,0 +1,258 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Device Wifi Connection API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: DeviceWifiConnection
+paths:
+  /v1/devicewificonnection/{deviceWifiConnectionID}:
+    get:
+      tags:
+      - DeviceWifiConnection
+      summary: Gets a device Wi-Fi connection by ID
+      parameters:
+      - name: deviceWifiConnectionID
+        in: path
+        description: The ID of the device Wi-Fi connection to retrieve.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceWifiConnection'
+              example:
+                key: 1
+                deviceID: 201
+                wifiConnectionID: 1
+                priority: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1DevicewificonnectionByDeviceWifiConnectionID
+      x-operation-id-source: derived
+    put:
+      tags:
+      - DeviceWifiConnection
+      summary: Updates a device Wi-Fi connection
+      description: This endpoint is currently not fully implemented and returns `200 OK` after authorization succeeds.
+      parameters:
+      - name: deviceWifiConnectionID
+        in: path
+        description: The ID of the device Wi-Fi connection to update.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: putV1DevicewificonnectionByDeviceWifiConnectionID
+      x-operation-id-source: derived
+    patch:
+      tags:
+      - DeviceWifiConnection
+      summary: Applies a patch to a device Wi-Fi connection
+      description: 'Request body: array of patch operations.'
+      parameters:
+      - name: deviceWifiConnectionID
+        in: path
+        description: The ID of the device Wi-Fi connection to patch.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example: Patch applied successfully.
+      operationId: patchV1DevicewificonnectionByDeviceWifiConnectionID
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - DeviceWifiConnection
+      summary: Deletes a device Wi-Fi connection
+      description: Deletes the device Wi-Fi connection.
+      parameters:
+      - name: deviceWifiConnectionID
+        in: path
+        description: The ID of the device Wi-Fi connection to delete.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: deleteV1DevicewificonnectionByDeviceWifiConnectionID
+      x-operation-id-source: derived
+  /v1/devicewificonnection/list/{deviceID}:
+    get:
+      tags:
+      - DeviceWifiConnection
+      summary: Gets the device Wi-Fi connection list
+      description: Returns a custom list of Wi-Fi connection objects for the device.
+      parameters:
+      - name: deviceID
+        in: path
+        description: The ID of the device whose Wi-Fi connections should be returned.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DeviceWifiConnection'
+                example:
+                - key: 1
+                  userID: 101
+                  deviceID: 201
+                  wifiConnectionID: 1
+                  priority: 1
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 1
+                deviceID: 201
+                wifiConnectionID: 1
+                priority: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1DevicewificonnectionListByDeviceID
+      x-operation-id-source: derived
+  /v1/devicewificonnection/list/{deviceID}/config:
+    get:
+      tags:
+      - DeviceWifiConnection
+      summary: Gets the device Wi-Fi configuration list
+      description: Returns the device Wi-Fi connections in configuration format.
+      parameters:
+      - name: deviceID
+        in: path
+        description: The ID of the device whose Wi-Fi configuration should be returned.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DeviceWifiConnection'
+                example:
+                - key: 1
+                  userID: 101
+                  deviceID: 201
+                  wifiConnectionID: 1
+                  priority: 1
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 1
+                deviceID: 201
+                wifiConnectionID: 1
+                priority: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1DevicewificonnectionListByDeviceIDConfig
+      x-operation-id-source: derived
+  /v1/devicewificonnection:
+    post:
+      tags:
+      - DeviceWifiConnection
+      summary: Creates a device Wi-Fi connection
+      description: 'Request body: JSON object.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceWifiConnection'
+            example:
+              key: 1
+              deviceID: 201
+              wifiConnectionID: 1
+              priority: 1
+              creationDate: '2026-03-30T12:00:00.0000000Z'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceWifiConnection'
+              example:
+                key: 1
+                deviceID: 201
+                wifiConnectionID: 1
+                priority: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1Devicewificonnection
+      x-operation-id-source: derived
+components:
+  schemas:
+    DeviceWifiConnection:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        wifiConnectionID:
+          type: integer
+          format: int64
+          example: 1
+        priority:
+          type: integer
+          format: int64
+          example: 1
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        deviceID: 201
+        wifiConnectionID: 1
+        priority: 1
+        creationDate: '2026-03-30T12:00:00.0000000Z'

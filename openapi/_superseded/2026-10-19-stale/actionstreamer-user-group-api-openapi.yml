@@ -1,0 +1,320 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer User Group API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: User Group
+paths:
+  /v1/usergroup/{userGroupID}:
+    get:
+      tags:
+      - User Group
+      summary: Gets a user group by ID
+      parameters:
+      - name: userGroupID
+        in: path
+        description: The ID of the user group to retrieve.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+              example:
+                key: 1
+                collectionName: Example value
+                description: Example description
+                itemTypeID: 1
+                itemID: 1
+                parentID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1UsergroupByUserGroupID
+      x-operation-id-source: derived
+    put:
+      tags:
+      - User Group
+      summary: Updates a user group
+      description: 'Request body: JSON object. This endpoint updates only the group name after
+
+        sanitizing it, truncating it to 100 characters, and checking for conflicts with other user-group names
+
+        owned by the same user.'
+      parameters:
+      - name: userGroupID
+        in: path
+        description: The ID of the user group to update.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StringArg'
+            example:
+              value: Example value
+        required: true
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: putV1UsergroupByUserGroupID
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - User Group
+      summary: Deletes a user group
+      description: Deletes the user group.
+      parameters:
+      - name: userGroupID
+        in: path
+        description: The ID of the user group to delete.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: deleteV1UsergroupByUserGroupID
+      x-operation-id-source: derived
+  /v1/usergroup/list:
+    get:
+      tags:
+      - User Group
+      summary: Gets the user group list
+      description: Returns user-group collections created by the authenticated user.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Collection'
+                example:
+                - key: 1
+                  collectionName: Example value
+                  description: Example description
+                  userID: 101
+                  itemTypeID: 1
+                  itemID: 1
+                  parentID: 1
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 1
+                collectionName: Example value
+                description: Example description
+                itemTypeID: 1
+                itemID: 1
+                parentID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1UsergroupList
+      x-operation-id-source: derived
+  /v1/usergroup/{userGroupID}/list:
+    get:
+      tags:
+      - User Group
+      summary: Gets the user list for a user group
+      description: 'Returns the users in the group with availability details.
+
+        This endpoint is restricted to the group creator.'
+      parameters:
+      - name: userGroupID
+        in: path
+        description: The ID of the user group whose users should be returned.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserAvailability'
+                example:
+                - key: 101
+                  emailAddress: testuser@actionstreamer.com
+                  firstName: Test
+                  lastName: User
+                  description: Example description
+                  availability: Available
+                  timeZone: America/New_York
+              example:
+              - key: 101
+                emailAddress: testuser@actionstreamer.com
+                firstName: Test
+                lastName: User
+                description: Example description
+                availability: Available
+                timeZone: America/New_York
+      operationId: getV1UsergroupByUserGroupIDList
+      x-operation-id-source: derived
+  /v1/usergroup:
+    post:
+      tags:
+      - User Group
+      summary: Creates a user group
+      description: 'Request body: JSON object. This endpoint uses `value` as the group
+
+        name, sanitizes it to alphanumeric characters and spaces, truncates it to 100 characters, and rejects
+
+        duplicate group names for the same user.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StringArg'
+            example:
+              value: Example value
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+              example:
+                key: 1
+                collectionName: Example value
+                description: Example description
+                itemTypeID: 1
+                itemID: 1
+                parentID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1Usergroup
+      x-operation-id-source: derived
+components:
+  schemas:
+    UserAvailability:
+      type: object
+      properties:
+        key:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        emailAddress:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        firstName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        lastName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        description:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        availability:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        timeZone:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        key: 101
+        emailAddress: testuser@actionstreamer.com
+        firstName: Test
+        lastName: User
+        description: Example description
+        availability: Available
+        timeZone: America/New_York
+    StringArg:
+      type: object
+      properties:
+        value:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        value: Example value
+    Collection:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        collectionName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        description:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        itemTypeID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        itemID:
+          type: integer
+          format: int64
+          example: 1
+        parentID:
+          type: integer
+          format: int64
+          example: 1
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        collectionName: Example value
+        description: Example description
+        itemTypeID: 1
+        itemID: 1
+        parentID: 1
+        creationDate: '2026-03-30T12:00:00.0000000Z'

@@ -1,0 +1,191 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Collection Item API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: CollectionItem
+paths:
+  /v1/collectionitem/{collectionItemID}:
+    get:
+      tags:
+      - CollectionItem
+      summary: Gets a collection item by ID
+      parameters:
+      - name: collectionItemID
+        in: path
+        description: The ID of the collection item to retrieve.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionItem'
+              example:
+                key: 1
+                collectionID: 1
+                itemTypeID: 1
+                itemID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1CollectionitemByCollectionItemID
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - CollectionItem
+      summary: Deletes a collection item
+      description: Removes the item from its collection after write authorization succeeds.
+      parameters:
+      - name: collectionItemID
+        in: path
+        description: The ID of the collection item to delete.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: deleteV1CollectionitemByCollectionItemID
+      x-operation-id-source: derived
+  /v1/collectionitem/list:
+    get:
+      tags:
+      - CollectionItem
+      summary: Gets the collection item list
+      description: Returns collection items associated with the authenticated user.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CollectionItem'
+                example:
+                - key: 1
+                  collectionID: 1
+                  userID: 101
+                  itemTypeID: 1
+                  itemID: 1
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 1
+                collectionID: 1
+                itemTypeID: 1
+                itemID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1CollectionitemList
+      x-operation-id-source: derived
+  /v1/collectionitem/{collectionID}:
+    post:
+      tags:
+      - CollectionItem
+      summary: Creates a collection item
+      description: 'Request body: JSON object. Accepted values include
+
+        `itemType` values of `device`, `user`, or `file`. The caller must have write access
+
+        to the collection and read access to the item being added.'
+      parameters:
+      - name: collectionID
+        in: path
+        description: The ID of the collection that will receive the item.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCollectionItem'
+            example:
+              itemType: Example value
+              itemID: 1
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionItem'
+              example:
+                key: 1
+                collectionID: 1
+                itemTypeID: 1
+                itemID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1CollectionitemByCollectionID
+      x-operation-id-source: derived
+components:
+  schemas:
+    CreateCollectionItem:
+      type: object
+      properties:
+        itemType:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        itemID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+      additionalProperties: false
+      example:
+        itemType: Example value
+        itemID: 1
+    CollectionItem:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        collectionID:
+          type: integer
+          format: int64
+          example: 1
+        itemTypeID:
+          type: integer
+          format: int64
+          example: 1
+        itemID:
+          type: integer
+          format: int64
+          example: 1
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        collectionID: 1
+        itemTypeID: 1
+        itemID: 1
+        creationDate: '2026-03-30T12:00:00.0000000Z'

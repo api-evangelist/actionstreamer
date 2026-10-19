@@ -1,0 +1,29 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Device Capability API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-10-08 19:37:24 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: DeviceCapability
+paths:
+  /v1/devicecapability:
+    post:
+      tags:
+      - DeviceCapability
+      summary: Announces the complete current capability snapshot for a Device
+      description: 'Request body: JSON object. The request must include `deviceSerial`, or the compatibility
+
+        `deviceName`, a capability version, a SHA-256 capability hash, and the complete Sensor list.
+
+        Capability reports must not include credentials, tokens, or media URLs.
+
+        If `/etc/ActionStreamerWebAPI/RevealErrors.flag` exists, validation and reconciliation failures return more specific troubleshooting details.'
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: postV1Devicecapability
+      x-operation-id-source: derived

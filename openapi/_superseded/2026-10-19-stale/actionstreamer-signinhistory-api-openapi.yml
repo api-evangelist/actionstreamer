@@ -1,0 +1,164 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Sign In History API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: SignInHistory
+paths:
+  /v1/signinhistory/{signInHistoryID}:
+    get:
+      tags:
+      - SignInHistory
+      summary: Gets a sign-in history record by ID
+      parameters:
+      - name: signInHistoryID
+        in: path
+        description: The ID of the sign-in history record to retrieve.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignInHistory'
+              example:
+                key: 1
+                username: testuser
+                remoteIPAddress: 203.0.113.42
+                forwardedFor: Example value
+                realIP: Example value
+                userAgent: Example value
+                location: Remote site
+                deviceDescription: Example description
+                referer: Example value
+                successfulSignIn: true
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1SigninhistoryBySignInHistoryID
+      x-operation-id-source: derived
+  /v1/signinhistory/list:
+    get:
+      tags:
+      - SignInHistory
+      summary: Gets the sign-in history list
+      description: Returns sign-in history records for the authenticated user.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SignInHistory'
+                example:
+                - key: 1
+                  userID: 101
+                  username: testuser
+                  remoteIPAddress: 203.0.113.42
+                  forwardedFor: Example value
+                  realIP: Example value
+                  userAgent: Example value
+                  location: Remote site
+                  deviceDescription: Example description
+                  referer: Example value
+                  successfulSignIn: true
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 1
+                username: testuser
+                remoteIPAddress: 203.0.113.42
+                forwardedFor: Example value
+                realIP: Example value
+                userAgent: Example value
+                location: Remote site
+                deviceDescription: Example description
+                referer: Example value
+                successfulSignIn: true
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1SigninhistoryList
+      x-operation-id-source: derived
+components:
+  schemas:
+    SignInHistory:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        username:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        remoteIPAddress:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        forwardedFor:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        realIP:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        userAgent:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        location:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        deviceDescription:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        referer:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        successfulSignIn:
+          type: boolean
+          example: true
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        username: testuser
+        remoteIPAddress: 203.0.113.42
+        forwardedFor: Example value
+        realIP: Example value
+        userAgent: Example value
+        location: Remote site
+        deviceDescription: Example description
+        referer: Example value
+        successfulSignIn: true
+        creationDate: '2026-03-30T12:00:00.0000000Z'

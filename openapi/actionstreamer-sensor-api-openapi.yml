@@ -1,0 +1,32 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Sensor API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-10-08 19:37:24 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: Sensor
+paths:
+  /v1/device/{deviceID}/sensor/list:
+    get:
+      tags:
+      - Sensor
+      summary: Gets the Sensor list for a Device
+      parameters:
+      - name: deviceID
+        in: path
+        description: The ID of the Device whose Sensors should be returned.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: getV1DeviceByDeviceIDSensorList
+      x-operation-id-source: derived

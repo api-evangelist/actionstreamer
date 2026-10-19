@@ -1,0 +1,220 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer API Key API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: API Key
+paths:
+  /v1/apikey/{apiKeyID}:
+    get:
+      tags:
+      - API Key
+      summary: Gets an API key by ID
+      description: This endpoint requires an authenticated web session.
+      parameters:
+      - name: apiKeyID
+        in: path
+        description: The ID of the API key to retrieve.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIKey'
+              example:
+                key: 1
+                appID: 1
+                aPIKeyDescription: Example description
+                accessKey: Example value
+                secretKey: Example value
+                status: 1
+                lastAccessDate: '2026-03-30T12:00:00.0000000Z'
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1ApikeyByApiKeyID
+      x-operation-id-source: derived
+    put:
+      tags:
+      - API Key
+      summary: Updates an API key
+      description: 'Request body: JSON object. This endpoint requires an authenticated web
+
+        session and currently only updates `aPIKeyDescription`.'
+      parameters:
+      - name: apiKeyID
+        in: path
+        description: The ID of the API key to update.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/APIKey'
+            example:
+              key: 1
+              appID: 1
+              aPIKeyDescription: Example description
+              accessKey: Example value
+              secretKey: Example value
+              status: 1
+              lastAccessDate: '2026-03-30T12:00:00.0000000Z'
+              creationDate: '2026-03-30T12:00:00.0000000Z'
+        required: true
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: putV1ApikeyByApiKeyID
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - API Key
+      summary: Deletes an API key
+      description: This endpoint requires an authenticated web session.
+      parameters:
+      - name: apiKeyID
+        in: path
+        description: The ID of the API key to delete.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: deleteV1ApikeyByApiKeyID
+      x-operation-id-source: derived
+  /v1/apikey/list:
+    get:
+      tags:
+      - API Key
+      summary: Gets the API key list
+      description: This endpoint requires an authenticated web session.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/APIKey'
+                example:
+                - key: 1
+                  userID: 101
+                  appID: 1
+                  aPIKeyDescription: Example description
+                  accessKey: Example value
+                  secretKey: Example value
+                  status: 1
+                  lastAccessDate: '2026-03-30T12:00:00.0000000Z'
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 1
+                appID: 1
+                aPIKeyDescription: Example description
+                accessKey: Example value
+                secretKey: Example value
+                status: 1
+                lastAccessDate: '2026-03-30T12:00:00.0000000Z'
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1ApikeyList
+      x-operation-id-source: derived
+  /v1/apikey:
+    post:
+      tags:
+      - API Key
+      summary: Creates an API key
+      description: This endpoint requires an authenticated web session. A new access key and secret are generated automatically.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIKey'
+              example:
+                key: 1
+                appID: 1
+                aPIKeyDescription: Example description
+                accessKey: Example value
+                secretKey: Example value
+                status: 1
+                lastAccessDate: '2026-03-30T12:00:00.0000000Z'
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1Apikey
+      x-operation-id-source: derived
+components:
+  schemas:
+    APIKey:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        appID:
+          type: integer
+          format: int64
+          example: 1
+        aPIKeyDescription:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        accessKey:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        secretKey:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        status:
+          type: integer
+          format: int64
+          example: 1
+        lastAccessDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        appID: 1
+        aPIKeyDescription: Example description
+        accessKey: Example value
+        secretKey: Example value
+        status: 1
+        lastAccessDate: '2026-03-30T12:00:00.0000000Z'
+        creationDate: '2026-03-30T12:00:00.0000000Z'

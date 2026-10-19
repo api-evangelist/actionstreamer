@@ -1,0 +1,202 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Stream Session API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-10-08 19:37:24 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: StreamSession
+paths:
+  /v1/streamsession/list:
+    get:
+      tags:
+      - StreamSession
+      summary: Gets the StreamSession list
+      description: Returns active StreamSessions for the authenticated session.
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: getV1StreamsessionList
+      x-operation-id-source: derived
+  /v1/streamsession/{streamSessionID}:
+    get:
+      tags:
+      - StreamSession
+      summary: Gets a StreamSession by ID
+      parameters:
+      - name: streamSessionID
+        in: path
+        description: The ID of the StreamSession to retrieve.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: getV1StreamsessionByStreamSessionID
+      x-operation-id-source: derived
+    put:
+      tags:
+      - StreamSession
+      summary: Updates a StreamSession
+      description: 'Request body: JSON object.'
+      parameters:
+      - name: streamSessionID
+        in: path
+        description: The ID of the StreamSession to update.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: putV1StreamsessionByStreamSessionID
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - StreamSession
+      summary: Deletes a StreamSession
+      parameters:
+      - name: streamSessionID
+        in: path
+        description: The ID of the StreamSession to delete.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: deleteV1StreamsessionByStreamSessionID
+      x-operation-id-source: derived
+  /v1/streamsession:
+    post:
+      tags:
+      - StreamSession
+      summary: Creates a StreamSession
+      description: 'Request body: JSON object.'
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: postV1Streamsession
+      x-operation-id-source: derived
+  /v1/streamsession/{streamSessionID}/mediaserver/{mediaServerID}:
+    patch:
+      tags:
+      - StreamSession
+      summary: Assigns a MediaServer to a StreamSession
+      parameters:
+      - name: streamSessionID
+        in: path
+        description: The ID of the StreamSession to update.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      - name: mediaServerID
+        in: path
+        description: The ID of the MediaServer to assign.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: patchV1StreamsessionByStreamSessionIDMediaserverByMediaServerID
+      x-operation-id-source: derived
+  /v1/streamsession/{streamSessionID}/connect:
+    patch:
+      tags:
+      - StreamSession
+      summary: Marks a StreamSession as connected
+      parameters:
+      - name: streamSessionID
+        in: path
+        description: The ID of the StreamSession to update.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: patchV1StreamsessionByStreamSessionIDConnect
+      x-operation-id-source: derived
+  /v1/streamsession/{streamSessionID}/disconnect:
+    patch:
+      tags:
+      - StreamSession
+      summary: Marks a StreamSession as disconnected
+      parameters:
+      - name: streamSessionID
+        in: path
+        description: The ID of the StreamSession to update.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: patchV1StreamsessionByStreamSessionIDDisconnect
+      x-operation-id-source: derived
+  /v1/streamsession/{streamSessionID}/expire:
+    patch:
+      tags:
+      - StreamSession
+      summary: Marks a StreamSession lease as expired
+      parameters:
+      - name: streamSessionID
+        in: path
+        description: The ID of the StreamSession to update.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: patchV1StreamsessionByStreamSessionIDExpire
+      x-operation-id-source: derived
+  /v1/streamsession/{streamSessionID}/mediaserver/auto:
+    patch:
+      tags:
+      - StreamSession
+      summary: Assigns the first eligible MediaServer to a StreamSession
+      parameters:
+      - name: streamSessionID
+        in: path
+        description: The ID of the StreamSession to update.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: patchV1StreamsessionByStreamSessionIDMediaserverAuto
+      x-operation-id-source: derived

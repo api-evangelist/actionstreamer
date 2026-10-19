@@ -1,0 +1,60 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Moq Stream API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-10-08 19:37:24 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: MoqStream
+paths:
+  /v1/device/{deviceID}/sensor/{sensorID}/moq/publish/start:
+    post:
+      tags:
+      - MoqStream
+      parameters:
+      - name: deviceID
+        in: path
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      - name: sensorID
+        in: path
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      summary: Create device by device id sensor by sensor id moq publish start
+      x-summary-source: derived
+      operationId: postV1DeviceByDeviceIDSensorBySensorIDMoqPublishStart
+      x-operation-id-source: derived
+  /v1/stream/{streamID}/moq/publish/stop:
+    post:
+      tags:
+      - MoqStream
+      parameters:
+      - name: streamID
+        in: path
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      summary: Create stream by stream id moq publish stop
+      x-summary-source: derived
+      operationId: postV1StreamByStreamIDMoqPublishStop
+      x-operation-id-source: derived

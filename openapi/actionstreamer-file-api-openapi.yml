@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: ActionStreamer File API
-  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-10-08 19:37:24 UTC'
   termsOfService: https://actionstreamer.com/terms-of-use
   contact:
     name: Contact
@@ -177,6 +177,58 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    SignedURLWithID:
+      type: object
+      properties:
+        signedURL:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        fileID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+      additionalProperties: false
+      example:
+        signedURL: https://api.actionstreamer.com/example
+        fileID: 1
+    CreateFile:
+      type: object
+      properties:
+        deviceName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        deviceSerial:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        filename:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        fileSize:
+          type: integer
+          format: int64
+          example: 1
+        sHA256Hash:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        deviceName: WearableDevice
+        deviceSerial: '10001234'
+        filename: clip.mp4
+        fileSize: 1
+        sHA256Hash: Example value
     File:
       type: object
       properties:
@@ -243,55 +295,3 @@ components:
         fileInS3: true
         doNotDelete: true
         creationDate: '2026-03-30T12:00:00.0000000Z'
-    CreateFile:
-      type: object
-      properties:
-        deviceName:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        deviceSerial:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        filename:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        fileSize:
-          type: integer
-          format: int64
-          example: 1
-        sHA256Hash:
-          type:
-          - string
-          - 'null'
-          example: Example value
-      additionalProperties: false
-      example:
-        deviceName: WearableDevice
-        deviceSerial: '10001234'
-        filename: clip.mp4
-        fileSize: 1
-        sHA256Hash: Example value
-    SignedURLWithID:
-      type: object
-      properties:
-        signedURL:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        fileID:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-      additionalProperties: false
-      example:
-        signedURL: https://api.actionstreamer.com/example
-        fileID: 1

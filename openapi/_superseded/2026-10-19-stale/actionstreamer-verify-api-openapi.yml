@@ -1,0 +1,34 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Verify API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: Verify
+paths:
+  /v1/verify:
+    post:
+      tags:
+      - Verify
+      summary: Verifies a user email address
+      description: 'Request body: JSON object with the verification token in `token`.'
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: postV1Verify
+      x-operation-id-source: derived
+  /v1/reverify:
+    post:
+      tags:
+      - Verify
+      summary: Resends a verification email
+      description: 'Request body: JSON object with the email address in `value`.'
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: postV1Reverify
+      x-operation-id-source: derived

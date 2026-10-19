@@ -1,0 +1,35 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Mo Q API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-10-08 19:37:24 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: MoQ
+paths:
+  /v1/moq/publish-credential:
+    post:
+      tags:
+      - MoQ
+      summary: Creates a short-lived MoQ publish credential for a StreamSession
+      description: 'Request body: JSON object with `streamID`, `streamSessionID`, `mediaServerID`, `sourceDeviceID`, and `sourceDeviceSerial`.
+
+        Returns a relay URL, opaque namespace, JWT, and expiration timestamp for MoQ publish access.'
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: postV1MoqPublishCredential
+      x-operation-id-source: derived
+  /v1/moq/subscribe-credential:
+    post:
+      tags:
+      - MoQ
+      summary: Creates a short-lived read-only MoQ credential for an authorized active…
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: postV1MoqSubscribeCredential
+      x-operation-id-source: derived

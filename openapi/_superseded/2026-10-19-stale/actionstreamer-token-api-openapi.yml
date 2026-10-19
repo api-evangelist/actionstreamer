@@ -1,0 +1,77 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Token API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: Token
+paths:
+  /v1/token/mediarouter/read:
+    post:
+      tags:
+      - Token
+      summary: Creates a media router read token
+      description: 'Request body: JSON object with `streamPath`.
+
+        Returns a token and expiration timestamp for media router read access.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MediaRouterTokenRequest'
+            example:
+              streamPath: sendsrt-wearabledevice
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                token: example-jwt-token
+                expiresUtc: '2026-03-30T12:05:00.0000000Z'
+      operationId: postV1TokenMediarouterRead
+      x-operation-id-source: derived
+  /v1/token/mediarouter/publish:
+    post:
+      tags:
+      - Token
+      summary: Creates a media router publish token
+      description: 'Request body: JSON object with `streamPath`.
+
+        Returns a token and expiration timestamp for media router publish access.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MediaRouterTokenRequest'
+            example:
+              streamPath: sendsrt-wearabledevice
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                token: example-jwt-token
+                expiresUtc: '2026-03-30T12:05:00.0000000Z'
+      operationId: postV1TokenMediarouterPublish
+      x-operation-id-source: derived
+components:
+  schemas:
+    MediaRouterTokenRequest:
+      type: object
+      properties:
+        streamPath:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        streamPath: sendsrt-wearabledevice

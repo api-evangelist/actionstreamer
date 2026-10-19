@@ -1,0 +1,60 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Srt Stream API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-10-08 19:37:24 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: SrtStream
+paths:
+  /v1/device/{deviceID}/sensor/{sensorID}/srt/publish/start:
+    post:
+      tags:
+      - SrtStream
+      parameters:
+      - name: deviceID
+        in: path
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      - name: sensorID
+        in: path
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      summary: Create device by device id sensor by sensor id srt publish start
+      x-summary-source: derived
+      operationId: postV1DeviceByDeviceIDSensorBySensorIDSrtPublishStart
+      x-operation-id-source: derived
+  /v1/srt/playback-resolution/{streamSessionID}:
+    get:
+      tags:
+      - SrtStream
+      parameters:
+      - name: streamSessionID
+        in: path
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      summary: Get srt playback resolution by stream session id
+      x-summary-source: derived
+      operationId: getV1SrtPlaybackResolutionByStreamSessionID
+      x-operation-id-source: derived

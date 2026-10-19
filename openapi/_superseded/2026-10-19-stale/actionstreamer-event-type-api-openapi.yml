@@ -1,0 +1,106 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Event Type API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: Event Type
+paths:
+  /v1/eventtype/list:
+    post:
+      tags:
+      - Event Type
+      summary: Gets the event type list
+      description: 'Request body: JSON object with the agent type name.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetEventType'
+            example:
+              agentType: Device
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventType'
+                example:
+                - key: 1
+                  legacyEventTypeID: 1
+                  agentTypeID: 1
+                  eventTypeName: Run
+                  description: Example description
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 1
+                legacyEventTypeID: 1
+                agentTypeID: 1
+                eventTypeName: Run
+                description: Example description
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1EventtypeList
+      x-operation-id-source: derived
+components:
+  schemas:
+    EventType:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        legacyEventTypeID:
+          type: integer
+          format: int64
+          example: 1
+        agentTypeID:
+          type: integer
+          format: int64
+          example: 1
+        eventTypeName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        description:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        legacyEventTypeID: 1
+        agentTypeID: 1
+        eventTypeName: Run
+        description: Example description
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+    GetEventType:
+      type: object
+      properties:
+        agentType:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        agentType: Device

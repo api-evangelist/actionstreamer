@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: ActionStreamer Stream API
-  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-10-08 19:37:24 UTC'
   termsOfService: https://actionstreamer.com/terms-of-use
   contact:
     name: Contact
@@ -35,7 +35,9 @@ paths:
               example:
                 key: 401
                 deviceID: 201
+                sensorID: 1
                 streamTypeID: 1
+                streamStatusID: 1
                 eventID: 501
                 streamName: SendSRT
                 streamPath: sendsrt-wearabledevice
@@ -44,6 +46,11 @@ paths:
                 readURL: https://media.actionstreamer.com/webrtc/sendsrt-wearabledevice
                 lastActivityDate: '2026-03-30T12:00:00.0000000Z'
                 actionTypeID: 1
+                desiredWidth: 1
+                desiredHeight: 1
+                desiredFrameRate: 1
+                desiredBitrate: 1
+                audioEnabled: true
                 creationDate: '2026-03-30T12:00:00.0000000Z'
       operationId: getV1StreamByStreamID
       x-operation-id-source: derived
@@ -70,7 +77,9 @@ paths:
             example:
               key: 401
               deviceID: 201
+              sensorID: 1
               streamTypeID: 1
+              streamStatusID: 1
               eventID: 501
               streamName: SendSRT
               streamPath: sendsrt-wearabledevice
@@ -79,6 +88,11 @@ paths:
               readURL: https://media.actionstreamer.com/webrtc/sendsrt-wearabledevice
               lastActivityDate: '2026-03-30T12:00:00.0000000Z'
               actionTypeID: 1
+              desiredWidth: 1
+              desiredHeight: 1
+              desiredFrameRate: 1
+              desiredBitrate: 1
+              audioEnabled: true
               creationDate: '2026-03-30T12:00:00.0000000Z'
         required: true
       responses:
@@ -154,7 +168,9 @@ paths:
               example:
                 key: 401
                 deviceID: 201
+                sensorID: 1
                 streamTypeID: 1
+                streamStatusID: 1
                 eventID: 501
                 streamName: SendSRT
                 streamPath: sendsrt-wearabledevice
@@ -163,6 +179,11 @@ paths:
                 readURL: https://media.actionstreamer.com/webrtc/sendsrt-wearabledevice
                 lastActivityDate: '2026-03-30T12:00:00.0000000Z'
                 actionTypeID: 1
+                desiredWidth: 1
+                desiredHeight: 1
+                desiredFrameRate: 1
+                desiredBitrate: 1
+                audioEnabled: true
                 creationDate: '2026-03-30T12:00:00.0000000Z'
       operationId: getV1DeviceByDeviceIDStreamMostrecent
       x-operation-id-source: derived
@@ -200,7 +221,9 @@ paths:
               example:
                 key: 401
                 deviceID: 201
+                sensorID: 1
                 streamTypeID: 1
+                streamStatusID: 1
                 eventID: 501
                 streamName: SendSRT
                 streamPath: sendsrt-wearabledevice
@@ -209,8 +232,51 @@ paths:
                 readURL: https://media.actionstreamer.com/webrtc/sendsrt-wearabledevice
                 lastActivityDate: '2026-03-30T12:00:00.0000000Z'
                 actionTypeID: 1
+                desiredWidth: 1
+                desiredHeight: 1
+                desiredFrameRate: 1
+                desiredBitrate: 1
+                audioEnabled: true
                 creationDate: '2026-03-30T12:00:00.0000000Z'
       operationId: postV1DeviceByDeviceIDStreamPath
+      x-operation-id-source: derived
+  /v1/device/{deviceID}/sensor/{sensorID}/streamtype/{streamTypeID}:
+    get:
+      tags:
+      - Stream
+      summary: Gets a stream by Device, Sensor, and StreamType
+      parameters:
+      - name: deviceID
+        in: path
+        description: The ID of the device that owns the stream.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      - name: sensorID
+        in: path
+        description: The ID of the sensor that owns the stream.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      - name: streamTypeID
+        in: path
+        description: The ID of the stream type.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: getV1DeviceByDeviceIDSensorBySensorIDStreamtypeByStreamTypeID
       x-operation-id-source: derived
   /v1/device/{deviceID}/stream/list:
     get:
@@ -241,7 +307,9 @@ paths:
                 - key: 401
                   userID: 101
                   deviceID: 201
+                  sensorID: 1
                   streamTypeID: 1
+                  streamStatusID: 1
                   eventID: 501
                   streamName: SendSRT
                   streamPath: sendsrt-wearabledevice
@@ -250,6 +318,11 @@ paths:
                   readURL: https://media.actionstreamer.com/webrtc/sendsrt-wearabledevice
                   lastActivityDate: '2026-03-30T12:00:00.0000000Z'
                   actionTypeID: 1
+                  desiredWidth: 1
+                  desiredHeight: 1
+                  desiredFrameRate: 1
+                  desiredBitrate: 1
+                  audioEnabled: true
                   creationDate: '2026-03-30T12:00:00.0000000Z'
                   createdBy: 1
                   lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
@@ -257,7 +330,9 @@ paths:
               example:
               - key: 401
                 deviceID: 201
+                sensorID: 1
                 streamTypeID: 1
+                streamStatusID: 1
                 eventID: 501
                 streamName: SendSRT
                 streamPath: sendsrt-wearabledevice
@@ -266,6 +341,11 @@ paths:
                 readURL: https://media.actionstreamer.com/webrtc/sendsrt-wearabledevice
                 lastActivityDate: '2026-03-30T12:00:00.0000000Z'
                 actionTypeID: 1
+                desiredWidth: 1
+                desiredHeight: 1
+                desiredFrameRate: 1
+                desiredBitrate: 1
+                audioEnabled: true
                 creationDate: '2026-03-30T12:00:00.0000000Z'
       operationId: getV1DeviceByDeviceIDStreamList
       x-operation-id-source: derived
@@ -282,6 +362,7 @@ paths:
               $ref: '#/components/schemas/CreateStream'
             example:
               deviceID: 201
+              sensorID: 1
               streamType: Example value
               streamName: SendSRT
               streamPath: sendsrt-wearabledevice
@@ -301,7 +382,9 @@ paths:
               example:
                 key: 401
                 deviceID: 201
+                sensorID: 1
                 streamTypeID: 1
+                streamStatusID: 1
                 eventID: 501
                 streamName: SendSRT
                 streamPath: sendsrt-wearabledevice
@@ -310,89 +393,24 @@ paths:
                 readURL: https://media.actionstreamer.com/webrtc/sendsrt-wearabledevice
                 lastActivityDate: '2026-03-30T12:00:00.0000000Z'
                 actionTypeID: 1
+                desiredWidth: 1
+                desiredHeight: 1
+                desiredFrameRate: 1
+                desiredBitrate: 1
+                audioEnabled: true
                 creationDate: '2026-03-30T12:00:00.0000000Z'
       operationId: postV1Stream
       x-operation-id-source: derived
 components:
   schemas:
-    Stream:
-      type: object
-      properties:
-        key:
-          type: integer
-          format: int64
-          example: 1
-        deviceID:
-          type: integer
-          format: int64
-          example: 1
-        streamTypeID:
-          type: integer
-          format: int64
-          example: 1
-        eventID:
-          type: integer
-          format: int64
-          example: 1
-        streamName:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        streamPath:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        streamDescription:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        publishURL:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        readURL:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        lastActivityDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2026-03-30T12:00:00.0000000Z'
-        actionTypeID:
-          type: integer
-          format: int64
-          example: 1
-        creationDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2026-03-30T12:00:00.0000000Z'
-      additionalProperties: false
-      example:
-        key: 401
-        deviceID: 201
-        streamTypeID: 1
-        eventID: 501
-        streamName: SendSRT
-        streamPath: sendsrt-wearabledevice
-        streamDescription: Example description
-        publishURL: srt://media.actionstreamer.com:8890?streamid=publish:sendsrt-wearabledevice
-        readURL: https://media.actionstreamer.com/webrtc/sendsrt-wearabledevice
-        lastActivityDate: '2026-03-30T12:00:00.0000000Z'
-        actionTypeID: 1
-        creationDate: '2026-03-30T12:00:00.0000000Z'
     CreateStream:
       type: object
       properties:
         deviceID:
+          type: integer
+          format: int64
+          example: 1
+        sensorID:
           type: integer
           format: int64
           example: 1
@@ -438,6 +456,7 @@ components:
       additionalProperties: false
       example:
         deviceID: 201
+        sensorID: 1
         streamType: Example value
         streamName: SendSRT
         streamPath: sendsrt-wearabledevice
@@ -457,3 +476,111 @@ components:
       additionalProperties: false
       example:
         value: Example value
+    Stream:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        deviceID:
+          type: integer
+          format: int64
+          example: 1
+        sensorID:
+          type: integer
+          format: int64
+          example: 1
+        streamTypeID:
+          type: integer
+          format: int64
+          example: 1
+        streamStatusID:
+          type: integer
+          format: int64
+          example: 1
+        eventID:
+          type: integer
+          format: int64
+          example: 1
+        streamName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        streamPath:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        streamDescription:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        publishURL:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        readURL:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        lastActivityDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        actionTypeID:
+          type: integer
+          format: int64
+          example: 1
+        desiredWidth:
+          type: integer
+          format: int64
+          example: 1
+        desiredHeight:
+          type: integer
+          format: int64
+          example: 1
+        desiredFrameRate:
+          type: integer
+          format: int64
+          example: 1
+        desiredBitrate:
+          type: integer
+          format: int64
+          example: 1
+        audioEnabled:
+          type: boolean
+          example: true
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 401
+        deviceID: 201
+        sensorID: 1
+        streamTypeID: 1
+        streamStatusID: 1
+        eventID: 501
+        streamName: SendSRT
+        streamPath: sendsrt-wearabledevice
+        streamDescription: Example description
+        publishURL: srt://media.actionstreamer.com:8890?streamid=publish:sendsrt-wearabledevice
+        readURL: https://media.actionstreamer.com/webrtc/sendsrt-wearabledevice
+        lastActivityDate: '2026-03-30T12:00:00.0000000Z'
+        actionTypeID: 1
+        desiredWidth: 1
+        desiredHeight: 1
+        desiredFrameRate: 1
+        desiredBitrate: 1
+        audioEnabled: true
+        creationDate: '2026-03-30T12:00:00.0000000Z'

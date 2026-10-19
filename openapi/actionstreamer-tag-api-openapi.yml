@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: ActionStreamer Tag API
-  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-10-08 19:37:24 UTC'
   termsOfService: https://actionstreamer.com/terms-of-use
   contact:
     name: Contact
@@ -122,22 +122,68 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ImageLabel:
+    GetTagListForDeviceList:
       type: object
       properties:
-        label:
+        deviceIDList:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int64
+            example: 1
+          example:
+          - 1
+        tagIDList:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int64
+            example: 1
+          example:
+          - 1
+        startEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        endEpoch:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        count:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        order:
           type:
           - string
           - 'null'
           example: Example value
-        confidence:
-          type: number
-          format: float
-          example: 1
+        searchText:
+          type:
+          - string
+          - 'null'
+          example: Example value
       additionalProperties: false
       example:
-        label: Example value
-        confidence: 98.4
+        deviceIDList:
+        - 1
+        tagIDList:
+        - 1
+        startEpoch: 1711800000
+        endEpoch: 1711800000
+        count: 25
+        order: Example value
+        searchText: Example value
     Tag:
       type: object
       properties:
@@ -214,65 +260,19 @@ components:
         objectName: Example value
         maxLabels: 1
         minConfidence: 98.4
-    GetTagListForDeviceList:
+    ImageLabel:
       type: object
       properties:
-        deviceIDList:
-          type:
-          - array
-          - 'null'
-          items:
-            type: integer
-            format: int64
-            example: 1
-          example:
-          - 1
-        tagIDList:
-          type:
-          - array
-          - 'null'
-          items:
-            type: integer
-            format: int64
-            example: 1
-          example:
-          - 1
-        startEpoch:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        endEpoch:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        count:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        order:
+        label:
           type:
           - string
           - 'null'
           example: Example value
-        searchText:
-          type:
-          - string
-          - 'null'
-          example: Example value
+        confidence:
+          type: number
+          format: float
+          example: 1
       additionalProperties: false
       example:
-        deviceIDList:
-        - 1
-        tagIDList:
-        - 1
-        startEpoch: 1711800000
-        endEpoch: 1711800000
-        count: 25
-        order: Example value
-        searchText: Example value
+        label: Example value
+        confidence: 98.4

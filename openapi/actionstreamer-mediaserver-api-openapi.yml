@@ -1,0 +1,122 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Media Server API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-10-08 19:37:24 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: MediaServer
+paths:
+  /v1/mediaserver/list:
+    get:
+      tags:
+      - MediaServer
+      summary: Gets the MediaServer list
+      description: Returns active MediaServers for the authenticated session.
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: getV1MediaserverList
+      x-operation-id-source: derived
+  /v1/mediaserver/{mediaServerID}:
+    get:
+      tags:
+      - MediaServer
+      summary: Gets a MediaServer by ID
+      parameters:
+      - name: mediaServerID
+        in: path
+        description: The ID of the MediaServer to retrieve.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: getV1MediaserverByMediaServerID
+      x-operation-id-source: derived
+    put:
+      tags:
+      - MediaServer
+      summary: Updates a MediaServer
+      description: 'Request body: JSON object.'
+      parameters:
+      - name: mediaServerID
+        in: path
+        description: The ID of the MediaServer to update.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: putV1MediaserverByMediaServerID
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - MediaServer
+      summary: Deletes a MediaServer
+      parameters:
+      - name: mediaServerID
+        in: path
+        description: The ID of the MediaServer to delete.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: deleteV1MediaserverByMediaServerID
+      x-operation-id-source: derived
+  /v1/mediaserver:
+    post:
+      tags:
+      - MediaServer
+      summary: Creates a MediaServer
+      description: 'Request body: JSON object. Standard requests require an authenticated session. Media server hosts may instead send EC2InstanceID, PublicIPAddress, and registrationCode for the server check-in flow.'
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: postV1Mediaserver
+      x-operation-id-source: derived
+  /v1/mediaserver/{mediaServerID}/status/{mediaServerStatusID}:
+    patch:
+      tags:
+      - MediaServer
+      summary: Updates the MediaServer status
+      parameters:
+      - name: mediaServerID
+        in: path
+        description: The ID of the MediaServer to update.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      - name: mediaServerStatusID
+        in: path
+        description: The new MediaServer status ID.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: patchV1MediaserverByMediaServerIDStatusByMediaServerStatusID
+      x-operation-id-source: derived

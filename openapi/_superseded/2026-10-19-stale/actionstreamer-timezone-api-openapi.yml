@@ -1,0 +1,83 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Time Zone API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: Timezone
+paths:
+  /v1/timezone/list:
+    get:
+      tags:
+      - Timezone
+      summary: Gets the supported time zone list
+      description: Requires authentication.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TimeZone'
+                example:
+                - key: America/New_York
+                  displayName: (UTC-05:00) Eastern Time (New York)
+              example:
+              - key: America/New_York
+                displayName: (UTC-05:00) Eastern Time (New York)
+      operationId: getV1TimezoneList
+      x-operation-id-source: derived
+  /v1/timezone/offset:
+    get:
+      tags:
+      - Timezone
+      summary: Gets the authenticated user time zone offset in hours
+      description: Returns a JSON object with the offset in `value`.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FloatArg'
+              example:
+                value: -4
+      operationId: getV1TimezoneOffset
+      x-operation-id-source: derived
+components:
+  schemas:
+    TimeZone:
+      type: object
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        displayName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        key: America/New_York
+        displayName: (UTC-05:00) Eastern Time (New York)
+    FloatArg:
+      type: object
+      properties:
+        value:
+          type:
+          - number
+          - 'null'
+          format: double
+          example: 1
+      additionalProperties: false
+      example:
+        value: -4

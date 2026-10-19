@@ -1,0 +1,216 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Notification API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: Notification
+paths:
+  /v1/notification/{notificationID}:
+    get:
+      tags:
+      - Notification
+      summary: Gets a notification by ID
+      parameters:
+      - name: notificationID
+        in: path
+        description: The ID of the notification to retrieve.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notification'
+              example:
+                key: 1
+                notificationStatusID: 1
+                message: Example value
+                seenInApp: true
+                seenDate: '2026-03-30T12:00:00.0000000Z'
+                sentAsEmail: true
+                sentAsEmailDate: '2026-03-30T12:00:00.0000000Z'
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1NotificationByNotificationID
+      x-operation-id-source: derived
+    put:
+      tags:
+      - Notification
+      summary: Updates a notification
+      description: 'Request body: JSON object.'
+      parameters:
+      - name: notificationID
+        in: path
+        description: The ID of the notification to update.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Notification'
+            example:
+              key: 1
+              notificationStatusID: 1
+              message: Example value
+              seenInApp: true
+              seenDate: '2026-03-30T12:00:00.0000000Z'
+              sentAsEmail: true
+              sentAsEmailDate: '2026-03-30T12:00:00.0000000Z'
+              creationDate: '2026-03-30T12:00:00.0000000Z'
+        required: true
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: putV1NotificationByNotificationID
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - Notification
+      summary: Deletes a notification
+      parameters:
+      - name: notificationID
+        in: path
+        description: The ID of the notification to delete.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: deleteV1NotificationByNotificationID
+      x-operation-id-source: derived
+  /v1/notification/list:
+    get:
+      tags:
+      - Notification
+      summary: Gets the notification list
+      description: Supports optional query parameters `seeninapp`, `sentasemail`, and `sinceepoch`.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Notification'
+                example:
+                - key: 1
+                  notificationStatusID: 1
+                  userID: 101
+                  message: Example value
+                  seenInApp: true
+                  seenDate: '2026-03-30T12:00:00.0000000Z'
+                  sentAsEmail: true
+                  sentAsEmailDate: '2026-03-30T12:00:00.0000000Z'
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 1
+                notificationStatusID: 1
+                message: Example value
+                seenInApp: true
+                seenDate: '2026-03-30T12:00:00.0000000Z'
+                sentAsEmail: true
+                sentAsEmailDate: '2026-03-30T12:00:00.0000000Z'
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1NotificationList
+      x-operation-id-source: derived
+  /v1/notification:
+    post:
+      tags:
+      - Notification
+      summary: Creates a notification
+      description: 'Request body: JSON object.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Notification'
+            example:
+              key: 1
+              notificationStatusID: 1
+              message: Example value
+              seenInApp: true
+              seenDate: '2026-03-30T12:00:00.0000000Z'
+              sentAsEmail: true
+              sentAsEmailDate: '2026-03-30T12:00:00.0000000Z'
+              creationDate: '2026-03-30T12:00:00.0000000Z'
+        required: true
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: postV1Notification
+      x-operation-id-source: derived
+components:
+  schemas:
+    Notification:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        notificationStatusID:
+          type: integer
+          format: int64
+          example: 1
+        message:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        seenInApp:
+          type: boolean
+          example: true
+        seenDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        sentAsEmail:
+          type: boolean
+          example: true
+        sentAsEmailDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        notificationStatusID: 1
+        message: Example value
+        seenInApp: true
+        seenDate: '2026-03-30T12:00:00.0000000Z'
+        sentAsEmail: true
+        sentAsEmailDate: '2026-03-30T12:00:00.0000000Z'
+        creationDate: '2026-03-30T12:00:00.0000000Z'

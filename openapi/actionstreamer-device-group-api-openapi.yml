@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: ActionStreamer Device Group API
-  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-10-08 19:37:24 UTC'
   termsOfService: https://actionstreamer.com/terms-of-use
   contact:
     name: Contact
@@ -90,8 +90,8 @@ paths:
           description: Success. No response body.
       operationId: deleteV1DevicegroupByDeviceGroupID
       x-operation-id-source: derived
-  /v1/devicegroup:
-    get:
+  /v1/devicegroup/name:
+    post:
       tags:
       - Device Group
       summary: Gets a device group by name
@@ -119,37 +119,7 @@ paths:
                 itemID: 1
                 parentID: 1
                 creationDate: '2026-03-30T12:00:00.0000000Z'
-      operationId: getV1Devicegroup
-      x-operation-id-source: derived
-    post:
-      tags:
-      - Device Group
-      summary: Creates a device group
-      description: 'Request body: JSON object containing the new device group name.'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/StringArg'
-            example:
-              value: Example value
-        required: true
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Collection'
-              example:
-                key: 1
-                collectionName: Example value
-                description: Example description
-                itemTypeID: 1
-                itemID: 1
-                parentID: 1
-                creationDate: '2026-03-30T12:00:00.0000000Z'
-      operationId: postV1Devicegroup
+      operationId: postV1DevicegroupName
       x-operation-id-source: derived
   /v1/devicegroup/list:
     get:
@@ -440,6 +410,37 @@ paths:
                   children: null
       operationId: getV1ShareddevicegroupTreenodeList
       x-operation-id-source: derived
+  /v1/devicegroup:
+    post:
+      tags:
+      - Device Group
+      summary: Creates a device group
+      description: 'Request body: JSON object containing the new device group name.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StringArg'
+            example:
+              value: Example value
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+              example:
+                key: 1
+                collectionName: Example value
+                description: Example description
+                itemTypeID: 1
+                itemID: 1
+                parentID: 1
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1Devicegroup
+      x-operation-id-source: derived
   /v1/devicegroup/{deviceGroupID}/device/{deviceID}:
     post:
       tags:
@@ -516,17 +517,101 @@ components:
         deviceGroupID: 1
         emailAddress: testuser@actionstreamer.com
         permissionList: Example value
-    StringArg:
+    Collection:
       type: object
       properties:
-        value:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        collectionName:
           type:
           - string
           - 'null'
           example: Example value
+        description:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        itemTypeID:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 1
+        itemID:
+          type: integer
+          format: int64
+          example: 1
+        parentID:
+          type: integer
+          format: int64
+          example: 1
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
       additionalProperties: false
       example:
-        value: Example value
+        key: 1
+        collectionName: Example value
+        description: Example description
+        itemTypeID: 1
+        itemID: 1
+        parentID: 1
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+    TreeNode:
+      type: object
+      properties:
+        title:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        key:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        isLeaf:
+          type: boolean
+          example: true
+        selectable:
+          type: boolean
+          example: true
+        children:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/TreeNode'
+          example:
+          - title: Example value
+            key: Example value
+            isLeaf: true
+            selectable: true
+            children:
+            - title: null
+              key: null
+              isLeaf: null
+              selectable: null
+              children: null
+      additionalProperties: false
+      example:
+        title: Example value
+        key: Example value
+        isLeaf: true
+        selectable: true
+        children:
+        - title: Example value
+          key: Example value
+          isLeaf: true
+          selectable: true
+          children:
+          - null
     Device:
       type: object
       properties:
@@ -669,6 +754,17 @@ components:
         volume: 75
         commentListID: 1
         creationDate: '2026-03-30T12:00:00.0000000Z'
+    StringArg:
+      type: object
+      properties:
+        value:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        value: Example value
     SharedItem:
       type: object
       properties:
@@ -739,99 +835,4 @@ components:
         emailAddress: testuser@actionstreamer.com
         permissionList: Example value
         description: Example description
-        creationDate: '2026-03-30T12:00:00.0000000Z'
-    TreeNode:
-      type: object
-      properties:
-        title:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        key:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        isLeaf:
-          type: boolean
-          example: true
-        selectable:
-          type: boolean
-          example: true
-        children:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/TreeNode'
-          example:
-          - title: Example value
-            key: Example value
-            isLeaf: true
-            selectable: true
-            children:
-            - title: null
-              key: null
-              isLeaf: null
-              selectable: null
-              children: null
-      additionalProperties: false
-      example:
-        title: Example value
-        key: Example value
-        isLeaf: true
-        selectable: true
-        children:
-        - title: Example value
-          key: Example value
-          isLeaf: true
-          selectable: true
-          children:
-          - null
-    Collection:
-      type: object
-      properties:
-        key:
-          type: integer
-          format: int64
-          example: 1
-        collectionName:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        description:
-          type:
-          - string
-          - 'null'
-          example: Example value
-        itemTypeID:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 1
-        itemID:
-          type: integer
-          format: int64
-          example: 1
-        parentID:
-          type: integer
-          format: int64
-          example: 1
-        creationDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2026-03-30T12:00:00.0000000Z'
-      additionalProperties: false
-      example:
-        key: 1
-        collectionName: Example value
-        description: Example description
-        itemTypeID: 1
-        itemID: 1
-        parentID: 1
         creationDate: '2026-03-30T12:00:00.0000000Z'

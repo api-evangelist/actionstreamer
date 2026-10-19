@@ -1,0 +1,288 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Project API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: Project
+paths:
+  /v1/project/{projectID}:
+    get:
+      tags:
+      - Project
+      summary: Gets a project by ID
+      parameters:
+      - name: projectID
+        in: path
+        description: The project ID.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+              example:
+                key: 301
+                projectName: RemoteWorker
+                description: Example description
+                userGroupID: 1
+                deviceGroupID: 1
+                conferenceURL: https://api.actionstreamer.com/example
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1ProjectByProjectID
+      x-operation-id-source: derived
+    put:
+      tags:
+      - Project
+      summary: Updates a project
+      description: 'Request body: JSON object.
+
+        The update path primarily supports changing the project name.'
+      parameters:
+      - name: projectID
+        in: path
+        description: The project ID.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+            example:
+              key: 301
+              projectName: RemoteWorker
+              description: Example description
+              userGroupID: 1
+              deviceGroupID: 1
+              conferenceURL: https://api.actionstreamer.com/example
+              creationDate: '2026-03-30T12:00:00.0000000Z'
+        required: true
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: putV1ProjectByProjectID
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - Project
+      summary: Deletes a project
+      description: Deletes a project.
+      parameters:
+      - name: projectID
+        in: path
+        description: The project ID.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: deleteV1ProjectByProjectID
+      x-operation-id-source: derived
+    patch:
+      tags:
+      - Project
+      summary: Applies a patch to a project
+      description: 'Request body: array of patch operations.
+
+        Supported patch fields are `description` and `conferenceURL`.'
+      parameters:
+      - name: projectID
+        in: path
+        description: The project ID.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: patchV1ProjectByProjectID
+      x-operation-id-source: derived
+  /v1/project/name:
+    post:
+      tags:
+      - Project
+      summary: Gets a project by name
+      description: 'Request body: JSON object containing the project name in `value`.
+
+        This lookup uses project name.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StringArg'
+            example:
+              value: Example value
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+              example:
+                key: 301
+                projectName: RemoteWorker
+                description: Example description
+                userGroupID: 1
+                deviceGroupID: 1
+                conferenceURL: https://api.actionstreamer.com/example
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1ProjectName
+      x-operation-id-source: derived
+  /v1/project/list:
+    get:
+      tags:
+      - Project
+      summary: Gets the project list
+      description: 'Returns projects associated with the authenticated user.
+
+        The previously intended shared-project query behavior is currently commented out.'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+                example:
+                - key: 301
+                  projectName: RemoteWorker
+                  description: Example description
+                  userGroupID: 1
+                  deviceGroupID: 1
+                  conferenceURL: https://api.actionstreamer.com/example
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 301
+                projectName: RemoteWorker
+                description: Example description
+                userGroupID: 1
+                deviceGroupID: 1
+                conferenceURL: https://api.actionstreamer.com/example
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1ProjectList
+      x-operation-id-source: derived
+  /v1/project:
+    post:
+      tags:
+      - Project
+      summary: Creates a project
+      description: 'Request body: JSON object.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+            example:
+              key: 301
+              projectName: RemoteWorker
+              description: Example description
+              userGroupID: 1
+              deviceGroupID: 1
+              conferenceURL: https://api.actionstreamer.com/example
+              creationDate: '2026-03-30T12:00:00.0000000Z'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+              example:
+                key: 301
+                projectName: RemoteWorker
+                description: Example description
+                userGroupID: 1
+                deviceGroupID: 1
+                conferenceURL: https://api.actionstreamer.com/example
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1Project
+      x-operation-id-source: derived
+components:
+  schemas:
+    Project:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        projectName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        description:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        userGroupID:
+          type: integer
+          format: int64
+          example: 1
+        deviceGroupID:
+          type: integer
+          format: int64
+          example: 1
+        conferenceURL:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 301
+        projectName: RemoteWorker
+        description: Example description
+        userGroupID: 1
+        deviceGroupID: 1
+        conferenceURL: https://api.actionstreamer.com/example
+        creationDate: '2026-03-30T12:00:00.0000000Z'
+    StringArg:
+      type: object
+      properties:
+        value:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        value: Example value

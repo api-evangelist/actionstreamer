@@ -1,0 +1,252 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer User Browser API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: UserBrowser
+paths:
+  /v1/userbrowser/{userBrowserID}:
+    get:
+      tags:
+      - UserBrowser
+      summary: Gets a trusted browser record by ID
+      parameters:
+      - name: userBrowserID
+        in: path
+        description: The ID of the trusted browser record to retrieve.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserBrowser'
+              example:
+                key: 1
+                browserName: Example value
+                browserDescription: Example description
+                userAgent: Example value
+                remoteIPAddress: 203.0.113.42
+                forwardedFor: Example value
+                realIP: Example value
+                lastSignInDate: '2026-03-30T12:00:00.0000000Z'
+                location: Remote site
+                browserGUIDHash: 11111111-2222-3333-4444-555555555555
+                isTrustedBrowser: true
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1UserbrowserByUserBrowserID
+      x-operation-id-source: derived
+    patch:
+      tags:
+      - UserBrowser
+      summary: Applies a patch to a trusted browser record
+      description: 'Request body: array of patch operations.'
+      parameters:
+      - name: userBrowserID
+        in: path
+        description: The ID of the trusted browser record to patch.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example: Patch applied successfully.
+      operationId: patchV1UserbrowserByUserBrowserID
+      x-operation-id-source: derived
+  /v1/userbrowser/{browserGUID}:
+    get:
+      tags:
+      - UserBrowser
+      summary: Gets a trusted browser record by browser GUID
+      parameters:
+      - name: browserGUID
+        in: path
+        description: The browser GUID to look up.
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: Example value
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserBrowser'
+              example:
+                key: 1
+                browserName: Example value
+                browserDescription: Example description
+                userAgent: Example value
+                remoteIPAddress: 203.0.113.42
+                forwardedFor: Example value
+                realIP: Example value
+                lastSignInDate: '2026-03-30T12:00:00.0000000Z'
+                location: Remote site
+                browserGUIDHash: 11111111-2222-3333-4444-555555555555
+                isTrustedBrowser: true
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1UserbrowserByBrowserGUID
+      x-operation-id-source: derived
+  /v1/userbrowser/list:
+    get:
+      tags:
+      - UserBrowser
+      summary: Gets the trusted browser list
+      description: Returns trusted browser records for the authenticated user.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserBrowser'
+                example:
+                - key: 1
+                  userID: 101
+                  browserName: Example value
+                  browserDescription: Example description
+                  userAgent: Example value
+                  remoteIPAddress: 203.0.113.42
+                  forwardedFor: Example value
+                  realIP: Example value
+                  lastSignInDate: '2026-03-30T12:00:00.0000000Z'
+                  location: Remote site
+                  browserGUIDHash: 11111111-2222-3333-4444-555555555555
+                  isTrustedBrowser: true
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 1
+                browserName: Example value
+                browserDescription: Example description
+                userAgent: Example value
+                remoteIPAddress: 203.0.113.42
+                forwardedFor: Example value
+                realIP: Example value
+                lastSignInDate: '2026-03-30T12:00:00.0000000Z'
+                location: Remote site
+                browserGUIDHash: 11111111-2222-3333-4444-555555555555
+                isTrustedBrowser: true
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1UserbrowserList
+      x-operation-id-source: derived
+  /v1/userbrowser/trust/{browserGUID}:
+    patch:
+      tags:
+      - UserBrowser
+      summary: Marks a browser as trusted
+      parameters:
+      - name: browserGUID
+        in: path
+        description: The browser GUID to mark as trusted.
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: Example value
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: patchV1UserbrowserTrustByBrowserGUID
+      x-operation-id-source: derived
+components:
+  schemas:
+    UserBrowser:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        browserName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        browserDescription:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        userAgent:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        remoteIPAddress:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        forwardedFor:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        realIP:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        lastSignInDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+        location:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        browserGUIDHash:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        isTrustedBrowser:
+          type: boolean
+          example: true
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        browserName: Example value
+        browserDescription: Example description
+        userAgent: Example value
+        remoteIPAddress: 203.0.113.42
+        forwardedFor: Example value
+        realIP: Example value
+        lastSignInDate: '2026-03-30T12:00:00.0000000Z'
+        location: Remote site
+        browserGUIDHash: 11111111-2222-3333-4444-555555555555
+        isTrustedBrowser: true
+        creationDate: '2026-03-30T12:00:00.0000000Z'

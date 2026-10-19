@@ -1,0 +1,186 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Session Variable API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: SessionVariable
+paths:
+  /v1/sessionvariable/list:
+    get:
+      tags:
+      - SessionVariable
+      summary: Gets the session variable list for the authenticated user
+      description: Returns session variables for the authenticated user.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SessionVariable'
+                example:
+                - key: 1
+                  sessionVariableTypeID: 1
+                  userID: 101
+                  sessionID: 1
+                  variableName: Example value
+                  variableValue: Example value
+                  creationDate: '2026-03-30T12:00:00.0000000Z'
+                  createdBy: 1
+                  lastModifiedDate: '2026-03-30T12:00:00.0000000Z'
+                  lastModifiedBy: 1
+              example:
+              - key: 1
+                sessionVariableTypeID: 1
+                sessionID: 1
+                variableName: Example value
+                variableValue: Example value
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1SessionvariableList
+      x-operation-id-source: derived
+  /v1/sessionvariable/{variableName}:
+    get:
+      tags:
+      - SessionVariable
+      summary: Gets a session variable for the authenticated user
+      parameters:
+      - name: variableName
+        in: path
+        description: The name of the session variable to retrieve.
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: Example value
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionVariable'
+              example:
+                key: 1
+                sessionVariableTypeID: 1
+                sessionID: 1
+                variableName: Example value
+                variableValue: Example value
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: getV1SessionvariableByVariableName
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - SessionVariable
+      summary: Deletes a session variable for the authenticated user
+      parameters:
+      - name: variableName
+        in: path
+        description: The name of the session variable to delete.
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: Example value
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: deleteV1SessionvariableByVariableName
+      x-operation-id-source: derived
+  /v1/sessionvariable:
+    post:
+      tags:
+      - SessionVariable
+      summary: Creates or updates a session variable for the authenticated user
+      description: 'Request body: JSON object with the variable name in `name` and the
+
+        variable value in `value`.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NameValuePair'
+            example:
+              name: RemoteWorker
+              value: Example value
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionVariable'
+              example:
+                key: 1
+                sessionVariableTypeID: 1
+                sessionID: 1
+                variableName: Example value
+                variableValue: Example value
+                creationDate: '2026-03-30T12:00:00.0000000Z'
+      operationId: postV1Sessionvariable
+      x-operation-id-source: derived
+components:
+  schemas:
+    NameValuePair:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        value:
+          type:
+          - string
+          - 'null'
+          example: Example value
+      additionalProperties: false
+      example:
+        name: RemoteWorker
+        value: Example value
+    SessionVariable:
+      type: object
+      properties:
+        key:
+          type: integer
+          format: int64
+          example: 1
+        sessionVariableTypeID:
+          type: integer
+          format: int64
+          example: 1
+        sessionID:
+          type: integer
+          format: int64
+          example: 1
+        variableName:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        variableValue:
+          type:
+          - string
+          - 'null'
+          example: Example value
+        creationDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-30T12:00:00.0000000Z'
+      additionalProperties: false
+      example:
+        key: 1
+        sessionVariableTypeID: 1
+        sessionID: 1
+        variableName: Example value
+        variableValue: Example value
+        creationDate: '2026-03-30T12:00:00.0000000Z'

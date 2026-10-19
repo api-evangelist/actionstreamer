@@ -1,0 +1,55 @@
+openapi: 3.2.0
+info:
+  title: ActionStreamer Caption API
+  description: 'A web API for the ActionStreamer platform. Publish date: 2026-07-07 16:13:41 UTC'
+  termsOfService: https://actionstreamer.com/terms-of-use
+  contact:
+    name: Contact
+    url: https://actionstreamer.com/company
+  version: v1
+tags:
+- name: Caption
+paths:
+  /v1/caption/audio/{deviceSerial}:
+    post:
+      tags:
+      - Caption
+      summary: Generates image tags for an image
+      description: 'Request body: JSON object.
+
+        Supports optional `maxLabels` and `minConfidence`.'
+      parameters:
+      - name: deviceSerial
+        in: path
+        description: The device serial number.
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: Example value
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: postV1CaptionAudioByDeviceSerial
+      x-operation-id-source: derived
+  /v1/caption/words/{captionID}:
+    get:
+      tags:
+      - Caption
+      summary: Generates image tags for an image
+      description: 'Request body: JSON object.'
+      parameters:
+      - name: captionID
+        in: path
+        description: The {mediaType}ID that the caption belongs to.
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int64
+          example: 1
+      responses:
+        '200':
+          description: Success. No response body.
+      operationId: getV1CaptionWordsByCaptionID
+      x-operation-id-source: derived
