@@ -714,3 +714,9 @@ components:
         verticalLines:
         - timestamp: 1
           color: Example value
+x-provenance:
+  method: harvested
+  publisher: ActionStreamer
+  source: https://api.actionstreamer.com/swagger/v1/swagger.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)

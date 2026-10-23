@@ -6,6 +6,9 @@ artifacts:
   authentication/actionstreamer-authentication.yml:
     method: searched
     evidence: declared in the artifact
+  capabilities/actionstreamer-capability-edges.yml:
+    method: unknown
+    evidence: no authorship recorded
   conformance/actionstreamer-conformance.yml:
     method: derived
     evidence: declared in the artifact
@@ -24,28 +27,7 @@ artifacts:
   front-door-ai/2026-09-17.yml:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-09-24T161608.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T224210.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T200636.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T213054.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T214843.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T232836.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T204815.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T222408.yml:
+  kin/checks-2026-10-11T110117.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-12T062655.yml:
@@ -129,6 +111,21 @@ artifacts:
   kin/score-2026-09-24T161608.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T210408.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T232841.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T000835.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T024842.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-11T110117.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
   lifecycle/actionstreamer-lifecycle.yml:
     method: searched
     evidence: declared in the artifact
@@ -138,10 +135,10 @@ artifacts:
   mcp/actionstreamer-mcp.yml:
     method: derived
     evidence: declared in the artifact
-  openapi/_original/actionstreamer-openapi-original.json:
+  openapi/_original/actionstreamer-openapi.json:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: byte-identical to https://api.actionstreamer.com/swagger/v1/swagger.json (sha256 011c37486569,
+      fetched 2026-10-19)
   openapi/actionstreamer-agent-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
@@ -167,6 +164,9 @@ artifacts:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/actionstreamer-device-health-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/actionstreamer-devicecapability-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/actionstreamer-devicecomment-api-openapi.yml:
@@ -199,6 +199,15 @@ artifacts:
   openapi/actionstreamer-mediarouterauth-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/actionstreamer-mediaserver-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/actionstreamer-moq-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/actionstreamer-moqstream-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/actionstreamer-multi-factor-auth-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
@@ -220,6 +229,9 @@ artifacts:
   openapi/actionstreamer-register-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/actionstreamer-sensor-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/actionstreamer-session-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
@@ -235,7 +247,16 @@ artifacts:
   openapi/actionstreamer-signinhistory-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/actionstreamer-srt-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/actionstreamer-srtstream-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/actionstreamer-stream-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/actionstreamer-streamsession-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/actionstreamer-tag-api-openapi.yml:

@@ -200,3 +200,9 @@ paths:
           description: Success. No response body.
       operationId: patchV1StreamsessionByStreamSessionIDMediaserverAuto
       x-operation-id-source: derived
+x-provenance:
+  method: harvested
+  publisher: ActionStreamer
+  source: https://api.actionstreamer.com/swagger/v1/swagger.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)

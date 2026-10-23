@@ -1760,3 +1760,9 @@ components:
         clipLengthInSeconds: 1
         tagListID: 1
         creationDate: '2026-03-30T12:00:00.0000000Z'
+x-provenance:
+  method: harvested
+  publisher: ActionStreamer
+  source: https://api.actionstreamer.com/swagger/v1/swagger.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
